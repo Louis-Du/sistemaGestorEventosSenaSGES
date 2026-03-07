@@ -37,7 +37,7 @@ CREATE TABLE Aprendiz(
 	idApr int NOT NULL PRIMARY KEY,
 	nombreApr varchar(50) NOT NULL,
 	edadApr int NOT NULL,
-	generoApr char(1) NOT NULL,
+	generoApr varchar(10) NOT NULL,
 	codigoFic int NOT NULL,
 	FOREIGN KEY (codigoFic) REFERENCES Fichas(codigoFic)
 )
