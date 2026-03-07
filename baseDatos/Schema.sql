@@ -1,4 +1,5 @@
-
+CREATE DATABASE SGES
+go
 
 CREATE TABLE Administrador(
 	idAdmin int NOT NULL PRIMARY KEY,
