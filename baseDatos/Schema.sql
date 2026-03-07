@@ -42,12 +42,12 @@ CREATE TABLE Aprendiz(
 	FOREIGN KEY (codigoFic) REFERENCES Fichas(codigoFic)
 )
 
-CREATE TABLE Grupos(
+CREATE TABLE Grupo(
 	idGrupo int NOT NULL PRIMARY KEY,
 	nombreGrupo varchar(20) NOT NULL
 )
 
-CREATE TABLE Inscripciones(
+CREATE TABLE Inscripcion(
 	idInscrip int NOT NULL PRIMARY KEY,
 	fechaInscrip DATE NOT NULL,
 	modalidadInscrip varchar(10) NOT NULL,
