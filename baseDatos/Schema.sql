@@ -7,7 +7,7 @@ CREATE TABLE Administrador(
 	contraseñaAdmin varchar(8) NOT NULL
 )
 
-CREATE TABLE Eventos(
+CREATE TABLE Evento(
 	idEvento INT NOT NULL PRIMARY KEY,
 	nombreEvento VARCHAR(50) NOT NULL,
 	tipoEvento VARCHAR(15) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE Eventos(
 	FOREIGN KEY (idAdmin) REFERENCES Administrador(idAdmin)
 )
 
-CREATE TABLE Programas(
+CREATE TABLE Programa(
 	codigoProg int NOT NULL PRIMARY KEY,
 	nombreProg varchar(30) NOT NULL,
 	fechaIniProg date NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE Programas(
 	nivelProg int NOT NULL
 )
 
-CREATE TABLE Fichas(
+CREATE TABLE Ficha(
 	codigoFic int NOT NULL PRIMARY KEY,
 	fechaIniFic date NOT NULL,
 	fechaFinFic date NOT NULL,
