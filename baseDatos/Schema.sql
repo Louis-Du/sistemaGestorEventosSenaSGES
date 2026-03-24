@@ -1,10 +1,10 @@
 CREATE DATABASE SGES
 go
 
-CREATE TABLE Administrador(
-	idAdmin int NOT NULL PRIMARY KEY,
-	nombreAdmin varchar(50) NOT NULL,
-	contraseñaAdmin varchar(8) NOT NULL
+CREATE TABLE Usuario(
+	idUser int NOT NULL PRIMARY KEY,
+	nombreUser varchar(50) NOT NULL,
+	contraseñaUser varchar(8) NOT NULL
 )
 
 CREATE TABLE Eventos(
@@ -13,8 +13,8 @@ CREATE TABLE Eventos(
 	tipoEvento VARCHAR(15) NOT NULL,
 	fechaEvento DATE NOT NULL,
 	horaEvento TIME NOT NULL,
-	idAdmin INT NOT NULL,
-	FOREIGN KEY (idAdmin) REFERENCES Administrador(idAdmin)
+	idUser INT NOT NULL,
+	FOREIGN KEY (idUser) REFERENCES Usuario(idUser)
 )
 
 CREATE TABLE Programas(
@@ -37,6 +37,11 @@ CREATE TABLE Aprendiz(
 	idApr int NOT NULL PRIMARY KEY,
 	nombreApr varchar(50) NOT NULL,
 	edadApr int NOT NULL,
+	emailApr varchar(50) not null,
+	contactoApr numeric not null,
+	nomberUser varchar(50) not null,
+	contraseñaUser varchar(18) not null,
+	tipoUser varchar(20) not null,
 	generoApr char(1) NOT NULL,
 	codigoFic int NOT NULL,
 	FOREIGN KEY (codigoFic) REFERENCES Fichas(codigoFic)
