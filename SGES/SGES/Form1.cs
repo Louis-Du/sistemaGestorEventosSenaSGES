@@ -16,5 +16,15 @@ namespace SGES
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Validar que el usuario y la contraseña no estén vacíos antes de intentar iniciar sesión
+            // `txtidusuario` y `txtpasswordusuario` son controles TextBox en el formulario de login.
+            if (txtidusuario.Text == "" && txtpasswordusuario.Text == "")
+            {
+                MessageBox.Show("Por favor, ingrese su ID de usuario y contraseña.");
+            }
+        }
     }
 }
