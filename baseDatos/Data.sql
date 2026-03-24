@@ -4,9 +4,9 @@ INSERT INTO Programa VALUES (102, 'Desarrollo de Software', '2024-02-01', 18, 'T
 INSERT INTO Programa VALUES (103, 'Ciberseguridad', '2024-03-10', 12, 'Especialización');
 
 -- Insertar en Administrador
-INSERT INTO Administrador VALUES (1, 'Carlos Ruiz', 'Admin123*');
-INSERT INTO Administrador VALUES (2, 'Ana Martínez', 'Pass789#');
-INSERT INTO Administrador VALUES (3, 'Luis Peña', 'Sena2024!');
+INSERT INTO Usuario VALUES (1, 'Carlos Ruiz', 'Admin123*');
+INSERT INTO Usuario VALUES (2, 'Ana Martínez', 'Pass789#');
+INSERT INTO Usuario VALUES (3, 'Luis Peña', 'Sena2024');
 
 
 -- Insertar en Ficha (Depende de Programa)
