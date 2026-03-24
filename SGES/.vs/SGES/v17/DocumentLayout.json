@@ -1,0 +1,68 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|c:\\users\\sena\\documents\\github\\sistemagestoreventossenasges\\sges\\sges\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|solutionrelative:sges\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|c:\\users\\sena\\documents\\github\\sistemagestoreventossenasges\\sges\\sges\\formaprendiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|solutionrelative:sges\\formaprendiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|c:\\users\\sena\\documents\\github\\sistemagestoreventossenasges\\sges\\sges\\formadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|solutionrelative:sges\\formadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\SGES\\Form1.cs",
+              "RelativeDocumentMoniker": "SGES\\Form1.cs",
+              "ToolTip": "C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\SGES\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SGES\\Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T12:07:44.158Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormAprendiz.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\SGES\\FormAprendiz.cs",
+              "RelativeDocumentMoniker": "SGES\\FormAprendiz.cs",
+              "ToolTip": "C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\SGES\\FormAprendiz.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SGES\\FormAprendiz.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T12:22:24.041Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FormAdmin.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\SGES\\FormAdmin.cs",
+              "RelativeDocumentMoniker": "SGES\\FormAdmin.cs",
+              "ToolTip": "C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\SGES\\FormAdmin.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SGES\\FormAdmin.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T12:21:47.463Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -37,6 +37,11 @@ CREATE TABLE Aprendiz(
 	idApr int NOT NULL PRIMARY KEY,
 	nombreApr varchar(50) NOT NULL,
 	edadApr int NOT NULL,
+	emailApr varchar(50) not null,
+	contactoApr numeric not null,
+	nomberUser varchar(50) not null,
+	contraseñaUser varchar(18) not null,
+	tipoUser varchar(20) not null,
 	generoApr char(1) NOT NULL,
 	codigoFic int NOT NULL,
 	FOREIGN KEY (codigoFic) REFERENCES Fichas(codigoFic)
