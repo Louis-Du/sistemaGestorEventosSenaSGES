@@ -7,24 +7,24 @@
       "RelativeMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|solutionrelative:sges\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|c:\\users\\sena\\documents\\github\\sistemagestoreventossenasges\\sges\\sges\\consultas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\sges\\consultas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|solutionrelative:sges\\consultas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|c:\\users\\sena\\documents\\github\\sistemagestoreventossenasges\\sges\\sges\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\sges\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|solutionrelative:sges\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\sges\\formaprendiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|solutionrelative:sges\\formaprendiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|c:\\users\\sena\\documents\\github\\sistemagestoreventossenasges\\sges\\sges\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|solutionrelative:sges\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\sges\\formadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|solutionrelative:sges\\formadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\sges\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|solutionrelative:sges\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\sges\\formaprendiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C72C98EB-D234-4B9D-9747-776ECEA6B6A8}|SGES\\SGES.csproj|solutionrelative:sges\\formaprendiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -44,7 +44,7 @@
               "RelativeDocumentMoniker": "SGES\\Consultas.cs",
               "ToolTip": "C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\SGES\\Consultas.cs",
               "RelativeToolTip": "SGES\\Consultas.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADMAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-24T15:35:24.755Z",
               "EditorCaption": ""
@@ -57,7 +57,7 @@
               "RelativeDocumentMoniker": "SGES\\Form1.cs",
               "ToolTip": "C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\SGES\\Form1.cs",
               "RelativeToolTip": "SGES\\Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAawBkAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-24T15:31:45.338Z",
               "EditorCaption": ""
@@ -70,7 +70,7 @@
               "RelativeDocumentMoniker": "SGES\\Conexion.cs",
               "ToolTip": "C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\SGES\\Conexion.cs",
               "RelativeToolTip": "SGES\\Conexion.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAwAUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-24T15:20:49.568Z",
               "EditorCaption": ""
@@ -89,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "FormAprendiz.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\SGES\\FormAprendiz.cs",
               "RelativeDocumentMoniker": "SGES\\FormAprendiz.cs",
@@ -101,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "FormAdmin.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\SENA\\Documents\\GitHub\\sistemaGestorEventosSenaSGES\\SGES\\SGES\\FormAdmin.cs",
               "RelativeDocumentMoniker": "SGES\\FormAdmin.cs",

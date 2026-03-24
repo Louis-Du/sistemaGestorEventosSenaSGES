@@ -10,3 +10,4 @@ C:\Users\SENA\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\
 C:\Users\SENA\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.csproj.CoreCompileInputs.cache
 C:\Users\SENA\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.exe
 C:\Users\SENA\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.pdb
+C:\Users\SENA\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.exe.config
