@@ -4,9 +4,9 @@ INSERT INTO Programa VALUES (102, 'Desarrollo de Software', '2024-02-01', 18, 'T
 INSERT INTO Programa VALUES (103, 'Ciberseguridad', '2024-03-10', 12, 'Especialización');
 
 -- Insertar en Administrador
-INSERT INTO Administrador VALUES (1, 'Carlos Ruiz', 'Admin123*');
-INSERT INTO Administrador VALUES (2, 'Ana Martínez', 'Pass789#');
-INSERT INTO Administrador VALUES (3, 'Luis Peña', 'Sena2024!');
+INSERT INTO Usuario VALUES (1, 'Carlos Ruiz', 'Admin123*');
+INSERT INTO Usuario VALUES (2, 'Ana Martínez', 'Pass789#');
+INSERT INTO Usuario VALUES (3, 'Luis Peña', 'Sena2024');
 
 
 -- Insertar en Ficha (Depende de Programa)
@@ -20,9 +20,10 @@ INSERT INTO Evento VALUES (502, 'Hackathon SENA', 'Competencia', '2024-06-15', '
 INSERT INTO Evento VALUES (503, 'Feria de Empleo', 'Laboral', '2024-07-20', '10:00:00', 1);
 
 -- Insertar en Aprendiz (Depende de Ficha)
-INSERT INTO Aprendiz VALUES (1001, 'Juan Perez', 20, 'M', 'juan@mail.com', 3101234567, 'Juan123', 26701);
-INSERT INTO Aprendiz VALUES (1002, 'Maria Lopez', 22, 'F', 'maria@mail.com', 3209876543, 'Maria456', 26702);
-INSERT INTO Aprendiz VALUES (1003, 'Pedro Gomez', 19, 'M', 'pedro@mail.com', 3154443322, 'Pedro789', 26703);
+INSERT INTO Aprendiz VALUES 
+(1, 'Carlos Ramirez', 20, 'carlosr@gmail.com', 3001234567, 'Carlos Ramirez', 'pass123', 'Aprendiz', 'M', 26701), 
+(2, 'Laura Gomez', 22, 'laurag@gmail.com', 3019876543, 'Laura Gomez', 'clave456', 'Aprendiz', 'F', 26702), 
+(3, 'Andres Torres', 19, 'andrest@gmail.com', 3024567890, 'Andres Torres', 'abc789', 'Aprendiz', 'M', 26703);
 
 -- Insertar en Inscripcion (Depende de Aprendiz y Evento)
 INSERT INTO Inscripcion VALUES (9001, '2024-04-01', 'Presencial', 1001, 501);
