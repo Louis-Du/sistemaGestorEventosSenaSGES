@@ -29,3 +29,4 @@ INSERT INTO Aprendiz VALUES
 INSERT INTO Inscripcion VALUES (9001, '2024-04-01', 'Presencial', 1001, 501);
 INSERT INTO Inscripcion VALUES (9002, '2024-04-02', 'Virtual', 1002, 501);
 INSERT INTO Inscripcion VALUES (9003, '2024-04-05', 'Presencial', 1003, 502);
+
