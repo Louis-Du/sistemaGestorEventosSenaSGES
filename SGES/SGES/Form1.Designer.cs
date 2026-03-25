@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.grpbLogin = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtidusuario = new System.Windows.Forms.TextBox();
-            this.txtpasswordusuario = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.txtpasswordusuario = new System.Windows.Forms.TextBox();
+            this.txtidusuario = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.grpbLogin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,14 +52,30 @@
             this.grpbLogin.TabStop = false;
             this.grpbLogin.Text = "Login";
             // 
-            // label1
+            // button1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(157, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Número de identificación:";
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.Location = new System.Drawing.Point(169, 176);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 34);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Iniciar Sesión";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtpasswordusuario
+            // 
+            this.txtpasswordusuario.Location = new System.Drawing.Point(160, 127);
+            this.txtpasswordusuario.Name = "txtpasswordusuario";
+            this.txtpasswordusuario.Size = new System.Drawing.Size(124, 20);
+            this.txtpasswordusuario.TabIndex = 3;
+            // 
+            // txtidusuario
+            // 
+            this.txtidusuario.Location = new System.Drawing.Point(159, 68);
+            this.txtidusuario.Name = "txtidusuario";
+            this.txtidusuario.Size = new System.Drawing.Size(125, 20);
+            this.txtidusuario.TabIndex = 2;
             // 
             // label2
             // 
@@ -70,29 +86,14 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Contraseña:";
             // 
-            // txtidusuario
+            // label1
             // 
-            this.txtidusuario.Location = new System.Drawing.Point(159, 68);
-            this.txtidusuario.Name = "txtidusuario";
-            this.txtidusuario.Size = new System.Drawing.Size(125, 20);
-            this.txtidusuario.TabIndex = 2;
-            // 
-            // txtpasswordusuario
-            // 
-            this.txtpasswordusuario.Location = new System.Drawing.Point(160, 127);
-            this.txtpasswordusuario.Name = "txtpasswordusuario";
-            this.txtpasswordusuario.Size = new System.Drawing.Size(124, 20);
-            this.txtpasswordusuario.TabIndex = 3;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Location = new System.Drawing.Point(169, 176);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 34);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Iniciar Sesión";
-            this.button1.UseVisualStyleBackColor = false;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(157, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(127, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Número de identificación:";
             // 
             // FormLogin
             // 
@@ -103,6 +104,7 @@
             this.Controls.Add(this.grpbLogin);
             this.Name = "FormLogin";
             this.Text = "SGES";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.grpbLogin.ResumeLayout(false);
             this.grpbLogin.PerformLayout();
             this.ResumeLayout(false);

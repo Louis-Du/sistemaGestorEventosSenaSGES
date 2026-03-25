@@ -1,5 +1,4 @@
-CREATE DATABASE SGES
-go
+
 
 CREATE TABLE Usuario(
 	idUser int NOT NULL PRIMARY KEY,
@@ -22,7 +21,7 @@ CREATE TABLE Programas(
 	nombreProg varchar(30) NOT NULL,
 	fechaIniProg date NOT NULL,
 	duracionProg int NOT NULL,
-	nivelProg int NOT NULL
+	nivelProg varchar(15) NOT NULL
 )
 
 CREATE TABLE Fichas(
