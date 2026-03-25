@@ -19,52 +19,64 @@ namespace SGES
         // Variable que indica si el inicio de sesión fue exitoso (true) o no (false).
         Boolean Estado_conexion = false; // Variable para indicar el estado de la conexión
 
-        public Boolean Iniciar_sesion(int idusuario, string passworusuario)
+        public Boolean Iniciar_sesion(int idUser, string contraseñaUser)
         {
-            // Preparar comando SQL para buscar el usuario con el id y contraseña proporcionados.
-            // Se usan parámetros para evitar inyección SQL.
-            SqlCommand query = new SqlCommand("select idusuario,passworusuario, tipousuario from Usuario where idUser=@idusuario and contraseñaUser=@passworusuario", cn.Conectar());
-            query.CommandType = CommandType.Text;
-            query.Parameters.AddWithValue("@idusuario", idusuario);
-            query.Parameters.AddWithValue("@passworusuario", passworusuario);
-            // ExecuteNonQuery no devuelve filas en SELECT, pero aquí el código crea un SqlDataAdapter
-            // que rellenará el DataSet; ExecuteNonQuery puede omitirse en este contexto, pero se deja
-            // para no cambiar la lógica existente.
-            query.ExecuteNonQuery();
-            
-            
             try
             {
-                // Usar SqlDataAdapter para ejecutar el SELECT y llenar el DataSet con los resultados.
+                ds.Tables.Clear(); // limpiar el DataSet antes de cada consulta
+
+                // 🔹 BUSCAR EN USUARIO (ADMIN)
+                SqlCommand query = new SqlCommand(
+                    "SELECT idUser, tipoUser FROM Usuario WHERE idUser=@idUser AND contraseñaUser=@contraseñaUser",
+                    cn.Conectar());
+
+                query.Parameters.AddWithValue("@idUser", idUser);
+                query.Parameters.AddWithValue("@contraseñaUser", contraseñaUser);
+
                 SqlDataAdapter da = new SqlDataAdapter(query);
                 da.Fill(ds, "Usuario");
-                // Si la consulta devolvió filas, tomar la primera fila (único usuario que cumple los criterios)
-                DataRow dr;
-                dr = ds.Tables["Usuario"].Rows[0];
-                // Comparar los valores recuperados con los ingresados y abrir el formulario correspondiente
-                // según el campo `tipousuario` (por ejemplo "permanente" o "temporal").
-                // Nota: el operador & funciona pero lo habitual es usar && para AND lógico.
-                if (Convert.ToString(idusuario) == dr["idusuario"].ToString() & passworusuario == dr["passworusuario"].ToString() & "permanente" == dr["tipousuario"].ToString())
-                {
-                    MessageBox.Show("Bienvenido(a)!");
-                    // Usuario permanente: abrir el formulario con privilegios/funciones para usuarios permanentes.
-                    FormAdmin frm = new FormAdmin();
-                    frm.Show();
-                    Estado_conexion = true;
 
-                }
-                else
+                if (ds.Tables["Usuario"].Rows.Count > 0)
                 {
-                    // Si no es admin, comprobar si es aprendiz y abrir el formulario aprendiz.
-                    if (Convert.ToString(idusuario) == dr["idusuario"].ToString() & passworusuario == dr["passworusuario"].ToString() & "temporal" == dr["tipousuario"].ToString())
+                    string tipo = ds.Tables["Usuario"].Rows[0]["tipoUser"].ToString().Trim();
+
+                    if (tipo == "Administrador")
                     {
-                        MessageBox.Show("Bienvenido(a)!");
-                        FormAprendiz frm = new FormAprendiz();
-                        frm.Show();
+                        MessageBox.Show("Bienvenido(a) Administrador!");
+                        new FormAdmin().Show();
                         Estado_conexion = true;
-
+                        return true;
                     }
                 }
+
+                // 🔹 BUSCAR EN APRENDIZ
+                ds.Tables.Clear();
+
+                SqlCommand query2 = new SqlCommand(
+                    "SELECT idApr, tipoUser FROM Aprendiz WHERE idApr=@idUser AND contraseñaUser=@contraseñaUser",
+                    cn.Conectar());
+
+                query2.Parameters.AddWithValue("@idUser", idUser);
+                query2.Parameters.AddWithValue("@contraseñaUser", contraseñaUser);
+
+                SqlDataAdapter da2 = new SqlDataAdapter(query2);
+                da2.Fill(ds, "Aprendiz");
+
+                if (ds.Tables["Aprendiz"].Rows.Count > 0)
+                {
+                    string tipo = ds.Tables["Aprendiz"].Rows[0]["tipoUser"].ToString().Trim();
+
+                    if (tipo == "Aprendiz")
+                    {
+                        MessageBox.Show("Bienvenido(a) Aprendiz!");
+                        new FormAprendiz().Show();
+                        Estado_conexion = true;
+                        return true;
+                    }
+                }
+
+                // 🔹 NO ENCONTRADO
+                MessageBox.Show("Usuario o contraseña incorrectos");
             }
             catch (Exception ex)
             {
@@ -74,6 +86,7 @@ namespace SGES
             {
                 cn.Desconectar();
             }
+
             return Estado_conexion;
         }
     }

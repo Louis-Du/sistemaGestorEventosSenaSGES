@@ -4,9 +4,9 @@ INSERT INTO Programas VALUES (102, 'Desarrollo de Software', '2024-02-01', 18, '
 INSERT INTO Programas VALUES (103, 'Ciberseguridad', '2024-03-10', 12, 'Especialización');
 
 -- Insertar en Administrador
-INSERT INTO Usuario VALUES (1, 'Carlos Ruiz', 'Admin12*');
-INSERT INTO Usuario VALUES (2, 'Ana Martínez', 'Pass789#');
-INSERT INTO Usuario VALUES (3, 'Luis Peña', 'Sena2024');
+INSERT INTO Usuario VALUES (1, 'Carlos Ruiz', 'Admin12*', 'Administrador');
+INSERT INTO Usuario VALUES (2, 'Ana Martínez', 'Pass789#', 'Administrador');
+INSERT INTO Usuario VALUES (3, 'Luis Peña', 'Sena2024', 'Administrador');
 
 
 -- Insertar en Ficha (Depende de Programa)
@@ -35,4 +35,5 @@ INSERT INTO Grupos VALUES
 INSERT INTO Inscripciones VALUES (9001, '2024-04-01', 'Presencial', 1, 501, 1);
 INSERT INTO Inscripciones VALUES (9002, '2024-04-02', 'Virtual', 2, 501, 2);
 INSERT INTO Inscripciones VALUES (9003, '2024-04-05', 'Presencial', 3, 502, 3)
+
 

@@ -4,7 +4,8 @@ go
 CREATE TABLE Usuario(
 	idUser int NOT NULL PRIMARY KEY,
 	nombreUser varchar(50) NOT NULL,
-	contraseñaUser varchar(8) NOT NULL
+	contraseñaUser varchar(8) NOT NULL,
+	tipoUser varchar(20) not null,
 )
 
 CREATE TABLE Eventos(

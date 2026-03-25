@@ -11,3 +11,16 @@ C:\Users\SENA\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\
 C:\Users\SENA\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.exe
 C:\Users\SENA\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.pdb
 C:\Users\SENA\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.exe.config
+C:\Users\Administrador\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\bin\Debug\SGES.exe.config
+C:\Users\Administrador\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\bin\Debug\SGES.exe
+C:\Users\Administrador\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\bin\Debug\SGES.pdb
+C:\Users\Administrador\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.csproj.AssemblyReference.cache
+C:\Users\Administrador\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.exe.config
+C:\Users\Administrador\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.FormLogin.resources
+C:\Users\Administrador\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.FormAdmin.resources
+C:\Users\Administrador\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.FormAprendiz.resources
+C:\Users\Administrador\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.Properties.Resources.resources
+C:\Users\Administrador\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.csproj.GenerateResource.cache
+C:\Users\Administrador\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.csproj.CoreCompileInputs.cache
+C:\Users\Administrador\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.exe
+C:\Users\Administrador\Documents\GitHub\sistemaGestorEventosSenaSGES\SGES\SGES\obj\Debug\SGES.pdb

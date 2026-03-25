@@ -34,6 +34,16 @@ namespace SGES
                 // Llamar al método que valida las credenciales.
                 // Se convierte el texto del TextBox `txtidusuario` a entero porque la tabla espera un id numérico.
                 c.Iniciar_sesion(int.Parse(txtidusuario.Text), txtpasswordusuario.Text);
+                this.Hide(); // OCULTA EL LOGIN
+            }
+        }
+
+        private void txtidusuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Evita que se ingresen caracteres no numéricos
+                MessageBox.Show("Solo se permiten números en el campo de ID de usuario.", "APLICACION"); 
             }
         }
     }
