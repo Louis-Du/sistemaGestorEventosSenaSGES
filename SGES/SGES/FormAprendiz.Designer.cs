@@ -30,13 +30,13 @@
         {
             this.btnVolver = new System.Windows.Forms.Button();
             this.grpbEventos = new System.Windows.Forms.GroupBox();
-            this.btnRegistrarme = new System.Windows.Forms.Button();
             this.dataGridViewAprend = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRegistrarme = new System.Windows.Forms.Button();
+            this.dgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpbEventos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAprend)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +62,20 @@
             this.grpbEventos.TabStop = false;
             this.grpbEventos.Text = "Eventos";
             // 
+            // dataGridViewAprend
+            // 
+            this.dataGridViewAprend.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAprend.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgID,
+            this.dgNom,
+            this.dgTipo,
+            this.dgFecha,
+            this.dgHora});
+            this.dataGridViewAprend.Location = new System.Drawing.Point(6, 29);
+            this.dataGridViewAprend.Name = "dataGridViewAprend";
+            this.dataGridViewAprend.Size = new System.Drawing.Size(510, 122);
+            this.dataGridViewAprend.TabIndex = 3;
+            // 
             // btnRegistrarme
             // 
             this.btnRegistrarme.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -72,44 +86,35 @@
             this.btnRegistrarme.Text = "Registrarme";
             this.btnRegistrarme.UseVisualStyleBackColor = false;
             // 
-            // dataGridViewAprend
+            // dgID
             // 
-            this.dataGridViewAprend.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAprend.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.Nombre,
-            this.Tipo,
-            this.Fecha,
-            this.Hora});
-            this.dataGridViewAprend.Location = new System.Drawing.Point(6, 29);
-            this.dataGridViewAprend.Name = "dataGridViewAprend";
-            this.dataGridViewAprend.Size = new System.Drawing.Size(510, 122);
-            this.dataGridViewAprend.TabIndex = 3;
+            this.dgID.DataPropertyName = "idEvento";
+            this.dgID.HeaderText = "ID";
+            this.dgID.Name = "dgID";
             // 
-            // ID
+            // dgNom
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
+            this.dgNom.DataPropertyName = "nombreEvento";
+            this.dgNom.HeaderText = "Nombre";
+            this.dgNom.Name = "dgNom";
             // 
-            // Nombre
+            // dgTipo
             // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
+            this.dgTipo.DataPropertyName = "tipoEvento";
+            this.dgTipo.HeaderText = "Tipo";
+            this.dgTipo.Name = "dgTipo";
             // 
-            // Tipo
+            // dgFecha
             // 
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
+            this.dgFecha.DataPropertyName = "fechaEvento";
+            this.dgFecha.HeaderText = "Fecha";
+            this.dgFecha.Name = "dgFecha";
             // 
-            // Fecha
+            // dgHora
             // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            // 
-            // Hora
-            // 
-            this.Hora.HeaderText = "Hora";
-            this.Hora.Name = "Hora";
+            this.dgHora.DataPropertyName = "horaEvento";
+            this.dgHora.HeaderText = "Hora";
+            this.dgHora.Name = "dgHora";
             // 
             // FormAprendiz
             // 
@@ -121,6 +126,7 @@
             this.Controls.Add(this.btnVolver);
             this.Name = "FormAprendiz";
             this.Text = "FormAprendiz";
+            this.Load += new System.EventHandler(this.FormAprendiz_Load);
             this.grpbEventos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAprend)).EndInit();
             this.ResumeLayout(false);
@@ -133,10 +139,10 @@
         private System.Windows.Forms.GroupBox grpbEventos;
         private System.Windows.Forms.Button btnRegistrarme;
         private System.Windows.Forms.DataGridView dataGridViewAprend;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Hora;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgNom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgTipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgFecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgHora;
     }
 }

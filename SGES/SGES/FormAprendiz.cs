@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace SGES
 {
@@ -15,6 +16,17 @@ namespace SGES
         public FormAprendiz()
         {
             InitializeComponent();
+        }
+
+        private void FormAprendiz_Load(object sender, EventArgs e)
+        {
+            Consultas consulta = new Consultas();
+
+            DataSet ds = consulta.ConsultarEventos();
+
+            dataGridViewAprend.AutoGenerateColumns = false;
+
+            dataGridViewAprend.DataSource = ds.Tables["Eventos"];
         }
     }
 }
