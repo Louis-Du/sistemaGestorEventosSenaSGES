@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -46,8 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conexion.cs" />
-    <Compile Include="Consultas.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,23 +58,11 @@
     <Compile Include="FormAdmin.Designer.cs">
       <DependentUpon>FormAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAprendicesRegistrados.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAprendicesRegistrados.Designer.cs">
-      <DependentUpon>FormAprendicesRegistrados.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormAprendiz.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAprendiz.Designer.cs">
       <DependentUpon>FormAprendiz.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormCrearEvento.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormCrearEvento.Designer.cs">
-      <DependentUpon>FormCrearEvento.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,14 +72,8 @@
     <EmbeddedResource Include="FormAdmin.resx">
       <DependentUpon>FormAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAprendicesRegistrados.resx">
-      <DependentUpon>FormAprendicesRegistrados.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormAprendiz.resx">
       <DependentUpon>FormAprendiz.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormCrearEvento.resx">
-      <DependentUpon>FormCrearEvento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
