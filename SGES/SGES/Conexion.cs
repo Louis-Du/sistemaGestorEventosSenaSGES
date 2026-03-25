@@ -9,26 +9,29 @@ using System.Windows.Forms;
 
 namespace SGES
 {
-    class Conexion
+    internal class Conexion
     {
-        SqlConnection con;
+        SqlConnection con;  // Variable para la conexión a la base de datos
+
         public SqlConnection Conectar()
         {
             try
             {
-                con = new SqlConnection("Data Source=.\\SQLEXPRESS01; Initial Catalog=SGES3; Integrated Security=True");
-                con.Open();
+                // Cadena de conexión: Data Source indica el servidor/instancia, Initial Catalog la base de datos.
+                con = new SqlConnection("Data Source=DESKTOP-02V64SM\\SQLEXPRESS;Initial Catalog=SGES;Integrated Security=True");
+                con.Open(); // Abrir la conexión
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                // Mostrar cualquier error que ocurra al intentar conectar.
+                MessageBox.Show(e.Message); // Mostrar mensaje de error en caso de excepción
             }
-            return con;
+            return con; // Retornar la conexión (puede ser null si la apertura falló)
         }
 
-        public void Cerrar()
+        public void Desconectar()
         {
-            con.Close();
+            con.Close(); // Cerrar la conexión si está abierta
         }
     }
 }

@@ -4,7 +4,8 @@ go
 CREATE TABLE Usuario(
 	idUser int NOT NULL PRIMARY KEY,
 	nombreUser varchar(50) NOT NULL,
-	contraseñaUser varchar(8) NOT NULL
+	contraseñaUser varchar(8) NOT NULL,
+	tipoUser varchar(20) not null,
 )
 
 CREATE TABLE Eventos(
@@ -22,7 +23,7 @@ CREATE TABLE Programas(
 	nombreProg varchar(30) NOT NULL,
 	fechaIniProg date NOT NULL,
 	duracionProg int NOT NULL,
-	nivelProg int NOT NULL
+	nivelProg varchar(15) NOT NULL
 )
 
 CREATE TABLE Fichas(
