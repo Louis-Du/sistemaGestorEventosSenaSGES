@@ -26,7 +26,7 @@ namespace SGES
                 // Mostrar cualquier error que ocurra al intentar conectar.
                 MessageBox.Show(e.Message); // Mostrar mensaje de error en caso de excepción
             }
-            return con; // Retornar la conexión (puede ser null si la apertura falló) 
+            return con; // Retornar la conexión (puede ser null si la apertura falló)
         }
 
         public void Desconectar()
