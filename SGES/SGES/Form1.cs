@@ -21,7 +21,17 @@ namespace SGES
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void btnSalir_Click_1(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Está seguro que desea salir?", "Confirmar salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
             // Validar que el usuario y la contraseña no estén vacíos antes de intentar iniciar sesión
             // `txtidusuario` y `txtpasswordusuario` son controles TextBox en el formulario de login.
@@ -33,17 +43,16 @@ namespace SGES
             {
                 // Llamar al método que valida las credenciales.
                 // Se convierte el texto del TextBox `txtidusuario` a entero porque la tabla espera un id numérico.
-                c.Iniciar_sesion(int.Parse(txtidusuario.Text), txtpasswordusuario.Text);
-                this.Hide(); // OCULTA EL LOGIN
+                c.Iniciar_sesion(int.Parse(txtidusuario.Text), txtpasswordusuario.Text, this);
             }
         }
 
-        private void txtidusuario_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtidusuario_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true; // Evita que se ingresen caracteres no numéricos
-                MessageBox.Show("Solo se permiten números en el campo de ID de usuario.", "APLICACION"); 
+                MessageBox.Show("Solo se permiten números en el campo de ID de usuario.", "APLICACION");
             }
         }
     }
