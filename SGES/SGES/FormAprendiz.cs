@@ -40,5 +40,10 @@ namespace SGES
         {
 
         }
+
+        private void dataGridViewAprend_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

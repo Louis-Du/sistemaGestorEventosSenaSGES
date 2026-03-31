@@ -38,5 +38,33 @@ namespace SGES
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void FormCrearEvento_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbTipoEvento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Estás seguro que deseas cancelar la creación del evento?", "SDGF", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void txtidEvento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Evita que se ingresen caracteres no numéricos
+                MessageBox.Show("ERROR: Solo se permite valores númericos", "SDGF");
+            }
+        }
     }
 }

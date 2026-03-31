@@ -32,18 +32,13 @@ namespace SGES
 
         private void FormAdmin_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnConsultarReg_Click(object sender, EventArgs e)
-        {
             try
             {
                 ds = co.ConsultarEventos();
                 dataGridViewAdmin.DataSource = ds;
                 dataGridViewAdmin.DataMember = "Eventos";
                 dataGridViewAdmin.AutoGenerateColumns = false;
-                ID.DataPropertyName = "idEvento";
+                idEvento.DataPropertyName = "idEvento";
                 Nombre.DataPropertyName = "nombreEvento";
                 Tipo.DataPropertyName = "tipoEvento";
                 Fecha.DataPropertyName = "fechaEvento";
@@ -64,11 +59,28 @@ namespace SGES
             dataGridViewAdmin.DataMember = "Eventos";
         }
 
-        private void btnConsultarAprendicesRegistrados_Click(object sender, EventArgs e)
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            FormLogin form = new FormLogin();
+            form.ShowDialog();
+        }
+
+        private void btnEliminarEvent_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridViewAdmin_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnConsultarAprendicesRegistrados_Click_1(object sender, EventArgs e)
         {
             try
-            { 
-                int idEvento = int.Parse(dataGridViewAdmin.CurrentRow.Cells["idEvento"].Value.ToString());
+            {
+                int idEvento = int.Parse(dataGridViewAdmin.CurrentRow.Cells["idEvento"].Value.ToString()); // Obtiene la posición de el id de el evento
 
                 DataSet ds = co.ConsultarAprendicesRegistrados(idEvento);
 
@@ -83,21 +95,5 @@ namespace SGES
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void dataGridViewAdmin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                int idEvento = int.Parse(dataGridViewAdmin.CurrentRow.Cells["idEvento"].Value.ToString());
-
-                FormAprendicesRegistrados form = new FormAprendicesRegistrados(idEvento);
-                form.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-    
     }
 }
