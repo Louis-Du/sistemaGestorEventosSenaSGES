@@ -30,10 +30,12 @@ namespace SGES
             this.login = login;
         }
 
+        // Carga todos los eventos registrados en la base de datos al entrar en el formulario
         private void FormAdmin_Load(object sender, EventArgs e)
         {
             try
             {
+                // Configuración y relación entre las columnas de el grid y la tabla en la base de datos
                 ds = co.ConsultarEventos();
                 dataGridViewAdmin.DataSource = ds;
                 dataGridViewAdmin.DataMember = "Eventos";
@@ -50,15 +52,17 @@ namespace SGES
             }
         }
 
+        // Función que permite abrir el formulario Crear Eventos al accionar el botón
         private void btnCrearEvent_Click(object sender, EventArgs e)
         {
             FormCrearEvento form = new FormCrearEvento();
             form.ShowDialog();
 
-            dataGridViewAdmin.DataSource = co.ConsultarEventos();
+            dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
             dataGridViewAdmin.DataMember = "Eventos";
         }
 
+        // Función que permite volver al login al accionar el botón
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -76,6 +80,7 @@ namespace SGES
 
         }
 
+        // Función que permite abrir el formulario con los aprendices registrados a un evento seleccionado
         private void btnConsultarAprendicesRegistrados_Click_1(object sender, EventArgs e)
         {
             try
@@ -84,11 +89,16 @@ namespace SGES
 
                 DataSet ds = co.ConsultarAprendicesRegistrados(idEvento);
 
-                dataGridViewAdmin.DataSource = ds;
+                // Consulta los aprendices registrados al evento y los agregamos al data grid
+                dataGridViewAdmin.DataSource = ds; 
                 dataGridViewAdmin.DataMember = "Aprendices";
 
-                FormAprendicesRegistrados form = new FormAprendicesRegistrados(idEvento);
+                // Obtine el id del evento y lo manda al main del formulari FormAprendicesRegistrados
+                FormAprendicesRegistrados form = new FormAprendicesRegistrados(idEvento); 
                 form.ShowDialog();
+
+                dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
+                dataGridViewAdmin.DataMember = "Eventos";
             }
             catch (Exception ex)
             {

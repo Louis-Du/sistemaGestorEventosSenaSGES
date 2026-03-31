@@ -21,9 +21,10 @@ namespace SGES
         public FormAprendicesRegistrados(int idEventoRecibido)
         {
             InitializeComponent();
-            idEvento = idEventoRecibido;
+            idEvento = idEventoRecibido; 
         }
 
+        // Carga inmediatamente los aprendices registrados en el grid al abrir este formulario
         private void FormAprendicesRegistrados_Load(object sender, EventArgs e)
         {
             try

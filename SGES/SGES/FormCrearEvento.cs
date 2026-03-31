@@ -18,12 +18,14 @@ namespace SGES
         {
             InitializeComponent();
 
-            dtpFechaHoraEvento.Format = DateTimePickerFormat.Custom;
+            // Se personaliza el formato de la fecha y hora
+            dtpFechaHoraEvento.Format = DateTimePickerFormat.Custom; 
             dtpFechaHoraEvento.CustomFormat = "dd/MM/yyyy HH:mm";
         }
 
         Consultas co = new Consultas();
 
+        // Función para el botón guardar que permite accionar el registro del nuevo evento en la base de dato
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -49,6 +51,7 @@ namespace SGES
 
         }
 
+        // Función que cierro el formulario de Crear Eventos
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("¿Estás seguro que deseas cancelar la creación del evento?", "SDGF", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -58,6 +61,7 @@ namespace SGES
             }
         }
 
+        // Validaciones de entrada solo números para el id del evento
         private void txtidEvento_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
