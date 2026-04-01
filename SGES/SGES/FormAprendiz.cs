@@ -13,11 +13,21 @@ namespace SGES
 {
     public partial class FormAprendiz : Form
     {
+        private FormLogin login;
+
         public FormAprendiz()
         {
             InitializeComponent();
         }
 
+<<<<<<< HEAD
+=======
+        public FormAprendiz(FormLogin login)
+        {
+            this.login = login;
+        }
+
+>>>>>>> GDFC-7-ConsultarAprendicesRegistrados
         private void FormAprendiz_Load(object sender, EventArgs e)
         {
             Consultas consulta = new Consultas();
@@ -28,5 +38,18 @@ namespace SGES
 
             dataGridViewAprend.DataSource = ds.Tables["Eventos"];
         }
+<<<<<<< HEAD
+=======
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridViewAprend_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+>>>>>>> GDFC-7-ConsultarAprendicesRegistrados
     }
 }

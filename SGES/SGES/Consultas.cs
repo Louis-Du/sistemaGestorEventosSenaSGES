@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -15,9 +15,9 @@ namespace SGES
         private readonly Conexion cn = new Conexion();
 
         // Si quieres conservar este estado:
-        private bool Estado_conexion = false;
+        private Boolean Estado_conexion = false;
 
-        public bool Iniciar_sesion(int idUser, string contraseñaUser)
+        public Boolean Iniciar_sesion(int idUser, string contraseñaUser, FormLogin login)
         {
             DataSet ds = new DataSet();
 
@@ -45,8 +45,13 @@ namespace SGES
                     if (tipo == "Administrador")
                     {
                         MessageBox.Show("Bienvenido(a) Administrador!");
-                        new FormAdmin().Show();
                         Estado_conexion = true;
+
+                        FormAdmin frm = new FormAdmin();
+                        frm.Show();
+
+                        login.Hide(); // 🔥 ocultas el login
+
                         return true;
                     }
                 }
@@ -73,9 +78,15 @@ namespace SGES
                     if (tipo == "Aprendiz")
                     {
                         MessageBox.Show("Bienvenido(a) Aprendiz!");
-                        new FormAprendiz().Show();
                         Estado_conexion = true;
+
+                        FormAprendiz frm = new FormAprendiz();
+                        frm.Show();
+
+                        login.Hide();
+
                         return true;
+
                     }
                 }
 
@@ -99,13 +110,17 @@ namespace SGES
 
             try
             {
-                using (SqlCommand consulta = new SqlCommand("SELECT * FROM Eventos", cn.Conectar()))
+                /*
+                 * Palabras claves:
+                 * - using
+                 * - Fill
+                 * - SqlDataAdapter
+                 */
+                using (SqlCommand consulta = new SqlCommand("SELECT * FROM Eventos", cn.Conectar())) // Consulta los eventos registrados en la base de datos
                 {
-                    consulta.CommandType = CommandType.Text;
-
                     using (SqlDataAdapter da = new SqlDataAdapter(consulta))
                     {
-                        da.Fill(ds, "Eventos");
+                        da.Fill(ds, "Eventos"); // Ejecuta la consulta
                     }
                 }
             }
@@ -127,9 +142,9 @@ namespace SGES
             {
                 string query =
                     "INSERT INTO Eventos (idEvento, nombreEvento, tipoEvento, fechaEvento, horaEvento, idUser) " +
-                    "VALUES (@idEvent, @nombreEvent, @tipoEvent, @fechaEvent, @horaEvent, @idUser)";
+                    "VALUES (@idEvent, @nombreEvent, @tipoEvent, @fechaEvent, @horaEvent, @idUser)"; // Asigna en una variable la consulta a realizar
 
-                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
+                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar())) // Consulta la variable query
                 {
                     cmd.Parameters.AddWithValue("@idEvent", idEvent);
                     cmd.Parameters.AddWithValue("@nombreEvent", nombreEvent);
@@ -161,9 +176,9 @@ namespace SGES
                     "SELECT a.idApr, a.nombreApr, a.emailApr " +
                     "FROM Inscripciones i " +
                     "JOIN Aprendiz a ON i.idApr = a.idApr " +
-                    "WHERE i.idEvento = @idEvento";
+                    "WHERE i.idEvento = @idEvento"; // Asigna en una variable los aprendices registrados a un evento
 
-                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
+                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))  // Consulta la variable query
                 {
                     cmd.Parameters.AddWithValue("@idEvento", idEvento);
 
