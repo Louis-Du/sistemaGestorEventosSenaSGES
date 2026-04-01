@@ -199,5 +199,38 @@ namespace SGES
 
             return ds;
         }
+        public void EliminarEvento(int idEvento)
+        {
+            DataSet ds = new DataSet();
+
+            try
+            {
+                // Primero se eliminan las inscripciones hechas en el evento seleccionado
+                string eliminarInscripciones = "DELETE FROM Inscripciones WHERE idEvento = @idEvento";
+
+                using (SqlCommand consulta1 = new SqlCommand(eliminarInscripciones, cn.Conectar()))
+                {
+                    consulta1.Parameters.AddWithValue("@idEvento", idEvento);
+                    consulta1.ExecuteNonQuery();
+                }
+
+                // Ahora eliminamos el evento
+                string eliminarEvento = "DELETE FROM Eventos WHERE idEvento = @idEvento";
+
+                using (SqlCommand consulta2 = new SqlCommand(eliminarEvento, cn.Conectar()))
+                {
+                    consulta2.Parameters.AddWithValue("@idEvento", idEvento);
+                    consulta2.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
+        }
     }
 }
