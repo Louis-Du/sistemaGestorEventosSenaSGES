@@ -55,5 +55,10 @@ namespace SGES
                 MessageBox.Show("Solo se permiten números en el campo de ID de usuario.", "APLICACION");
             }
         }
+
+        private void linkLblCambiarContraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }
