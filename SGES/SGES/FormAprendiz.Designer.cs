@@ -29,27 +29,17 @@
         private void InitializeComponent()
         {
             this.btnVolver = new System.Windows.Forms.Button();
-<<<<<<< HEAD
-            this.grpbEventos = new System.Windows.Forms.GroupBox();
-            this.dataGridViewAprend = new System.Windows.Forms.DataGridView();
-            this.btnRegistrarme = new System.Windows.Forms.Button();
-=======
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewAprend = new System.Windows.Forms.DataGridView();
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
             this.dgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-<<<<<<< HEAD
-            this.grpbEventos.SuspendLayout();
-=======
             this.btnRegistrarme = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAprend)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,25 +68,7 @@
             this.panel1.Size = new System.Drawing.Size(574, 318);
             this.panel1.TabIndex = 4;
             // 
-<<<<<<< HEAD
-            // dataGridViewAprend
-            // 
-            this.dataGridViewAprend.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAprend.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgID,
-            this.dgNom,
-            this.dgTipo,
-            this.dgFecha,
-            this.dgHora});
-            this.dataGridViewAprend.Location = new System.Drawing.Point(6, 29);
-            this.dataGridViewAprend.Name = "dataGridViewAprend";
-            this.dataGridViewAprend.Size = new System.Drawing.Size(510, 122);
-            this.dataGridViewAprend.TabIndex = 3;
-            // 
-            // btnRegistrarme
-=======
             // label2
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
@@ -108,37 +80,8 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Listado de Eventos";
             // 
-            // dgID
+            // dataGridViewAprend
             // 
-<<<<<<< HEAD
-            this.dgID.DataPropertyName = "idEvento";
-            this.dgID.HeaderText = "ID";
-            this.dgID.Name = "dgID";
-            // 
-            // dgNom
-            // 
-            this.dgNom.DataPropertyName = "nombreEvento";
-            this.dgNom.HeaderText = "Nombre";
-            this.dgNom.Name = "dgNom";
-            // 
-            // dgTipo
-            // 
-            this.dgTipo.DataPropertyName = "tipoEvento";
-            this.dgTipo.HeaderText = "Tipo";
-            this.dgTipo.Name = "dgTipo";
-            // 
-            // dgFecha
-            // 
-            this.dgFecha.DataPropertyName = "fechaEvento";
-            this.dgFecha.HeaderText = "Fecha";
-            this.dgFecha.Name = "dgFecha";
-            // 
-            // dgHora
-            // 
-            this.dgHora.DataPropertyName = "horaEvento";
-            this.dgHora.HeaderText = "Hora";
-            this.dgHora.Name = "dgHora";
-=======
             this.dataGridViewAprend.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
             this.dataGridViewAprend.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAprend.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -207,7 +150,6 @@
             this.label1.Size = new System.Drawing.Size(172, 20);
             this.label1.TabIndex = 7;
             this.label1.Text = "Eventos Disponibles";
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
             // 
             // FormAprendiz
             // 
@@ -222,12 +164,8 @@
             this.Name = "FormAprendiz";
             this.Text = "FormAprendiz";
             this.Load += new System.EventHandler(this.FormAprendiz_Load);
-<<<<<<< HEAD
-            this.grpbEventos.ResumeLayout(false);
-=======
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAprend)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -244,11 +182,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgHora;
-<<<<<<< HEAD
-=======
         private System.Windows.Forms.Button btnRegistrarme;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
     }
 }
