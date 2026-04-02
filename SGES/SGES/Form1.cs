@@ -63,5 +63,10 @@ namespace SGES
 
             this.Hide();
         }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
