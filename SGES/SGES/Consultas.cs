@@ -9,12 +9,20 @@ using System.Windows.Forms;
 
 namespace SGES
 {
+    /// <summary>
+    /// Clase responsable de las consultas a la base de datos.
+    /// Comentarios:
+    /// - Usa una instancia compartida de 'Conexion' (cn) para abrir/cerrar la conexión.
+    /// - Métodos documentados y con try/catch/finally; cn.Desconectar() en finally.
+    /// - Se mantiene la política de IDs estáticos (no IDENTITY) por decisión de rama.
+    ///   Para evitar condiciones de carrera al generar ids se utiliza transacción en puntos críticos.
+    /// </summary>
     internal class Consultas
     {
         // Conexión reutilizable
         private readonly Conexion cn = new Conexion();
 
-        // Si quieres conservar este estado:
+        // Estado simple que indica si el inicio de sesión fue correcto
         private Boolean Estado_conexion = false;
 
         public Boolean Iniciar_sesion(int idUser, string contraseñaUser, FormLogin login)
@@ -50,8 +58,7 @@ namespace SGES
                         FormAdmin frm = new FormAdmin();
                         frm.Show();
 
-                        login.Hide(); // 🔥 ocultas el login
-
+                        login.Hide();
                         return true;
                     }
                 }
@@ -80,13 +87,12 @@ namespace SGES
                         MessageBox.Show("Bienvenido(a) Aprendiz!");
                         Estado_conexion = true;
 
-                        FormAprendiz frm = new FormAprendiz();
+                        int idApr = Convert.ToInt32(ds.Tables["Aprendiz"].Rows[0]["idApr"]);
+                        FormAprendiz frm = new FormAprendiz(idApr, login);
                         frm.Show();
 
                         login.Hide();
-
                         return true;
-
                     }
                 }
 
@@ -104,23 +110,20 @@ namespace SGES
             return Estado_conexion;
         }
 
+        /// <summary>
+        /// Devuelve todos los eventos registrados.
+        /// </summary>
         public DataSet ConsultarEventos()
         {
             DataSet ds = new DataSet();
 
             try
             {
-                /*
-                 * Palabras claves:
-                 * - using
-                 * - Fill
-                 * - SqlDataAdapter
-                 */
-                using (SqlCommand consulta = new SqlCommand("SELECT * FROM Eventos", cn.Conectar())) // Consulta los eventos registrados en la base de datos
+                using (SqlCommand consulta = new SqlCommand("SELECT * FROM Eventos", cn.Conectar()))
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(consulta))
                     {
-                        da.Fill(ds, "Eventos"); // Ejecuta la consulta
+                        da.Fill(ds, "Eventos");
                     }
                 }
             }
@@ -136,15 +139,19 @@ namespace SGES
             return ds;
         }
 
+        /// <summary>
+        /// Inserta un evento.
+        /// NOTA: firma actual conserva idEvent porque mantenemos ids manuales.
+        /// </summary>
         public void InsertarEvento(int idEvent, string nombreEvent, string tipoEvent, DateTime fechaHoraEvent, int idUser)
         {
             try
             {
                 string query =
                     "INSERT INTO Eventos (idEvento, nombreEvento, tipoEvento, fechaEvento, horaEvento, idUser) " +
-                    "VALUES (@idEvent, @nombreEvent, @tipoEvent, @fechaEvent, @horaEvent, @idUser)"; // Asigna en una variable la consulta a realizar
+                    "VALUES (@idEvent, @nombreEvent, @tipoEvent, @fechaEvent, @horaEvent, @idUser)";
 
-                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar())) // Consulta la variable query
+                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
                 {
                     cmd.Parameters.AddWithValue("@idEvent", idEvent);
                     cmd.Parameters.AddWithValue("@nombreEvent", nombreEvent);
@@ -166,6 +173,9 @@ namespace SGES
             }
         }
 
+        /// <summary>
+        /// Devuelve aprendices registrados en un evento (útil para listas).
+        /// </summary>
         public DataSet ConsultarAprendicesRegistrados(int idEvento)
         {
             DataSet ds = new DataSet();
@@ -176,9 +186,9 @@ namespace SGES
                     "SELECT a.idApr, a.nombreApr, a.emailApr " +
                     "FROM Inscripciones i " +
                     "JOIN Aprendiz a ON i.idApr = a.idApr " +
-                    "WHERE i.idEvento = @idEvento"; // Asigna en una variable los aprendices registrados a un evento
+                    "WHERE i.idEvento = @idEvento";
 
-                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))  // Consulta la variable query
+                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
                 {
                     cmd.Parameters.AddWithValue("@idEvento", idEvento);
 
@@ -198,6 +208,143 @@ namespace SGES
             }
 
             return ds;
+        }
+
+        /// <summary>
+        /// Comprueba si el aprendiz tiene alguna inscripción que solape con el evento indicado.
+        /// </summary>
+        public bool TieneConflicto(int idApr, int idEvento)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                using (SqlCommand cmd = new SqlCommand(
+                    "SELECT fechaEvento, horaEvento, ISNULL(duracionMinutos, 60) AS duracionMinutos FROM Eventos WHERE idEvento = @idEvento",
+                    cn.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@idEvento", idEvento);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+
+                if (dt.Rows.Count == 0) return false;
+
+                DateTime fecha = Convert.ToDateTime(dt.Rows[0]["fechaEvento"]);
+                TimeSpan hora = (TimeSpan)dt.Rows[0]["horaEvento"];
+                int duracion = Convert.ToInt32(dt.Rows[0]["duracionMinutos"]);
+
+                DateTime inicioNuevo = fecha.Date + hora;
+                DateTime finNuevo = inicioNuevo.AddMinutes(duracion);
+
+                string sql =
+                    "SELECT COUNT(1) FROM Inscripciones i " +
+                    "JOIN Eventos e ON i.idEvento = e.idEvento " +
+                    "WHERE i.idApr = @idApr AND e.idEvento <> @idEvento " +
+                    "AND NOT (DATEADD(minute, ISNULL(e.duracionMinutos, 60), CAST(e.fechaEvento AS DATETIME) + CAST(e.horaEvento AS DATETIME)) <= @inicioNuevo " +
+                    "OR CAST(e.fechaEvento AS DATETIME) + CAST(e.horaEvento AS DATETIME) >= @finNuevo)";
+
+                using (SqlCommand cmd2 = new SqlCommand(sql, cn.Conectar()))
+                {
+                    cmd2.Parameters.AddWithValue("@idApr", idApr);
+                    cmd2.Parameters.AddWithValue("@idEvento", idEvento);
+                    cmd2.Parameters.AddWithValue("@inicioNuevo", inicioNuevo);
+                    cmd2.Parameters.AddWithValue("@finNuevo", finNuevo);
+
+                    int count = Convert.ToInt32(cmd2.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return true; // por seguridad, tratar error como conflicto
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
+        }
+
+        /// <summary>
+        /// Registra la inscripción tras validar duplicado y conflicto de horarios.
+        /// Genera idInscrip con MAX+1 dentro de una transacción para reducir collisions.
+        /// Mantiene ids manuales por decisión de rama.
+        /// </summary>
+        public bool RegistrarInscripcion(int idApr, int idEvento, string modalidad = "Presencial", int idGrupo = 1)
+        {
+            try
+            {
+                // 1) Duplicado (comprobación rápida)
+                using (SqlCommand chk = new SqlCommand("SELECT COUNT(1) FROM Inscripciones WHERE idApr = @idApr AND idEvento = @idEvento", cn.Conectar()))
+                {
+                    chk.Parameters.AddWithValue("@idApr", idApr);
+                    chk.Parameters.AddWithValue("@idEvento", idEvento);
+                    int existe = Convert.ToInt32(chk.ExecuteScalar());
+                    if (existe > 0)
+                    {
+                        MessageBox.Show("Ya estás inscrito en este evento.");
+                        return false;
+                    }
+                }
+
+                // 2) Conflicto horario
+                if (TieneConflicto(idApr, idEvento))
+                {
+                    MessageBox.Show("No puedes inscribirte: el evento entra en conflicto con otra inscripción.");
+                    return false;
+                }
+
+                // 3) Generar nuevo idInscrip y insertar dentro de una transacción
+                int nuevoId = 0;
+                string insert = "INSERT INTO Inscripciones (idInscrip, fechaInscrip, modalidadInscrip, idApr, idEvento, idGrupo) " +
+                                "VALUES (@idInscrip, @fechaInscrip, @modalidad, @idApr, @idEvento, @idGrupo)";
+
+                // Abrimos conexión manualmente para controlar la transacción
+                SqlConnection conn = cn.Conectar();
+                using (SqlTransaction tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand maxCmd = new SqlCommand("SELECT ISNULL(MAX(idInscrip), 0) + 1 FROM Inscripciones", conn, tran))
+                        {
+                            nuevoId = Convert.ToInt32(maxCmd.ExecuteScalar());
+                        }
+
+                        using (SqlCommand cmdIns = new SqlCommand(insert, conn, tran))
+                        {
+                            cmdIns.Parameters.AddWithValue("@idInscrip", nuevoId);
+                            cmdIns.Parameters.AddWithValue("@fechaInscrip", DateTime.Now.Date);
+                            cmdIns.Parameters.AddWithValue("@modalidad", modalidad);
+                            cmdIns.Parameters.AddWithValue("@idApr", idApr);
+                            cmdIns.Parameters.AddWithValue("@idEvento", idEvento);
+                            cmdIns.Parameters.AddWithValue("@idGrupo", idGrupo);
+
+                            cmdIns.ExecuteNonQuery();
+                        }
+
+                        tran.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        try { tran.Rollback(); } catch { /* ignored */ }
+                        throw;
+                    }
+                }
+
+                MessageBox.Show("Inscripción realizada correctamente.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
         }
     }
 }
