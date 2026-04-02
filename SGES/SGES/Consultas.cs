@@ -87,7 +87,6 @@ namespace SGES
                         login.Hide();
 
                         return true;
-
                     }
                 }
 
@@ -201,6 +200,59 @@ namespace SGES
             return ds;
         }
 
+        public void ActualizarContraseña(int idUser, string newPassword)
+        {
+            try
+            {
+                using (SqlConnection con = cn.Conectar())
+                {
+                    // 🔹 Usuario
+                    string query1 = "UPDATE Usuario SET contraseñaUser = @newPassword WHERE idUser = @idUser";
+
+                    using (SqlCommand cmd1 = new SqlCommand(query1, con))
+                    {
+                        cmd1.Parameters.Add("@idUser", SqlDbType.Int).Value = idUser;
+                        cmd1.Parameters.Add("@newPassword", SqlDbType.VarChar).Value = newPassword;
+
+                        int filas = cmd1.ExecuteNonQuery();
+
+                        if (filas > 0)
+                        {
+                            MessageBox.Show("Contraseña actualizada correctamente");
+                            return;
+                        }
+                    }
+
+                    // 🔹 Aprendiz
+                    string query2 = "UPDATE Aprendiz SET contraseñaUser = @newPassword WHERE idApr = @idUser";
+
+                    using (SqlCommand cmd2 = new SqlCommand(query2, con))
+                    {
+                        cmd2.Parameters.Add("@idApr", SqlDbType.Int).Value = idUser;
+                        cmd2.Parameters.Add("@pass", SqlDbType.VarChar).Value = newPassword;
+
+                        int filas = cmd2.ExecuteNonQuery();
+
+                        if (filas > 0)
+                        {
+                            MessageBox.Show("Contraseña actualizada correctamente");
+                            return;
+                        }
+                    }
+
+                    MessageBox.Show("No se encontró el usuario");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
+        }
+
         /// <summary>
         /// Comprueba si el aprendiz tiene alguna inscripción que solape con el evento indicado.
         /// </summary>
@@ -256,6 +308,54 @@ namespace SGES
             {
                 cn.Desconectar();
             }
+        }
+
+        public bool VerificarUsuario(int idUser, string emailUser) // Método para recuperar cuenta
+        {
+            try
+            {
+                using (SqlConnection con = cn.Conectar())
+                {
+                    // 🔹 Buscar en Usuario
+                    string query1 = "SELECT 1 FROM Usuario WHERE idUser=@idUser AND emailUser=@emailUser";
+                    using (SqlCommand cmd = new SqlCommand(query1, con))
+                    {
+                        cmd.Parameters.Add("@idUser", SqlDbType.Int).Value = idUser;
+                        cmd.Parameters.Add("@emailUser", SqlDbType.VarChar).Value = emailUser;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                                return true;
+                        }
+                    }
+
+                    // 🔹 Buscar en Aprendiz
+                    string query2 = "SELECT 1 FROM Aprendiz WHERE idApr=@id AND emailApr=@emailUser";
+
+                    using (SqlCommand cmd2 = new SqlCommand(query2, con)) // Reutiliza la misma conexión para evitar abrir y cerrar múltiples veces
+                    {
+                        cmd2.Parameters.Add("@id", SqlDbType.Int).Value = idUser;
+                        cmd2.Parameters.Add("@emailUser", SqlDbType.VarChar).Value = emailUser;
+
+                        using (SqlDataReader reader2 = cmd2.ExecuteReader()) // Ejecuta la consulta para el aprendiz
+                        {
+                            if (reader2.Read())
+                                return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
+
+            return false;
         }
 
         /// <summary>
