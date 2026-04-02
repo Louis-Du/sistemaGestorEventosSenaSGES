@@ -9,20 +9,12 @@ using System.Windows.Forms;
 
 namespace SGES
 {
-    /// <summary>
-    /// Clase responsable de las consultas a la base de datos.
-    /// Comentarios:
-    /// - Usa una instancia compartida de 'Conexion' (cn) para abrir/cerrar la conexión.
-    /// - Métodos documentados y con try/catch/finally; cn.Desconectar() en finally.
-    /// - Se mantiene la política de IDs estáticos (no IDENTITY) por decisión de rama.
-    ///   Para evitar condiciones de carrera al generar ids se utiliza transacción en puntos críticos.
-    /// </summary>
     internal class Consultas
     {
         // Conexión reutilizable
         private readonly Conexion cn = new Conexion();
 
-        // Estado simple que indica si el inicio de sesión fue correcto
+        // Si quieres conservar este estado:
         private Boolean Estado_conexion = false;
 
         public Boolean Iniciar_sesion(int idUser, string contraseñaUser, FormLogin login)
@@ -58,7 +50,8 @@ namespace SGES
                         FormAdmin frm = new FormAdmin();
                         frm.Show();
 
-                        login.Hide();
+                        login.Hide(); // 🔥 ocultas el login
+
                         return true;
                     }
                 }
@@ -92,7 +85,9 @@ namespace SGES
                         frm.Show();
 
                         login.Hide();
+
                         return true;
+
                     }
                 }
 
@@ -110,20 +105,23 @@ namespace SGES
             return Estado_conexion;
         }
 
-        /// <summary>
-        /// Devuelve todos los eventos registrados.
-        /// </summary>
         public DataSet ConsultarEventos()
         {
             DataSet ds = new DataSet();
 
             try
             {
-                using (SqlCommand consulta = new SqlCommand("SELECT * FROM Eventos", cn.Conectar()))
+                /*
+                 * Palabras claves:
+                 * - using
+                 * - Fill
+                 * - SqlDataAdapter
+                 */
+                using (SqlCommand consulta = new SqlCommand("SELECT * FROM Eventos", cn.Conectar())) // Consulta los eventos registrados en la base de datos
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(consulta))
                     {
-                        da.Fill(ds, "Eventos");
+                        da.Fill(ds, "Eventos"); // Ejecuta la consulta
                     }
                 }
             }
@@ -139,19 +137,15 @@ namespace SGES
             return ds;
         }
 
-        /// <summary>
-        /// Inserta un evento.
-        /// NOTA: firma actual conserva idEvent porque mantenemos ids manuales.
-        /// </summary>
         public void InsertarEvento(int idEvent, string nombreEvent, string tipoEvent, DateTime fechaHoraEvent, int idUser)
         {
             try
             {
                 string query =
                     "INSERT INTO Eventos (idEvento, nombreEvento, tipoEvento, fechaEvento, horaEvento, idUser) " +
-                    "VALUES (@idEvent, @nombreEvent, @tipoEvent, @fechaEvent, @horaEvent, @idUser)";
+                    "VALUES (@idEvent, @nombreEvent, @tipoEvent, @fechaEvent, @horaEvent, @idUser)"; // Asigna en una variable la consulta a realizar
 
-                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
+                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar())) // Consulta la variable query
                 {
                     cmd.Parameters.AddWithValue("@idEvent", idEvent);
                     cmd.Parameters.AddWithValue("@nombreEvent", nombreEvent);
@@ -173,9 +167,6 @@ namespace SGES
             }
         }
 
-        /// <summary>
-        /// Devuelve aprendices registrados en un evento (útil para listas).
-        /// </summary>
         public DataSet ConsultarAprendicesRegistrados(int idEvento)
         {
             DataSet ds = new DataSet();
@@ -186,9 +177,9 @@ namespace SGES
                     "SELECT a.idApr, a.nombreApr, a.emailApr " +
                     "FROM Inscripciones i " +
                     "JOIN Aprendiz a ON i.idApr = a.idApr " +
-                    "WHERE i.idEvento = @idEvento";
+                    "WHERE i.idEvento = @idEvento"; // Asigna en una variable los aprendices registrados a un evento
 
-                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
+                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))  // Consulta la variable query
                 {
                     cmd.Parameters.AddWithValue("@idEvento", idEvento);
 

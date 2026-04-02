@@ -41,12 +41,9 @@ namespace SGES
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            // Comportamiento conservador: mostrar login (si está) y cerrar el formulario actual.
-            if (login != null)
-            {
-                login.Show();
-            }
             this.Close();
+            FormLogin form = new FormLogin();
+            form.ShowDialog();
         }
 
         private void dataGridViewAprend_CellContentClick(object sender, DataGridViewCellEventArgs e)
