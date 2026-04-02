@@ -33,8 +33,6 @@
             this.dtpFechaHoraEvento = new System.Windows.Forms.DateTimePicker();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.txtidEvento = new System.Windows.Forms.TextBox();
-<<<<<<< HEAD
-=======
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -45,20 +43,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
             this.SuspendLayout();
             // 
             // txtNombreEvento
             // 
-<<<<<<< HEAD
-            this.txtNombreEvento.Location = new System.Drawing.Point(167, 143);
-            this.txtNombreEvento.Name = "txtNombreEvento";
-            this.txtNombreEvento.Size = new System.Drawing.Size(100, 20);
-=======
             this.txtNombreEvento.Location = new System.Drawing.Point(87, 70);
             this.txtNombreEvento.Name = "txtNombreEvento";
             this.txtNombreEvento.Size = new System.Drawing.Size(200, 20);
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
             this.txtNombreEvento.TabIndex = 0;
             // 
             // cbTipoEvento
@@ -68,42 +59,23 @@
             "Educativo",
             "Competencia",
             "Laboral"});
-<<<<<<< HEAD
-            this.cbTipoEvento.Location = new System.Drawing.Point(314, 143);
-            this.cbTipoEvento.Name = "cbTipoEvento";
-            this.cbTipoEvento.Size = new System.Drawing.Size(121, 21);
-            this.cbTipoEvento.TabIndex = 1;
-=======
             this.cbTipoEvento.Location = new System.Drawing.Point(87, 110);
             this.cbTipoEvento.Name = "cbTipoEvento";
             this.cbTipoEvento.Size = new System.Drawing.Size(200, 21);
             this.cbTipoEvento.TabIndex = 1;
             this.cbTipoEvento.SelectedIndexChanged += new System.EventHandler(this.cbTipoEvento_SelectedIndexChanged);
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
             // 
             // dtpFechaHoraEvento
             // 
             this.dtpFechaHoraEvento.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dtpFechaHoraEvento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-<<<<<<< HEAD
-            this.dtpFechaHoraEvento.Location = new System.Drawing.Point(456, 140);
-=======
             this.dtpFechaHoraEvento.Location = new System.Drawing.Point(87, 151);
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
             this.dtpFechaHoraEvento.Name = "dtpFechaHoraEvento";
             this.dtpFechaHoraEvento.Size = new System.Drawing.Size(200, 20);
             this.dtpFechaHoraEvento.TabIndex = 2;
             // 
             // btnGuardar
             // 
-<<<<<<< HEAD
-            this.btnGuardar.Location = new System.Drawing.Point(326, 225);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(109, 41);
-            this.btnGuardar.TabIndex = 3;
-            this.btnGuardar.Text = "Guardar Evento";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-=======
             this.btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnGuardar.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -115,17 +87,10 @@
             this.btnGuardar.TabIndex = 3;
             this.btnGuardar.Text = "Guardar Evento";
             this.btnGuardar.UseVisualStyleBackColor = false;
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // txtidEvento
             // 
-<<<<<<< HEAD
-            this.txtidEvento.Location = new System.Drawing.Point(35, 140);
-            this.txtidEvento.Name = "txtidEvento";
-            this.txtidEvento.Size = new System.Drawing.Size(100, 20);
-            this.txtidEvento.TabIndex = 5;
-=======
             this.txtidEvento.Location = new System.Drawing.Point(87, 28);
             this.txtidEvento.Name = "txtidEvento";
             this.txtidEvento.Size = new System.Drawing.Size(200, 20);
@@ -238,24 +203,11 @@
             this.label1.Size = new System.Drawing.Size(87, 16);
             this.label1.TabIndex = 6;
             this.label1.Text = "ID del Evento";
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
             // 
             // FormCrearEvento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.txtidEvento);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.dtpFechaHoraEvento);
-            this.Controls.Add(this.cbTipoEvento);
-            this.Controls.Add(this.txtNombreEvento);
-            this.Name = "FormCrearEvento";
-            this.Text = "FormCrearEvento";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-=======
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.ClientSize = new System.Drawing.Size(688, 434);
             this.ControlBox = false;
@@ -269,7 +221,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
 
         }
 
@@ -280,8 +231,6 @@
         private System.Windows.Forms.DateTimePicker dtpFechaHoraEvento;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.TextBox txtidEvento;
-<<<<<<< HEAD
-=======
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
@@ -290,6 +239,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
     }
 }
