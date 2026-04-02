@@ -58,7 +58,10 @@ namespace SGES
 
         private void linkLblCambiarContraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            FormRecuperarCuenta frm = new FormRecuperarCuenta(this); // Crear una instancia del formulario de recuperación de cuenta, pasando el formulario actual como referencia
+            frm.Show(); // Mostrar el formulario de recuperación de cuenta
 
+            this.Hide();
         }
     }
 }

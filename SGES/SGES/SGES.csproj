@@ -78,6 +78,18 @@
     <Compile Include="FormCrearEvento.Designer.cs">
       <DependentUpon>FormCrearEvento.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRecuperarCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRecuperarCuenta.Designer.cs">
+      <DependentUpon>FormRecuperarCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerificar.Designer.cs">
+      <DependentUpon>FormVerificar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -94,6 +106,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCrearEvento.resx">
       <DependentUpon>FormCrearEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRecuperarCuenta.resx">
+      <DependentUpon>FormRecuperarCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerificar.resx">
+      <DependentUpon>FormVerificar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

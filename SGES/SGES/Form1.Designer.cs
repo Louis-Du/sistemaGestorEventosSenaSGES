@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.linkLblCambiarContraseña = new System.Windows.Forms.LinkLabel();
             this.btnSalir = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.txtpasswordusuario = new System.Windows.Forms.TextBox();
@@ -38,7 +39,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.linkLblCambiarContraseña = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -60,6 +60,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(333, 259);
             this.panel1.TabIndex = 6;
+            // 
+            // linkLblCambiarContraseña
+            // 
+            this.linkLblCambiarContraseña.ActiveLinkColor = System.Drawing.Color.LightGray;
+            this.linkLblCambiarContraseña.AutoSize = true;
+            this.linkLblCambiarContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.linkLblCambiarContraseña.LinkColor = System.Drawing.Color.CornflowerBlue;
+            this.linkLblCambiarContraseña.Location = new System.Drawing.Point(80, 121);
+            this.linkLblCambiarContraseña.Name = "linkLblCambiarContraseña";
+            this.linkLblCambiarContraseña.Size = new System.Drawing.Size(161, 16);
+            this.linkLblCambiarContraseña.TabIndex = 12;
+            this.linkLblCambiarContraseña.TabStop = true;
+            this.linkLblCambiarContraseña.Text = "¿Olvidaste tu contraseña?";
+            this.linkLblCambiarContraseña.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblCambiarContraseña_LinkClicked);
             // 
             // btnSalir
             // 
@@ -100,6 +114,7 @@
             this.txtpasswordusuario.Name = "txtpasswordusuario";
             this.txtpasswordusuario.Size = new System.Drawing.Size(241, 26);
             this.txtpasswordusuario.TabIndex = 9;
+            this.txtpasswordusuario.UseSystemPasswordChar = true;
             // 
             // txtidusuario
             // 
@@ -170,19 +185,6 @@
             this.label3.Size = new System.Drawing.Size(93, 31);
             this.label3.TabIndex = 2;
             this.label3.Text = "SGES";
-            // 
-            // linkLblCambiarContraseña
-            // 
-            this.linkLblCambiarContraseña.ActiveLinkColor = System.Drawing.Color.LightGray;
-            this.linkLblCambiarContraseña.AutoSize = true;
-            this.linkLblCambiarContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.linkLblCambiarContraseña.Location = new System.Drawing.Point(80, 121);
-            this.linkLblCambiarContraseña.Name = "linkLblCambiarContraseña";
-            this.linkLblCambiarContraseña.Size = new System.Drawing.Size(161, 16);
-            this.linkLblCambiarContraseña.TabIndex = 12;
-            this.linkLblCambiarContraseña.TabStop = true;
-            this.linkLblCambiarContraseña.Text = "¿Olvidaste tu contraseña?";
-            this.linkLblCambiarContraseña.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblCambiarContraseña_LinkClicked);
             // 
             // FormLogin
             // 
