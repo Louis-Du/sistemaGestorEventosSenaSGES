@@ -4,6 +4,7 @@ go
 CREATE TABLE Usuario(
 	idUser int NOT NULL PRIMARY KEY,
 	nombreUser varchar(50) NOT NULL,
+	emailUser varchar(50) not null,
 	contraseñaUser varchar(8) NOT NULL,
 	tipoUser varchar(20) not null,
 )
@@ -41,6 +42,7 @@ CREATE TABLE Aprendiz(
 	emailApr varchar(50) not null,
 	contactoApr numeric not null,
 	nomberUser varchar(50) not null,
+	emailUser varchar(50) not null,
 	contraseñaUser varchar(18) not null,
 	tipoUser varchar(20) not null,
 	generoApr char(1) NOT NULL,
