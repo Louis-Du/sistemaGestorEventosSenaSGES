@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,14 +20,11 @@ namespace SGES
             InitializeComponent();
         }
 
-<<<<<<< HEAD
-=======
         public FormAprendiz(FormLogin login)
         {
             this.login = login;
         }
 
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
         private void FormAprendiz_Load(object sender, EventArgs e)
         {
             Consultas consulta = new Consultas();
@@ -38,8 +35,6 @@ namespace SGES
 
             dataGridViewAprend.DataSource = ds.Tables["Eventos"];
         }
-<<<<<<< HEAD
-=======
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
@@ -50,6 +45,5 @@ namespace SGES
         {
 
         }
->>>>>>> GDFC-7-ConsultarAprendicesRegistrados
     }
 }
