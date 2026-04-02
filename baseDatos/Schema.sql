@@ -84,15 +84,3 @@ CREATE TABLE Inscripciones(
 	FOREIGN KEY (idEvento) REFERENCES Eventos(idEvento),
 	FOREIGN KEY (idGrupo) REFERENCES Grupos(idGrupo)
 );
-
-SELECT * FROM Aprendiz
-
-SELECT * FROM Inscripciones
-
-SELECT * FROM Eventos
-
-DELETE FROM Inscripciones
-WHERE idinscrip = 9004
-
-DELETE FROM Eventos
-WHERE idEvento = 9004
