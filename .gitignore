@@ -1,0 +1,76 @@
+###############################################################################
+# Visual Studio / WinForms / .NET (artefactos generados)
+###############################################################################
+# Carpeta de caché de Visual Studio (aparece en raíz y dentro de SGES/)
+.vs/
+
+# Builds (aparecen en SGES/SGES/bin y SGES/SGES/obj)
+**/[Bb]in/
+**/[Oo]bj/
+**/[Dd]ebug*/
+**/[Rr]elease*/
+**/x64/
+**/x86/
+
+# Archivos de usuario/IDE (no compartibles)
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Resultados de pruebas
+TestResults/
+*.trx
+
+# Logs
+*.log
+logs/
+
+# Publicación (si llegas a usar Publish de VS)
+publish/
+app.publish/
+
+###############################################################################
+# NuGet (dependencias y paquetes generados)
+###############################################################################
+# Si tu solución aún usa "packages.config", esta carpeta se genera
+packages/
+
+# Paquetes creados
+*.nupkg
+*.snupkg
+
+###############################################################################
+# SQL Server / Base de datos (artefactos generados, backups)
+###############################################################################
+*.bak
+*.trn
+*.dif
+*.bacpac
+*.dacpac
+
+###############################################################################
+# Secretos / configuración local (NO subir)
+###############################################################################
+.env
+.env.*
+!.env.example
+
+###############################################################################
+# Sistema Operativo / temporales
+###############################################################################
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.tmp
+*.temp
+tmp/
+temp/
+
+###############################################################################
+# Nota: NO ignorar el código fuente
+###############################################################################
+# Se deben versionar:
+# - *.cs, *.sln, *.csproj, *.resx, Properties/*
+# - *.sql dentro de baseDatos/ (scripts fuente)
+###############################################################################
