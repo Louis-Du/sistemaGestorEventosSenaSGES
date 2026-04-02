@@ -56,7 +56,7 @@ CREATE TABLE Aprendiz(
 	contactoApr numeric not null,
 	nombreUser varchar(50) not null,
 	emailUser varchar(50) not null,
-	contraseñaUser varchar(18) not null,
+	contraseñaUser varchar(8) not null,
 	tipoUser varchar(20) not null,
 	generoApr char(1) NOT NULL,
 	codigoFic int NOT NULL,
