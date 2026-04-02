@@ -30,6 +30,7 @@
         {
             this.btnVolver = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewAprend = new System.Windows.Forms.DataGridView();
             this.dgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,7 +39,6 @@
             this.dgHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnRegistrarme = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAprend)).BeginInit();
             this.SuspendLayout();
@@ -68,6 +68,18 @@
             this.panel1.Size = new System.Drawing.Size(574, 318);
             this.panel1.TabIndex = 4;
             // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(8, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(122, 16);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Listado de Eventos";
+            // 
             // dataGridViewAprend
             // 
             this.dataGridViewAprend.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
@@ -82,6 +94,7 @@
             this.dataGridViewAprend.Name = "dataGridViewAprend";
             this.dataGridViewAprend.Size = new System.Drawing.Size(552, 216);
             this.dataGridViewAprend.TabIndex = 5;
+            this.dataGridViewAprend.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAprend_CellContentClick);
             // 
             // dgID
             // 
@@ -125,6 +138,7 @@
             this.btnRegistrarme.TabIndex = 4;
             this.btnRegistrarme.Text = "Registrarme";
             this.btnRegistrarme.UseVisualStyleBackColor = false;
+            this.btnRegistrarme.Click += new System.EventHandler(this.btnRegistrarme_Click);
             // 
             // label1
             // 
@@ -137,18 +151,6 @@
             this.label1.Size = new System.Drawing.Size(172, 20);
             this.label1.TabIndex = 7;
             this.label1.Text = "Eventos Disponibles";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(8, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 16);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Listado de Eventos";
             // 
             // FormAprendiz
             // 

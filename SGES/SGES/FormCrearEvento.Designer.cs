@@ -36,11 +36,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +63,7 @@
             this.cbTipoEvento.Name = "cbTipoEvento";
             this.cbTipoEvento.Size = new System.Drawing.Size(200, 21);
             this.cbTipoEvento.TabIndex = 1;
+            this.cbTipoEvento.SelectedIndexChanged += new System.EventHandler(this.cbTipoEvento_SelectedIndexChanged);
             // 
             // dtpFechaHoraEvento
             // 
@@ -94,6 +95,7 @@
             this.txtidEvento.Name = "txtidEvento";
             this.txtidEvento.Size = new System.Drawing.Size(200, 20);
             this.txtidEvento.TabIndex = 5;
+            this.txtidEvento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtidEvento_KeyPress);
             // 
             // panel2
             // 
@@ -139,6 +141,30 @@
             this.panel1.Size = new System.Drawing.Size(393, 294);
             this.panel1.TabIndex = 8;
             // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label5.Location = new System.Drawing.Point(84, 134);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(155, 16);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Fecha y Hora del Evento";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label4.Location = new System.Drawing.Point(84, 93);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(99, 16);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Tipo de Evento";
+            // 
             // btnCancelar
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -152,6 +178,7 @@
             this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // label2
             // 
@@ -177,30 +204,6 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "ID del Evento";
             // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label4.Location = new System.Drawing.Point(84, 93);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 16);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Tipo de Evento";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label5.Location = new System.Drawing.Point(84, 134);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(155, 16);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Fecha y Hora del Evento";
-            // 
             // FormCrearEvento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,6 +215,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "FormCrearEvento";
             this.Text = "FormCrearEvento";
+            this.Load += new System.EventHandler(this.FormCrearEvento_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
