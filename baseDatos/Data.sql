@@ -1,4 +1,3 @@
-
 -- Insertar en Programa
 INSERT INTO Programas VALUES (101, 'Análisis de Datos', '2024-01-15', 24, 'Tecnólogo');
 INSERT INTO Programas VALUES (102, 'Desarrollo de Software', '2024-02-01', 18, 'Técnico');
@@ -37,7 +36,3 @@ INSERT INTO Grupos VALUES
 INSERT INTO Inscripciones VALUES (9001, '2024-04-01', 'Presencial', 1, 501, 1);
 INSERT INTO Inscripciones VALUES (9002, '2024-04-02', 'Virtual', 2, 501, 2);
 INSERT INTO Inscripciones VALUES (9003, '2024-04-05', 'Presencial', 3, 502, 3)
-
-
-
-

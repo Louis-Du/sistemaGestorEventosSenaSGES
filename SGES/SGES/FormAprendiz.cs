@@ -7,22 +7,22 @@ namespace SGES
     public partial class FormAprendiz : Form
     {
         private readonly FormLogin login;
-        private readonly int idApr; // id del aprendiz logueado (0 si no se pasó)
+        private readonly int idApr; // id del aprendiz logueado (0 si no se pasÃ³)
 
         public FormAprendiz()
         {
             InitializeComponent();
         }
 
-        // Constructor existente adaptado: conserva compatibilidad si algún otro sitio pasa sólo FormLogin.
+        // Constructor existente adaptado: conserva compatibilidad si algÃºn otro sitio pasa sÃ³lo FormLogin.
         public FormAprendiz(FormLogin login)
         {
-            InitializeComponent(); // CORRECCIÓN: siempre inicializar componentes
+            InitializeComponent(); // CORRECCIÃ“N: siempre inicializar componentes
             this.login = login;
         }
 
-        // Nuevo constructor (no intrusivo): permite que Iniciar_sesion pase explícitamente el idApr.
-        // Comentario: se añade para que el formulario conozca el aprendiz actual sin accionar cambios en login.
+        // Nuevo constructor (no intrusivo): permite que Iniciar_sesion pase explÃ­citamente el idApr.
+        // Comentario: se aÃ±ade para que el formulario conozca el aprendiz actual sin accionar cambios en login.
         public FormAprendiz(int idApr, FormLogin login)
         {
             InitializeComponent(); // obligatorio para evitar null refs en controles
@@ -48,16 +48,16 @@ namespace SGES
 
         private void dataGridViewAprend_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Opcional: lógica por clic en celda (no modificada).
+            // Opcional: lÃ³gica por clic en celda (no modificada).
         }
 
         private void btnRegistrarme_Click(object sender, EventArgs e)
         {
-            // Validaciones mínimas y llamada a la capa de datos (no se cambia la consulta SQL existente).
-            // 1) Verificar que tenemos el id del aprendiz (debe venir desde el login/iniciar sesión)
+            // Validaciones mÃ­nimas y llamada a la capa de datos (no se cambia la consulta SQL existente).
+            // 1) Verificar que tenemos el id del aprendiz (debe venir desde el login/iniciar sesiÃ³n)
             if (idApr == 0)
             {
-                MessageBox.Show("Identificador del aprendiz no disponible. Asegúrate de iniciar sesión correctamente.");
+                MessageBox.Show("Identificador del aprendiz no disponible. AsegÃºrate de iniciar sesiÃ³n correctamente.");
                 return;
             }
 
@@ -71,10 +71,10 @@ namespace SGES
             // 3) Obtener idEvento de forma segura:
             object rawIdEvento = null;
 
-            // Método preferente: si el grid está enlazado a un DataTable, obtener desde DataBoundItem
+            // MÃ©todo preferente: si el grid estÃ¡ enlazado a un DataTable, obtener desde DataBoundItem
             if (dataGridViewAprend.CurrentRow.DataBoundItem is DataRowView drv)
             {
-                // Asegúrate de que la columna en el DataTable se llame "idEvento"
+                // AsegÃºrate de que la columna en el DataTable se llame "idEvento"
                 if (drv.Row.Table.Columns.Contains("idEvento"))
                 {
                     rawIdEvento = drv["idEvento"];
@@ -87,7 +87,7 @@ namespace SGES
                 rawIdEvento = dataGridViewAprend.CurrentRow.Cells["idEvento"].Value;
             }
 
-            // Fallback 2: usar la primera celda (mantener compatibilidad con diseños simples)
+            // Fallback 2: usar la primera celda (mantener compatibilidad con diseÃ±os simples)
             if (rawIdEvento == null)
             {
                 rawIdEvento = dataGridViewAprend.CurrentRow.Cells[0].Value;
@@ -100,18 +100,18 @@ namespace SGES
                 return;
             }
 
-            // 4) Confirmación del usuario
-            var confirm = MessageBox.Show("¿Deseas registrarte en el evento seleccionado?", "Confirmar inscripción", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // 4) ConfirmaciÃ³n del usuario
+            var confirm = MessageBox.Show("Â¿Deseas registrarte en el evento seleccionado?", "Confirmar inscripciÃ³n", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm != DialogResult.Yes) return;
 
-            // 5) Llamada a la capa de datos (usar el método ya existente RegistrarInscripcion en Consultas)
+            // 5) Llamada a la capa de datos (usar el mÃ©todo ya existente RegistrarInscripcion en Consultas)
             Consultas consulta = new Consultas();
             bool ok = consulta.RegistrarInscripcion(idApr, idEvento);
 
-            // Nota: RegistrarInscripcion ya muestra mensajes (éxito / duplicado / conflicto). Aquí sólo manejamos UI mínima.
+            // Nota: RegistrarInscripcion ya muestra mensajes (Ã©xito / duplicado / conflicto). AquÃ­ sÃ³lo manejamos UI mÃ­nima.
             if (ok)
             {
-                // Opcional: deshabilitar botón para evitar doble click; conservar CRUD sencillo.
+                // Opcional: deshabilitar botÃ³n para evitar doble click; conservar CRUD sencillo.
                 btnRegistrarme.Enabled = false;
                 // Si quieres refrescar el grid: volver a cargar eventos
                 // FormAprendiz_Load(this, EventArgs.Empty);

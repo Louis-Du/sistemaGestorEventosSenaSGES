@@ -72,7 +72,15 @@ namespace SGES
 
         private void btnEliminarEvent_Click(object sender, EventArgs e)
         {
+            int idEvento = int.Parse(dataGridViewAdmin.CurrentRow.Cells["idEvento"].Value.ToString());
 
+            DialogResult result = MessageBox.Show("¿Estás seguro de que desea eliminar el evento? El evento se eliminará y no se podrá recuperar", "SGDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                co.EliminarEvento(idEvento);
+                dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
+                dataGridViewAdmin.DataMember = "Eventos";
+            }
         }
 
         private void dataGridViewAdmin_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -437,5 +437,72 @@ namespace SGES
                 cn.Desconectar();
             }
         }
+      
+        // Función para eliminar eventos
+        public void EliminarEvento(int idEvento)
+        {
+            if (VerificarInscriptos(idEvento) > 0)
+            {
+                DialogResult result = MessageBox.Show("¡Cuidado!: Hay aprendices inscriptos a este evento. ¿De verdad deseas eliminarlo?", "SGDF", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    // En caso de que acepte eliminar el evento a pesar de tener inscriptos se eliminan los inscriptos y el evento
+                    string eliminarInscripcion = "DELETE FROM Inscripciones WHERE idEvento = @idEvento";
+                    using (SqlCommand consulta1 = new SqlCommand(eliminarInscripcion, cn.Conectar()))
+                    {
+                        consulta1.Parameters.AddWithValue("@idEvento", idEvento);
+                        consulta1.ExecuteNonQuery();
+                    }
+
+                    // Eliminamos el evento
+                    string eliminarEvento = "DELETE FROM Eventos WHERE idEvento = @idEvento";
+                    using (SqlCommand consulta2 = new SqlCommand(eliminarEvento, cn.Conectar()))
+                    {
+                        consulta2.Parameters.AddWithValue("@idEvento", idEvento);
+                        consulta2.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("¡Evento eliminado con éxito!");
+                }
+            }
+            else
+            {
+                string eliminarEvento = "DELETE FROM Eventos WHERE idEvento = @idEvento";
+                using (SqlCommand consulta = new SqlCommand(eliminarEvento, cn.Conectar()))
+                {
+                    consulta.Parameters.AddWithValue("@idEvento", idEvento);
+                    consulta.ExecuteNonQuery();
+                }
+                MessageBox.Show("¡Evento eliminado con éxito!");
+            }
+        }
+
+        // Función para everificar existencia de inscriptos para eliminarlos
+        public int VerificarInscriptos(int idEvento)
+        {
+            DataSet ds = new DataSet();
+            int count = 0;
+
+            try
+            {
+                // Primero validamos si existe alguna inscripción en el evento
+                string verificarInscripciones = "SELECT COUNT(1) FROM Inscripciones WHERE idEvento = @idEvento";
+
+                using (SqlCommand consulta = new SqlCommand(verificarInscripciones, cn.Conectar()))
+                {
+                    consulta.Parameters.AddWithValue("@idEvento", idEvento);
+                    count = Convert.ToInt32(consulta.ExecuteScalar());
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
+            return count;
+        }
     }
 }
