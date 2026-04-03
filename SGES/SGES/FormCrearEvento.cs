@@ -19,8 +19,22 @@ namespace SGES
             InitializeComponent();
 
             // Se personaliza el formato de la fecha y hora
-            dtpFechaHoraEvento.Format = DateTimePickerFormat.Custom; 
-            dtpFechaHoraEvento.CustomFormat = "dd/MM/yyyy HH:mm";
+            dtpFechaEvento.Format = DateTimePickerFormat.Custom; 
+            dtpFechaEvento.CustomFormat = "dd/MM/yyyy HH:mm";
+
+            // Inicializar los DateTimePicker para horas
+            dtpHoraInicioEvento.Format = DateTimePickerFormat.Custom;
+            dtpHoraInicioEvento.CustomFormat = "HH:mm";
+            dtpHoraInicioEvento.ShowUpDown = true;
+            dtpHoraInicioEvento.Value = DateTime.Today.AddHours(9); // 09:00
+
+            dtpHoraFinEvento.Format = DateTimePickerFormat.Custom;
+            dtpHoraFinEvento.CustomFormat = "HH:mm";
+            dtpHoraFinEvento.ShowUpDown = true;
+            dtpHoraFinEvento.Value = DateTime.Today.AddHours(10); // 10:00
+
+            // Fecha: solo fecha
+            dtpFechaEvento.Format = DateTimePickerFormat.Short;
         }
 
         Consultas co = new Consultas();
@@ -31,7 +45,7 @@ namespace SGES
             try
             {
 
-                co.InsertarEvento(int.Parse(txtidEvento.Text), txtNombreEvento.Text, cbTipoEvento.Text, dtpFechaHoraEvento.Value, 1);
+                co.InsertarEvento(int.Parse(txtidEvento.Text), txtNombreEvento.Text, cbTipoEvento.Text, dtpFechaEvento.Value, 1);
                 MessageBox.Show("Evento creado con exito");
                 this.Close();
             }
@@ -69,6 +83,11 @@ namespace SGES
                 e.Handled = true; // Evita que se ingresen caracteres no numéricos
                 MessageBox.Show("ERROR: Solo se permite valores númericos", "SDGF");
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
