@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -53,7 +53,7 @@ namespace SGES
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-          
+
         }
     }
 }

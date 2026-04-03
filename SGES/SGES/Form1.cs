@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -54,6 +54,14 @@ namespace SGES
                 e.Handled = true; // Evita que se ingresen caracteres no numéricos
                 MessageBox.Show("Solo se permiten números en el campo de ID de usuario.", "APLICACION");
             }
+        }
+
+        private void linkLblCambiarContraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormRecuperarCuenta frm = new FormRecuperarCuenta(this); // Crear una instancia del formulario de recuperación de cuenta, pasando el formulario actual como referencia
+            frm.Show(); // Mostrar el formulario de recuperación de cuenta
+
+            this.Hide();
         }
 
         private void FormLogin_Load(object sender, EventArgs e)

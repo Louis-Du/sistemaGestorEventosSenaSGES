@@ -1,4 +1,4 @@
-﻿namespace SGES
+namespace SGES
 {
     partial class FormAdmin
     {
