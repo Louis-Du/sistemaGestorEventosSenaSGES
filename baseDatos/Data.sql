@@ -15,10 +15,11 @@ INSERT INTO Fichas VALUES (26702, '2024-02-05', '2025-08-05', 102);
 INSERT INTO Fichas VALUES (26703, '2024-03-15', '2025-03-15', 103);
 
 -- Insertar en Evento (Depende de Administrador)
-INSERT INTO Eventos (idEvento, nombreEvento, tipoEvento, fechaEvento, horaEvento, idUser)
-VALUES (501, 'Conferencia Tech', 'Educativo', '2024-05-10', '09:00:00', 1),
-       (502, 'Hackathon SENA', 'Competencia', '2024-06-15', '08:00:00', 2),
-       (503, 'Feria de Empleo', 'Laboral', '2024-07-20', '10:00:00', 1);
+INSERT INTO Eventos (idEvento, nombreEvento, tipoEvento, fechaHoraInicio, fechaHoraFin, idUser)
+VALUES
+(501, 'Conferencia Tech', 'Educativo', '2024-05-10T09:00:00', '2024-05-10T10:00:00', 1),
+(502, 'Hackathon SENA', 'Competencia', '2024-06-15T08:00:00', '2024-06-15T20:00:00', 2),
+(503, 'Feria de Empleo', 'Laboral', '2024-07-20T10:00:00', '2024-07-20T13:00:00', 1);
 
 -- Aprendices
 INSERT INTO Aprendiz VALUES 
