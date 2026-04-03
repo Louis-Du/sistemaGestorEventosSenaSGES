@@ -78,7 +78,6 @@ namespace SGES
             if (result == DialogResult.Yes)
             {
                 co.EliminarEvento(idEvento);
-
                 dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
                 dataGridViewAdmin.DataMember = "Eventos";
             }
