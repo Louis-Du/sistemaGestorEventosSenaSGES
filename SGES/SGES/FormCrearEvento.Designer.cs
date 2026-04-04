@@ -103,6 +103,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(393, 47);
             this.panel2.TabIndex = 7;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // label3
             // 
@@ -222,6 +223,7 @@
             this.dtpFechaEvento.Name = "dtpFechaEvento";
             this.dtpFechaEvento.Size = new System.Drawing.Size(200, 20);
             this.dtpFechaEvento.TabIndex = 18;
+            this.dtpFechaEvento.ValueChanged += new System.EventHandler(this.dtpFechaEvento_ValueChanged);
             // 
             // dtpHoraInicioEvento
             // 

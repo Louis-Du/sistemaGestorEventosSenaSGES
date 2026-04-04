@@ -43,8 +43,9 @@ namespace SGES
                 idEvento.DataPropertyName = "idEvento";
                 Nombre.DataPropertyName = "nombreEvento";
                 Tipo.DataPropertyName = "tipoEvento";
-                Fecha.DataPropertyName = "fechaEvento";
-                Hora.DataPropertyName = "horaEvento";
+                Fecha.DataPropertyName = "diaEvento";
+                HoraInicio.DataPropertyName = "fechaHoraInicio";
+                HoraFin.DataPropertyName = "fechaHoraFin";
             }
             catch (Exception ex)
             {

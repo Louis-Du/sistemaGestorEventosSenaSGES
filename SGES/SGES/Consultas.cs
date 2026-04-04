@@ -136,22 +136,29 @@ namespace SGES
             return ds;
         }
 
-        public void InsertarEvento(int idEvent, string nombreEvent, string tipoEvent, DateTime fechaHoraEvent, int idUser)
+        // Inserta evento: guarda fechaHoraInicio/fechaHoraFin y también diaEvento (DATE) para la UI
+        public void InsertarEvento(int idEvent, string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin, int idUser)
         {
             try
             {
-                string query =
-                    "INSERT INTO Eventos (idEvento, nombreEvento, tipoEvento, fechaEvento, horaEvento, idUser) " +
-                    "VALUES (@idEvent, @nombreEvent, @tipoEvent, @fechaEvent, @horaEvent, @idUser)"; // Asigna en una variable la consulta a realizar
+                // diaEvento: solo la parte DATE, para compatibilidad con el grid/filtrado por día
+                DateTime diaEvento = fechaHoraInicio.Date;
 
-                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar())) // Consulta la variable query
+                string query =
+                    "INSERT INTO Eventos (idEvento, nombreEvento, tipoEvento, diaEvento, fechaHoraInicio, fechaHoraFin, idUser) " +
+                    "VALUES (@idEvent, @nombreEvent, @tipoEvent, @diaEvento, @fechaHoraInicio, @fechaHoraFin, @idUser)";
+
+                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
                 {
-                    cmd.Parameters.AddWithValue("@idEvent", idEvent);
-                    cmd.Parameters.AddWithValue("@nombreEvent", nombreEvent);
-                    cmd.Parameters.AddWithValue("@tipoEvent", tipoEvent);
-                    cmd.Parameters.AddWithValue("@fechaEvent", fechaHoraEvent.Date);
-                    cmd.Parameters.AddWithValue("@horaEvent", fechaHoraEvent.TimeOfDay);
-                    cmd.Parameters.AddWithValue("@idUser", idUser);
+                    cmd.Parameters.Add("@idEvent", System.Data.SqlDbType.Int).Value = idEvent;
+                    cmd.Parameters.Add("@nombreEvent", System.Data.SqlDbType.VarChar, 50).Value = nombreEvent;
+                    cmd.Parameters.Add("@tipoEvent", System.Data.SqlDbType.VarChar, 50).Value = tipoEvent;
+
+                    cmd.Parameters.Add("@diaEvento", System.Data.SqlDbType.Date).Value = diaEvento;
+                    cmd.Parameters.Add("@fechaHoraInicio", System.Data.SqlDbType.DateTime2).Value = fechaHoraInicio;
+                    cmd.Parameters.Add("@fechaHoraFin", System.Data.SqlDbType.DateTime2).Value = fechaHoraFin;
+
+                    cmd.Parameters.Add("@idUser", System.Data.SqlDbType.Int).Value = idUser;
 
                     cmd.ExecuteNonQuery();
                 }
@@ -262,7 +269,7 @@ namespace SGES
             {
                 DataTable dt = new DataTable();
                 using (SqlCommand cmd = new SqlCommand(
-                    "SELECT fechaEvento, horaEvento, ISNULL(duracionMinutos, 60) AS duracionMinutos FROM Eventos WHERE idEvento = @idEvento",
+                    "SELECT fechaHoraInicio, fechaHoraFin FROM Eventos WHERE idEvento = @idEvento",
                     cn.Conectar()))
                 {
                     cmd.Parameters.AddWithValue("@idEvento", idEvento);
@@ -274,19 +281,14 @@ namespace SGES
 
                 if (dt.Rows.Count == 0) return false;
 
-                DateTime fecha = Convert.ToDateTime(dt.Rows[0]["fechaEvento"]);
-                TimeSpan hora = (TimeSpan)dt.Rows[0]["horaEvento"];
-                int duracion = Convert.ToInt32(dt.Rows[0]["duracionMinutos"]);
-
-                DateTime inicioNuevo = fecha.Date + hora;
-                DateTime finNuevo = inicioNuevo.AddMinutes(duracion);
+                DateTime inicioNuevo = Convert.ToDateTime(dt.Rows[0]["fechaHoraInicio"]);
+                DateTime finNuevo = Convert.ToDateTime(dt.Rows[0]["fechaHoraFin"]);
 
                 string sql =
                     "SELECT COUNT(1) FROM Inscripciones i " +
                     "JOIN Eventos e ON i.idEvento = e.idEvento " +
                     "WHERE i.idApr = @idApr AND e.idEvento <> @idEvento " +
-                    "AND NOT (DATEADD(minute, ISNULL(e.duracionMinutos, 60), CAST(e.fechaEvento AS DATETIME) + CAST(e.horaEvento AS DATETIME)) <= @inicioNuevo " +
-                    "OR CAST(e.fechaEvento AS DATETIME) + CAST(e.horaEvento AS DATETIME) >= @finNuevo)";
+                    "AND NOT (e.fechaHoraFin <= @inicioNuevo OR e.fechaHoraInicio >= @finNuevo)";
 
                 using (SqlCommand cmd2 = new SqlCommand(sql, cn.Conectar()))
                 {
