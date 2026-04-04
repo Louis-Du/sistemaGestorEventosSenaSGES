@@ -24,6 +24,7 @@ CREATE TABLE Eventos (
     idEvento INT NOT NULL PRIMARY KEY,
     nombreEvento VARCHAR(50) NOT NULL,
     tipoEvento VARCHAR(50) NOT NULL,
+	diaEvento DATE NOT NULL, -- día del evento (solo fecha)
     fechaHoraInicio DATETIME2(0) NOT NULL,
     fechaHoraFin   DATETIME2(0) NOT NULL,
     idUser INT NOT NULL,
