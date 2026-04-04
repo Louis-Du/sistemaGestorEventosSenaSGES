@@ -362,10 +362,10 @@ namespace SGES
 
         /// <summary>
         /// Registra la inscripción tras validar duplicado y conflicto de horarios.
-        /// Genera idInscrip con MAX+1 dentro de una transacción para reducir collisions.
-        /// Mantiene ids manuales por decisión de rama.
+        /// idGrupo ahora es opcional (int?). Si es null se inserta NULL en la base de datos,
+        /// permitiendo inscripciones individuales sin grupo.
         /// </summary>
-        public bool RegistrarInscripcion(int idApr, int idEvento, string modalidad = "Presencial", int idGrupo = 1)
+        public bool RegistrarInscripcion(int idApr, int idEvento, string modalidad = "Presencial", int? idGrupo = null)
         {
             try
             {
@@ -382,7 +382,7 @@ namespace SGES
                     }
                 }
 
-                // 2) Conflicto horario
+                // 2) Conflicto horario (se mantiene igual)
                 if (TieneConflicto(idApr, idEvento))
                 {
                     MessageBox.Show("No puedes inscribirte: el evento entra en conflicto con otra inscripción.");
@@ -412,7 +412,10 @@ namespace SGES
                             cmdIns.Parameters.AddWithValue("@modalidad", modalidad);
                             cmdIns.Parameters.AddWithValue("@idApr", idApr);
                             cmdIns.Parameters.AddWithValue("@idEvento", idEvento);
-                            cmdIns.Parameters.AddWithValue("@idGrupo", idGrupo);
+
+                            // idGrupo opcional: pasar DBNull.Value si es null
+                            var p = cmdIns.Parameters.Add("@idGrupo", System.Data.SqlDbType.Int);
+                            p.Value = (object)idGrupo ?? DBNull.Value;
 
                             cmdIns.ExecuteNonQuery();
                         }

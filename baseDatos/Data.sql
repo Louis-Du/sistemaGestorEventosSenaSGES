@@ -25,7 +25,11 @@ VALUES
 INSERT INTO Aprendiz VALUES 
 (1, 'Carlos Ramirez', 20, 'carlosr@gmail.com', 3001234567, 'Carlos Ramirez', 'carlosr@gmail.com', 'pass123', 'Aprendiz', 'M', 26701), 
 (2, 'Laura Gomez', 22, 'laurag@gmail.com', 3019876543, 'Laura Gomez', 'laurag@gmail.com', 'clave456', 'Aprendiz', 'F', 26702), 
-(3, 'Andres Torres', 19, 'andrest@gmail.com', 3024567890, 'Andres Torres', 'andrest@gmail.com', 'abc789', 'Aprendiz', 'M', 26703);
+(3, 'Andres Torres', 19, 'andrest@gmail.com', 3024567890, 'Andres Torres', 'andrest@gmail.com', 'abc789', 'Aprendiz', 'M', 26703),
+(4, 'Sofia Martinez', 21, 'sofijd@gmail.com', 3031234567, 'Sofia Martinez', 'sofijd@gmail.com', 'xyz123', 'Aprendiz', 'F', 26701),
+(5, 'Diego Fernandez', 23, 'diegdx@outlook.com', 3049876543, 'Diego Fernandez', 'diegdx@outlook.com', 'pass789', 'Aprendiz', 'M', 26702),
+(6, 'Valentina Lopez', 20, 'vale2d9@outlook.com', 3054567890, 'Valentina Lopez', 'vale2d9@outlook.com', 'clave321', 'Aprendiz', 'F', 26703);
+
        
 -- Insertar en Grupos 
 INSERT INTO Grupos VALUES
@@ -37,3 +41,9 @@ INSERT INTO Grupos VALUES
 INSERT INTO Inscripciones VALUES (9001, '2024-04-01', 'Presencial', 1, 501, 1);
 INSERT INTO Inscripciones VALUES (9002, '2024-04-02', 'Virtual', 2, 501, 2);
 INSERT INTO Inscripciones VALUES (9003, '2024-04-05', 'Presencial', 3, 502, 3)
+
+-- Hacer idGrupo opcional en Inscripciones (no elimina FK, solo permite NULL)
+-- Ejecutar en entorno de pruebas antes de producción.
+
+ALTER TABLE Inscripciones
+ALTER COLUMN idGrupo INT NULL;

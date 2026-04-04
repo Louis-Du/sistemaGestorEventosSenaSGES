@@ -32,14 +32,15 @@ namespace SGES
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewAprend = new System.Windows.Forms.DataGridView();
-            this.btnRegistrarme = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.dgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgHorafin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRegistrarme = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnRegGrupo = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAprend)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +62,7 @@ namespace SGES
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
+            this.panel1.Controls.Add(this.btnRegGrupo);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.dataGridViewAprend);
             this.panel1.Controls.Add(this.btnRegistrarme);
@@ -98,32 +100,6 @@ namespace SGES
             this.dataGridViewAprend.TabIndex = 5;
             this.dataGridViewAprend.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAprend_CellContentClick);
             // 
-            // btnRegistrarme
-            // 
-            this.btnRegistrarme.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnRegistrarme.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRegistrarme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrarme.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnRegistrarme.Location = new System.Drawing.Point(423, 264);
-            this.btnRegistrarme.Name = "btnRegistrarme";
-            this.btnRegistrarme.Size = new System.Drawing.Size(134, 38);
-            this.btnRegistrarme.TabIndex = 4;
-            this.btnRegistrarme.Text = "Registrarme";
-            this.btnRegistrarme.UseVisualStyleBackColor = false;
-            this.btnRegistrarme.Click += new System.EventHandler(this.btnRegistrarme_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(163, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(172, 20);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Eventos Disponibles";
-            // 
             // dgID
             // 
             this.dgID.DataPropertyName = "idEvento";
@@ -160,6 +136,45 @@ namespace SGES
             this.dgHorafin.HeaderText = "Hora Fin";
             this.dgHorafin.Name = "dgHorafin";
             // 
+            // btnRegistrarme
+            // 
+            this.btnRegistrarme.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnRegistrarme.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRegistrarme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrarme.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnRegistrarme.Location = new System.Drawing.Point(312, 264);
+            this.btnRegistrarme.Name = "btnRegistrarme";
+            this.btnRegistrarme.Size = new System.Drawing.Size(134, 38);
+            this.btnRegistrarme.TabIndex = 4;
+            this.btnRegistrarme.Text = "Registrarme";
+            this.btnRegistrarme.UseVisualStyleBackColor = false;
+            this.btnRegistrarme.Click += new System.EventHandler(this.btnRegistrarme_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(163, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(172, 20);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Eventos Disponibles";
+            // 
+            // btnRegGrupo
+            // 
+            this.btnRegGrupo.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnRegGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRegGrupo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegGrupo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnRegGrupo.Location = new System.Drawing.Point(129, 264);
+            this.btnRegGrupo.Name = "btnRegGrupo";
+            this.btnRegGrupo.Size = new System.Drawing.Size(134, 38);
+            this.btnRegGrupo.TabIndex = 9;
+            this.btnRegGrupo.Text = "Registrarme en grupo";
+            this.btnRegGrupo.UseVisualStyleBackColor = false;
+            // 
             // FormAprendiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,5 +210,6 @@ namespace SGES
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgHoraInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgHorafin;
+        private System.Windows.Forms.Button btnRegGrupo;
     }
 }
