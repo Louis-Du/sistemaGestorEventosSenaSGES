@@ -47,3 +47,36 @@ INSERT INTO Inscripciones VALUES (9003, '2024-04-05', 'Presencial', 3, 502, 3)
 
 ALTER TABLE Inscripciones
 ALTER COLUMN idGrupo INT NULL;
+
+UPDATE Inscripciones
+SET idGrupo = NULL;
+
+DELETE FROM Grupos; 
+
+SELECT * FROM Inscripciones;
+
+SELECT * FROM Grupos;
+
+-- Consultas de verificacion para comprobar que idGrupo es opcional y se pueden eliminar grupos sin afectar inscripciones.
+SELECT TOP 20 idInscrip, idApr, idEvento, idGrupo, fechaInscrip
+FROM Inscripciones
+ORDER BY idInscrip DESC;
+
+SELECT idApr, idEvento, COUNT(*) AS cantidad
+FROM Inscripciones
+GROUP BY idApr, idEvento
+HAVING COUNT(*) > 1;
+
+SELECT i.idApr, i.idEvento, e.nombreEvento, e.fechaHoraInicio, e.fechaHoraFin, i.idGrupo
+FROM Inscripciones i
+JOIN Eventos e ON i.idEvento = e.idEvento
+WHERE i.idApr = 1
+ORDER BY e.fechaHoraInicio;
+
+SELECT *
+FROM Inscripciones
+WHERE idGrupo IS NOT NULL;
+
+
+
+

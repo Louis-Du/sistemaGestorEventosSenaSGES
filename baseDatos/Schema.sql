@@ -79,3 +79,4 @@ CREATE TABLE Inscripciones(
 	FOREIGN KEY (idEvento) REFERENCES Eventos(idEvento),
 	FOREIGN KEY (idGrupo) REFERENCES Grupos(idGrupo)
 );
+
