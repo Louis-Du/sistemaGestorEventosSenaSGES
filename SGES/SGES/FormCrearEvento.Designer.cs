@@ -35,16 +35,20 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dtpHoraFinEvento = new System.Windows.Forms.DateTimePicker();
+            this.dtpHoraInicioEvento = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaEvento = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dtpFechaEvento = new System.Windows.Forms.DateTimePicker();
-            this.dtpHoraInicioEvento = new System.Windows.Forms.DateTimePicker();
-            this.dtpHoraFinEvento = new System.Windows.Forms.DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dtpFechaHoraFin = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dtpFechaHoraInicio = new System.Windows.Forms.DateTimePicker();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -141,6 +145,56 @@
             this.panel1.Size = new System.Drawing.Size(393, 326);
             this.panel1.TabIndex = 8;
             // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label7.Location = new System.Drawing.Point(158, 203);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 16);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Inicio/Fin";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // dtpHoraFinEvento
+            // 
+            this.dtpHoraFinEvento.Location = new System.Drawing.Point(224, 199);
+            this.dtpHoraFinEvento.Name = "dtpHoraFinEvento";
+            this.dtpHoraFinEvento.Size = new System.Drawing.Size(64, 20);
+            this.dtpHoraFinEvento.TabIndex = 20;
+            this.dtpHoraFinEvento.ValueChanged += new System.EventHandler(this.dtpHoraFinEvento_ValueChanged);
+            // 
+            // dtpHoraInicioEvento
+            // 
+            this.dtpHoraInicioEvento.Location = new System.Drawing.Point(88, 199);
+            this.dtpHoraInicioEvento.Name = "dtpHoraInicioEvento";
+            this.dtpHoraInicioEvento.Size = new System.Drawing.Size(65, 20);
+            this.dtpHoraInicioEvento.TabIndex = 19;
+            this.dtpHoraInicioEvento.ValueChanged += new System.EventHandler(this.dtpHoraInicioEvento_ValueChanged);
+            // 
+            // dtpFechaEvento
+            // 
+            this.dtpFechaEvento.Location = new System.Drawing.Point(87, 157);
+            this.dtpFechaEvento.Name = "dtpFechaEvento";
+            this.dtpFechaEvento.Size = new System.Drawing.Size(200, 20);
+            this.dtpFechaEvento.TabIndex = 18;
+            this.dtpFechaEvento.ValueChanged += new System.EventHandler(this.dtpFechaEvento_ValueChanged);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label6.Location = new System.Drawing.Point(85, 180);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(111, 16);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Horas del Evento";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -205,51 +259,48 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "ID del Evento";
             // 
-            // label6
+            // label8
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label6.Location = new System.Drawing.Point(85, 180);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(111, 16);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Horas del Evento";
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label8.Location = new System.Drawing.Point(578, 241);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(176, 16);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Fecha y Hora Fin del Evento";
             // 
-            // dtpFechaEvento
+            // dtpFechaHoraFin
             // 
-            this.dtpFechaEvento.Location = new System.Drawing.Point(87, 157);
-            this.dtpFechaEvento.Name = "dtpFechaEvento";
-            this.dtpFechaEvento.Size = new System.Drawing.Size(200, 20);
-            this.dtpFechaEvento.TabIndex = 18;
-            this.dtpFechaEvento.ValueChanged += new System.EventHandler(this.dtpFechaEvento_ValueChanged);
+            this.dtpFechaHoraFin.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpFechaHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaHoraFin.Location = new System.Drawing.Point(580, 263);
+            this.dtpFechaHoraFin.Name = "dtpFechaHoraFin";
+            this.dtpFechaHoraFin.Size = new System.Drawing.Size(129, 20);
+            this.dtpFechaHoraFin.TabIndex = 20;
             // 
-            // dtpHoraInicioEvento
+            // label9
             // 
-            this.dtpHoraInicioEvento.Location = new System.Drawing.Point(88, 199);
-            this.dtpHoraInicioEvento.Name = "dtpHoraInicioEvento";
-            this.dtpHoraInicioEvento.Size = new System.Drawing.Size(65, 20);
-            this.dtpHoraInicioEvento.TabIndex = 19;
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label9.Location = new System.Drawing.Point(578, 193);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(176, 16);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Fecha y Hora Fin del Evento";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
-            // dtpHoraFinEvento
+            // dtpFechaHoraInicio
             // 
-            this.dtpHoraFinEvento.Location = new System.Drawing.Point(224, 199);
-            this.dtpHoraFinEvento.Name = "dtpHoraFinEvento";
-            this.dtpHoraFinEvento.Size = new System.Drawing.Size(64, 20);
-            this.dtpHoraFinEvento.TabIndex = 20;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label7.Location = new System.Drawing.Point(158, 203);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 16);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "Inicio/Fin";
+            this.dtpFechaHoraInicio.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpFechaHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaHoraInicio.Location = new System.Drawing.Point(580, 211);
+            this.dtpFechaHoraInicio.Name = "dtpFechaHoraInicio";
+            this.dtpFechaHoraInicio.Size = new System.Drawing.Size(129, 20);
+            this.dtpFechaHoraInicio.TabIndex = 18;
             // 
             // FormCrearEvento
             // 
@@ -258,6 +309,10 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.ClientSize = new System.Drawing.Size(688, 434);
             this.ControlBox = false;
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.dtpFechaHoraFin);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.dtpFechaHoraInicio);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FormCrearEvento";
@@ -268,6 +323,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -290,5 +346,9 @@
         private System.Windows.Forms.DateTimePicker dtpFechaEvento;
         private System.Windows.Forms.DateTimePicker dtpHoraFinEvento;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dtpFechaHoraFin;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker dtpFechaHoraInicio;
     }
 }

@@ -125,8 +125,8 @@ namespace SGES
         private void btnRegGrupo_Click(object sender, EventArgs e)
         {
             this.Close();
-            FormRegistroGrupo form = new FormRegistroGrupo();
-            form.ShowDialog();
+            //FormRegistroGrupo form = new FormRegistroGrupo();
+           // form.ShowDialog();
         }
     }
 }

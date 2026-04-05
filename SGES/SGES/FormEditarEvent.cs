@@ -13,19 +13,15 @@ namespace SGES
 {
     public partial class FormEditarEvent : Form
     {
-        FormAdmin FormAdmin; // Variable para almacenar la referencia al formulario principal para poder actualizarlo después
-        int filaIndex; // Variable para almacenar el índice de la fila que se va a editar
-        public FormEditarEvent(FormAdmin formAdmin, int fila, int idEvent, string nombreEvent, string tipoEvent, DateTime fechaHoraEvent)
+        public FormEditarEvent(int idEvent, string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin)
         {
             InitializeComponent();
-            FormAdmin = formAdmin; // Guardar la referencia al formulario principal para poder actualizarlo después
-            formAdmin.Hide(); // Ocultar el formulario principal mientras se edita el evento
-            filaIndex = fila; // Guardar el índice de la fila que se va a editar para poder actualizarla después
             // cargar los datos del evento en los controles del formulario
             lblID.Text = idEvent.ToString(); // Mostrar el ID del evento en una etiqueta (puede ser un control de solo lectura)
             txtNombreEvento1.Text = nombreEvent;
             cbTipoEvento1.Text = tipoEvent;
-            dtpFechaHoraEvento1.Value = fechaHoraEvent; // Personalizar el formato de la fecha y hora
+            dtpFechaHoraInicio.Value = fechaHoraInicio; // Personalizar el formato de la fecha y hora
+            dtpFechaHoraFin.Value = fechaHoraFin;
         }
 
         private void FormEditarEvent_Load(object sender, EventArgs e)
@@ -44,7 +40,7 @@ namespace SGES
             if (result == DialogResult.Yes)
             {
                 this.Close(); // Cerrar el formulario de edición
-                FormAdmin.Show(); // Volver a mostrar el formulario principal
+
             }
         }
 
@@ -60,11 +56,8 @@ namespace SGES
                 {
                     Consultas co = new Consultas(); // Crear una instancia de la clase Consultas para acceder a los métodos de actualización
 
-                    co.ActualizarEvento(int.Parse(lblID.Text), txtNombreEvento1.Text, cbTipoEvento1.Text, dtpFechaHoraEvento1.Value); // Llamar al método ActualizarEvento para actualizar los datos del evento en la base de datos
-
-                    MessageBox.Show("Evento actualizado con éxito.");
+                    co.ActualizarEvento(int.Parse(lblID.Text), txtNombreEvento1.Text, cbTipoEvento1.Text, dtpFechaHoraInicio.Value, dtpFechaHoraFin.Value); // Llamar al método ActualizarEvento para actualizar los datos del evento en la base de datos
                     this.Close(); // Cerrar el formulario de edición
-                    FormAdmin.Show(); // Volver a mostrar el formulario principal
 
                 }
                 catch (Exception ex)
@@ -72,6 +65,26 @@ namespace SGES
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void txtIdEvento_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNombreEvento1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -43,9 +43,8 @@ namespace SGES
                 idEvento.DataPropertyName = "idEvento";
                 Nombre.DataPropertyName = "nombreEvento";
                 Tipo.DataPropertyName = "tipoEvento";
-                Fecha.DataPropertyName = "diaEvento";
-                HoraInicio.DataPropertyName = "fechaHoraInicio";
-                HoraFin.DataPropertyName = "fechaHoraFin";
+                fechaHoraInicio.DataPropertyName = "fechaHoraInicio";
+                FechaHoraFin.DataPropertyName = "fechaHoraFin";
             }
             catch (Exception ex)
             {
@@ -70,6 +69,7 @@ namespace SGES
             if (result == DialogResult.Yes)
             {
                 this.Close();
+
                 FormLogin form = new FormLogin();
                 form.ShowDialog();
             }
@@ -84,6 +84,7 @@ namespace SGES
             if (result == DialogResult.Yes)
             {
                 co.EliminarEvento(idEvento);
+
                 dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
                 dataGridViewAdmin.DataMember = "Eventos";
             }
@@ -136,15 +137,11 @@ namespace SGES
                 string tipoEvent = dataGridViewAdmin.Rows[fila].Cells[2].Value.ToString();
 
                 // En develop ahora existen diaEvento/fechaHoraInicio/fechaHoraFin
-                string fechaEvent = dataGridViewAdmin.Rows[fila].Cells[3].Value.ToString();
-                string horaInicioEvent = dataGridViewAdmin.Rows[fila].Cells[4].Value.ToString();
-
-                DateTime fecha = DateTime.Parse(fechaEvent);
-                DateTime horaInicio = DateTime.Parse(horaInicioEvent);
-                DateTime fechaHoraEvent = fecha.Date + horaInicio.TimeOfDay;
+                DateTime fechaHoraInicio = Convert.ToDateTime(dataGridViewAdmin.Rows[fila].Cells[3].Value);
+                DateTime fechaHoraFin = Convert.ToDateTime(dataGridViewAdmin.Rows[fila].Cells[4].Value);
 
                 // Abrir FormEditar
-                FormEditarEvent frm = new FormEditarEvent(this, fila, idEvent, nombreEvent, tipoEvent, fechaHoraEvent);
+                FormEditarEvent frm = new FormEditarEvent(idEvent, nombreEvent, tipoEvent, fechaHoraInicio, fechaHoraFin);
                 frm.ShowDialog();
 
                 dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos actualizados en el grid del formulario administrador

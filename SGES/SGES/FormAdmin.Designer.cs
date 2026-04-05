@@ -36,14 +36,13 @@ namespace SGES
             this.label2 = new System.Windows.Forms.Label();
             this.btnConsultarAprendicesRegistrados = new System.Windows.Forms.Button();
             this.dataGridViewAdmin = new System.Windows.Forms.DataGridView();
+            this.btnEliminarEvent = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.idEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnEliminarEvent = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.fechaHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaHoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdmin)).BeginInit();
             this.SuspendLayout();
@@ -160,9 +159,8 @@ namespace SGES
             this.idEvento,
             this.Nombre,
             this.Tipo,
-            this.Fecha,
-            this.HoraInicio,
-            this.HoraFin});
+            this.fechaHoraInicio,
+            this.FechaHoraFin});
             this.dataGridViewAdmin.Cursor = System.Windows.Forms.Cursors.Cross;
             this.dataGridViewAdmin.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridViewAdmin.Location = new System.Drawing.Point(5, 29);
@@ -174,48 +172,6 @@ namespace SGES
             this.dataGridViewAdmin.Size = new System.Drawing.Size(562, 208);
             this.dataGridViewAdmin.TabIndex = 7;
             this.dataGridViewAdmin.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAdmin_CellContentClick);
-            // 
-            // idEvento
-            // 
-            this.idEvento.DataPropertyName = "idEvento";
-            this.idEvento.HeaderText = "ID";
-            this.idEvento.Name = "idEvento";
-            this.idEvento.ReadOnly = true;
-            // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "nombreEvento";
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Tipo
-            // 
-            this.Tipo.DataPropertyName = "tipoEvento";
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
-            this.Tipo.ReadOnly = true;
-            // 
-            // Fecha
-            // 
-            this.Fecha.DataPropertyName = "diaEvento";
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            this.Fecha.ReadOnly = true;
-            // 
-            // HoraInicio
-            // 
-            this.HoraInicio.DataPropertyName = "fechaHoraInicio";
-            this.HoraInicio.HeaderText = "Hora Inicio";
-            this.HoraInicio.Name = "HoraInicio";
-            this.HoraInicio.ReadOnly = true;
-            // 
-            // HoraFin
-            // 
-            this.HoraFin.DataPropertyName = "fechaHoraFin";
-            this.HoraFin.HeaderText = "Hora Fin";
-            this.HoraFin.Name = "HoraFin";
-            this.HoraFin.ReadOnly = true;
             // 
             // btnEliminarEvent
             // 
@@ -243,6 +199,41 @@ namespace SGES
             this.label1.Size = new System.Drawing.Size(175, 16);
             this.label1.TabIndex = 6;
             this.label1.Text = "Panel de Administración";
+            // 
+            // idEvento
+            // 
+            this.idEvento.DataPropertyName = "idEvento";
+            this.idEvento.HeaderText = "ID";
+            this.idEvento.Name = "idEvento";
+            this.idEvento.ReadOnly = true;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "nombreEvento";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Tipo
+            // 
+            this.Tipo.DataPropertyName = "tipoEvento";
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            // 
+            // fechaHoraInicio
+            // 
+            this.fechaHoraInicio.DataPropertyName = "fechaHoraInicio";
+            this.fechaHoraInicio.HeaderText = "Fecha y Hora de Inicio";
+            this.fechaHoraInicio.Name = "fechaHoraInicio";
+            this.fechaHoraInicio.ReadOnly = true;
+            // 
+            // FechaHoraFin
+            // 
+            this.FechaHoraFin.DataPropertyName = "fechaHoraFin";
+            this.FechaHoraFin.HeaderText = "Fecha y Hora de Finalización";
+            this.FechaHoraFin.Name = "FechaHoraFin";
+            this.FechaHoraFin.ReadOnly = true;
             // 
             // FormAdmin
             // 
@@ -277,12 +268,11 @@ namespace SGES
         private System.Windows.Forms.Button btnEliminarEvent;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnEditarEvent;
         private System.Windows.Forms.DataGridViewTextBoxColumn idEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HoraInicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HoraFin;
-        private System.Windows.Forms.Button btnEditarEvent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaHoraInicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaHoraFin;
     }
 }

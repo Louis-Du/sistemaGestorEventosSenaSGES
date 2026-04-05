@@ -174,22 +174,24 @@ namespace SGES
             }
         }
 
-        public void ActualizarEvento(int idEvent, string nombreEvent, string tipoEvent, DateTime fechaHoraEvent)
+        public void ActualizarEvento(int idEvento, string nombreEvento, string tipoEvento, DateTime fechaHoraInicio, DateTime fechaHoraFin)
         {
             try
             {
                 string query =
-                    "UPDATE Eventos SET nombreEvento = @nombreEvent, tipoEvento = @tipoEvent, fechaEvento = @fechaEvent, horaEvento = @horaEvent " +
-                    "WHERE idEvento = @idEvent"; // Asigna en una variable la consulta a realizar
+                    "UPDATE Eventos SET nombreEvento = @nombreEvento, tipoEvento = @tipoEvento, fechaHoraInicio = @fechaHoraInicio, fechaHoraFin = @fechaHoraFin " +
+                    "WHERE idEvento = @idEvento"; // Asigna en una variable la consulta a realizar
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar())) // Consulta la variable query
                 {
-                    cmd.Parameters.AddWithValue("@idEvent", idEvent);
-                    cmd.Parameters.AddWithValue("@nombreEvent", nombreEvent);
-                    cmd.Parameters.AddWithValue("@tipoEvent", tipoEvent);
-                    cmd.Parameters.AddWithValue("@fechaEvent", fechaHoraEvent.Date);
-                    cmd.Parameters.AddWithValue("@horaEvent", fechaHoraEvent.TimeOfDay);
+                    cmd.Parameters.AddWithValue("@idEvento", idEvento);
+                    cmd.Parameters.AddWithValue("@nombreEvento", nombreEvento);
+                    cmd.Parameters.AddWithValue("@tipoEvento", tipoEvento);
+                    cmd.Parameters.AddWithValue("@fechaHoraInicio", fechaHoraInicio);
+                    cmd.Parameters.AddWithValue("@fechaHoraFin", fechaHoraFin);
 
                     cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Evento actualizado con éxito.");
                 }
             }
             catch (Exception ex)
