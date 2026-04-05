@@ -1,4 +1,4 @@
-﻿namespace SGES
+namespace SGES
 {
     partial class FormAprendiz
     {
@@ -30,13 +30,15 @@
         {
             this.btnVolver = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRegGrupo = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewAprend = new System.Windows.Forms.DataGridView();
             this.dgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgHorafin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnRegistrarme = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -60,6 +62,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
+            this.panel1.Controls.Add(this.btnRegGrupo);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.dataGridViewAprend);
             this.panel1.Controls.Add(this.btnRegistrarme);
@@ -67,6 +70,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(574, 318);
             this.panel1.TabIndex = 4;
+            // 
+            // btnRegGrupo
+            // 
+            this.btnRegGrupo.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnRegGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRegGrupo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegGrupo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnRegGrupo.Location = new System.Drawing.Point(129, 264);
+            this.btnRegGrupo.Name = "btnRegGrupo";
+            this.btnRegGrupo.Size = new System.Drawing.Size(134, 38);
+            this.btnRegGrupo.TabIndex = 9;
+            this.btnRegGrupo.Text = "Registrarme en grupo";
+            this.btnRegGrupo.UseVisualStyleBackColor = false;
+            this.btnRegGrupo.Click += new System.EventHandler(this.btnRegGrupo_Click);
             // 
             // label2
             // 
@@ -89,7 +106,8 @@
             this.dgNom,
             this.dgTipo,
             this.dgFecha,
-            this.dgHora});
+            this.dgHoraInicio,
+            this.dgHorafin});
             this.dataGridViewAprend.Location = new System.Drawing.Point(11, 34);
             this.dataGridViewAprend.Name = "dataGridViewAprend";
             this.dataGridViewAprend.Size = new System.Drawing.Size(552, 216);
@@ -116,15 +134,21 @@
             // 
             // dgFecha
             // 
-            this.dgFecha.DataPropertyName = "fechaEvento";
+            this.dgFecha.DataPropertyName = "diaEvento";
             this.dgFecha.HeaderText = "Fecha";
             this.dgFecha.Name = "dgFecha";
             // 
-            // dgHora
+            // dgHoraInicio
             // 
-            this.dgHora.DataPropertyName = "horaEvento";
-            this.dgHora.HeaderText = "Hora";
-            this.dgHora.Name = "dgHora";
+            this.dgHoraInicio.DataPropertyName = "fechaHoraInicio";
+            this.dgHoraInicio.HeaderText = "Hora Inicio";
+            this.dgHoraInicio.Name = "dgHoraInicio";
+            // 
+            // dgHorafin
+            // 
+            this.dgHorafin.DataPropertyName = "fechaHoraFin";
+            this.dgHorafin.HeaderText = "Hora Fin";
+            this.dgHorafin.Name = "dgHorafin";
             // 
             // btnRegistrarme
             // 
@@ -132,7 +156,7 @@
             this.btnRegistrarme.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRegistrarme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrarme.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnRegistrarme.Location = new System.Drawing.Point(423, 264);
+            this.btnRegistrarme.Location = new System.Drawing.Point(312, 264);
             this.btnRegistrarme.Name = "btnRegistrarme";
             this.btnRegistrarme.Size = new System.Drawing.Size(134, 38);
             this.btnRegistrarme.TabIndex = 4;
@@ -178,13 +202,15 @@
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridViewAprend;
+        private System.Windows.Forms.Button btnRegistrarme;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgNom;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgHora;
-        private System.Windows.Forms.Button btnRegistrarme;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgHoraInicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgHorafin;
+        private System.Windows.Forms.Button btnRegGrupo;
     }
 }

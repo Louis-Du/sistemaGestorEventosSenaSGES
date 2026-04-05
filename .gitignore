@@ -3,6 +3,7 @@
 ###############################################################################
 # Carpeta de caché de Visual Studio (aparece en raíz y dentro de SGES/)
 .vs/
+.vscode/
 
 # Builds (aparecen en SGES/SGES/bin y SGES/SGES/obj)
 **/[Bb]in/

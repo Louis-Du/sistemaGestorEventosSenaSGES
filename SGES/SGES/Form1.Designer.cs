@@ -1,4 +1,4 @@
-﻿namespace SGES
+namespace SGES
 {
     partial class FormLogin
     {
@@ -223,4 +223,3 @@
         private System.Windows.Forms.LinkLabel linkLblCambiarContraseña;
     }
 }
-

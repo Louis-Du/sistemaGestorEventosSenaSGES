@@ -43,8 +43,9 @@ namespace SGES
                 idEvento.DataPropertyName = "idEvento";
                 Nombre.DataPropertyName = "nombreEvento";
                 Tipo.DataPropertyName = "tipoEvento";
-                Fecha.DataPropertyName = "fechaEvento";
-                Hora.DataPropertyName = "horaEvento";
+                Fecha.DataPropertyName = "diaEvento";
+                HoraInicio.DataPropertyName = "fechaHoraInicio";
+                HoraFin.DataPropertyName = "fechaHoraFin";
             }
             catch (Exception ex)
             {
@@ -77,7 +78,15 @@ namespace SGES
 
         private void btnEliminarEvent_Click(object sender, EventArgs e)
         {
+            int idEvento = int.Parse(dataGridViewAdmin.CurrentRow.Cells["idEvento"].Value.ToString());
 
+            DialogResult result = MessageBox.Show("¿Estás seguro de que desea eliminar el evento? El evento se eliminará y no se podrá recuperar", "SGDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                co.EliminarEvento(idEvento);
+                dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
+                dataGridViewAdmin.DataMember = "Eventos";
+            }
         }
 
         private void dataGridViewAdmin_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -95,11 +104,11 @@ namespace SGES
                 DataSet ds = co.ConsultarAprendicesRegistrados(idEvento);
 
                 // Consulta los aprendices registrados al evento y los agregamos al data grid
-                dataGridViewAdmin.DataSource = ds; 
+                dataGridViewAdmin.DataSource = ds;
                 dataGridViewAdmin.DataMember = "Aprendices";
 
                 // Obtine el id del evento y lo manda al main del formulari FormAprendicesRegistrados
-                FormAprendicesRegistrados form = new FormAprendicesRegistrados(idEvento); 
+                FormAprendicesRegistrados form = new FormAprendicesRegistrados(idEvento);
                 form.ShowDialog();
 
                 dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
@@ -125,11 +134,14 @@ namespace SGES
                 int idEvent = int.Parse(dataGridViewAdmin.Rows[fila].Cells[0].Value.ToString());
                 string nombreEvent = dataGridViewAdmin.Rows[fila].Cells[1].Value.ToString();
                 string tipoEvent = dataGridViewAdmin.Rows[fila].Cells[2].Value.ToString();
+
+                // En develop ahora existen diaEvento/fechaHoraInicio/fechaHoraFin
                 string fechaEvent = dataGridViewAdmin.Rows[fila].Cells[3].Value.ToString();
-                string horaEvent = dataGridViewAdmin.Rows[fila].Cells[4].Value.ToString();
+                string horaInicioEvent = dataGridViewAdmin.Rows[fila].Cells[4].Value.ToString();
+
                 DateTime fecha = DateTime.Parse(fechaEvent);
-                TimeSpan hora = TimeSpan.Parse(horaEvent);
-                DateTime fechaHoraEvent = fecha.Date + hora;
+                DateTime horaInicio = DateTime.Parse(horaInicioEvent);
+                DateTime fechaHoraEvent = fecha.Date + horaInicio.TimeOfDay;
 
                 // Abrir FormEditar
                 FormEditarEvent frm = new FormEditarEvent(this, fila, idEvent, nombreEvent, tipoEvent, fechaHoraEvent);

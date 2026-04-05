@@ -24,12 +24,12 @@ CREATE TABLE Eventos (
     idEvento INT NOT NULL PRIMARY KEY,
     nombreEvento VARCHAR(50) NOT NULL,
     tipoEvento VARCHAR(50) NOT NULL,
-    fechaEvento DATE NOT NULL,
-    horaEvento TIME NOT NULL,
-    duracionMinutos INT NOT NULL CONSTRAINT DF_Eventos_duracionMinutos DEFAULT 60, -- Regla de duración por defecto de 60 minutos
+	diaEvento DATE NOT NULL, -- día del evento (solo fecha)
+    fechaHoraInicio DATETIME2(0) NOT NULL,
+    fechaHoraFin   DATETIME2(0) NOT NULL,
     idUser INT NOT NULL,
     CONSTRAINT FK_Eventos_Usuario FOREIGN KEY (idUser) REFERENCES Usuario(idUser),
-    CONSTRAINT CK_Eventos_Duracion_Positive CHECK (duracionMinutos > 0) -- Regla de duración positiva 
+    CONSTRAINT CK_Eventos_Fechas CHECK (fechaHoraFin > fechaHoraInicio)
 );
 
 CREATE TABLE Programas(
@@ -79,3 +79,4 @@ CREATE TABLE Inscripciones(
 	FOREIGN KEY (idEvento) REFERENCES Eventos(idEvento),
 	FOREIGN KEY (idGrupo) REFERENCES Grupos(idGrupo)
 );
+
