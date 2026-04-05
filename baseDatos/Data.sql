@@ -33,9 +33,9 @@ INSERT INTO Aprendiz VALUES
        
 -- Insertar en Grupos 
 INSERT INTO Grupos VALUES
-(1, 'Grupo 1'),
-(2, 'Grupo 2'),
-(3, 'Grupo 3')
+(NULL, 'Grupo 1'),
+(NULL, 'Grupo 2'),
+(NULL, 'Grupo 3')
 
 -- Insertar en Inscripcion (Depende de Aprendiz y Evento)
 INSERT INTO Inscripciones VALUES (9001, '2024-04-01', 'Presencial', 1, 501, 1);
