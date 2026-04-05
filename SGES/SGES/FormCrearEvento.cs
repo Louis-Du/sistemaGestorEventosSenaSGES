@@ -19,8 +19,22 @@ namespace SGES
             InitializeComponent();
 
             // Se personaliza el formato de la fecha y hora
-            dtpFechaHoraEvento.Format = DateTimePickerFormat.Custom; 
-            dtpFechaHoraEvento.CustomFormat = "dd/MM/yyyy HH:mm";
+            dtpFechaEvento.Format = DateTimePickerFormat.Custom; 
+            dtpFechaEvento.CustomFormat = "dd/MM/yyyy HH:mm";
+
+            // Inicializar los DateTimePicker para horas
+            dtpHoraInicioEvento.Format = DateTimePickerFormat.Custom;
+            dtpHoraInicioEvento.CustomFormat = "HH:mm";
+            dtpHoraInicioEvento.ShowUpDown = true;
+            dtpHoraInicioEvento.Value = DateTime.Today.AddHours(9); // 09:00
+
+            dtpHoraFinEvento.Format = DateTimePickerFormat.Custom;
+            dtpHoraFinEvento.CustomFormat = "HH:mm";
+            dtpHoraFinEvento.ShowUpDown = true;
+            dtpHoraFinEvento.Value = DateTime.Today.AddHours(10); // 10:00
+
+            // Fecha: solo fecha
+            dtpFechaEvento.Format = DateTimePickerFormat.Short;
         }
 
         Consultas co = new Consultas();
@@ -30,14 +44,45 @@ namespace SGES
         {
             try
             {
+                // 1) Validar ID de evento
+                if (!int.TryParse(txtidEvento.Text.Trim(), out int idEvent))
+                {
+                    MessageBox.Show("ID de evento inválido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-                co.InsertarEvento(int.Parse(txtidEvento.Text), txtNombreEvento.Text, cbTipoEvento.Text, dtpFechaHoraEvento.Value, 1);
-                MessageBox.Show("Evento creado con exito");
+                // 2) Combinar fecha + horas desde los DateTimePicker
+                DateTime fecha = dtpFechaEvento.Value.Date;
+                DateTime inicio = fecha.Add(dtpHoraInicioEvento.Value.TimeOfDay);
+                DateTime fin = fecha.Add(dtpHoraFinEvento.Value.TimeOfDay);
+
+                // Si quieres permitir eventos que crucen medianoche descomentar la línea siguiente:
+                if (fin <= inicio) fin = fin.AddDays(1);
+
+                // 3) Validaciones básicas
+                if (fin <= inicio)
+                {
+                    MessageBox.Show("La hora de fin debe ser posterior a la hora de inicio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (inicio < DateTime.Now.Date)
+                {
+                    MessageBox.Show("La fecha y hora de inicio no puede ser en el pasado.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 4) Llamada a la capa de datos
+                // Ajusta idUser según tu contexto; aquí se mantiene 1 por compatibilidad con el proyecto.
+                int idUser = 1;
+                co.InsertarEvento(idEvent, txtNombreEvento.Text.Trim(), cbTipoEvento.Text, inicio, fin, idUser);
+
+                MessageBox.Show("Evento creado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al crear el evento: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -69,6 +114,21 @@ namespace SGES
                 e.Handled = true; // Evita que se ingresen caracteres no numéricos
                 MessageBox.Show("ERROR: Solo se permite valores númericos", "SDGF");
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dtpFechaEvento_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
