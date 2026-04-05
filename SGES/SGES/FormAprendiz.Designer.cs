@@ -30,6 +30,7 @@ namespace SGES
         {
             this.btnVolver = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRegGrupo = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewAprend = new System.Windows.Forms.DataGridView();
             this.dgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,7 +41,6 @@ namespace SGES
             this.dgHorafin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnRegistrarme = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnRegGrupo = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAprend)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +70,20 @@ namespace SGES
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(574, 318);
             this.panel1.TabIndex = 4;
+            // 
+            // btnRegGrupo
+            // 
+            this.btnRegGrupo.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnRegGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRegGrupo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegGrupo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnRegGrupo.Location = new System.Drawing.Point(129, 264);
+            this.btnRegGrupo.Name = "btnRegGrupo";
+            this.btnRegGrupo.Size = new System.Drawing.Size(134, 38);
+            this.btnRegGrupo.TabIndex = 9;
+            this.btnRegGrupo.Text = "Registrarme en grupo";
+            this.btnRegGrupo.UseVisualStyleBackColor = false;
+            this.btnRegGrupo.Click += new System.EventHandler(this.btnRegGrupo_Click);
             // 
             // label2
             // 
@@ -161,19 +175,6 @@ namespace SGES
             this.label1.Size = new System.Drawing.Size(172, 20);
             this.label1.TabIndex = 7;
             this.label1.Text = "Eventos Disponibles";
-            // 
-            // btnRegGrupo
-            // 
-            this.btnRegGrupo.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnRegGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRegGrupo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegGrupo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnRegGrupo.Location = new System.Drawing.Point(129, 264);
-            this.btnRegGrupo.Name = "btnRegGrupo";
-            this.btnRegGrupo.Size = new System.Drawing.Size(134, 38);
-            this.btnRegGrupo.TabIndex = 9;
-            this.btnRegGrupo.Text = "Registrarme en grupo";
-            this.btnRegGrupo.UseVisualStyleBackColor = false;
             // 
             // FormAprendiz
             // 

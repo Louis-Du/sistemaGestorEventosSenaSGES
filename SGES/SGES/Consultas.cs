@@ -62,6 +62,7 @@ namespace SGES
                 using (SqlCommand query2 = new SqlCommand(
                     "SELECT idApr, tipoUser FROM Aprendiz WHERE idApr=@idUser AND contraseñaUser=@contraseñaUser",
                     cn.Conectar()))
+
                 {
                     query2.Parameters.AddWithValue("@idUser", idUser);
                     query2.Parameters.AddWithValue("@contraseñaUser", contraseñaUser);
@@ -479,6 +480,41 @@ namespace SGES
                 }
                 MessageBox.Show("¡Evento eliminado con éxito!");
             }
+        }
+
+        public DataSet ConsultarAprendicesDisponibles(int idEvento)
+        {
+            DataSet ds = new DataSet();
+
+            try
+            {
+                string query =
+                    "SELECT a.idApr, a.nombreApr, a.emailApr " +
+                    "FROM Aprendiz a " +
+                    "WHERE NOT EXISTS ( " +
+                    "    SELECT 1 FROM Inscripciones i WHERE i.idApr = a.idApr AND i.idEvento = @idEvento" +
+                    ")";
+
+                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@idEvento", idEvento);
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(ds, "Disponibles");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
+
+            return ds;
         }
 
         // Función para everificar existencia de inscriptos para eliminarlos

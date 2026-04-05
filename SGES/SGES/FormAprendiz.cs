@@ -117,5 +117,12 @@ namespace SGES
                 // FormAprendiz_Load(this, EventArgs.Empty);
             }
         }
+
+        private void btnRegGrupo_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            FormRegistroGrupo form = new FormRegistroGrupo();
+            form.ShowDialog();
+        }
     }
 }
