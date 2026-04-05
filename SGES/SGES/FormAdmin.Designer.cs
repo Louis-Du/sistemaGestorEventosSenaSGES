@@ -32,17 +32,18 @@ namespace SGES
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnCrearEvent = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnEditarEvent = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnConsultarAprendicesRegistrados = new System.Windows.Forms.Button();
             this.dataGridViewAdmin = new System.Windows.Forms.DataGridView();
-            this.btnEliminarEvent = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.idEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEliminarEvent = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdmin)).BeginInit();
             this.SuspendLayout();
@@ -95,6 +96,7 @@ namespace SGES
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
+            this.panel1.Controls.Add(this.btnEditarEvent);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnConsultarAprendicesRegistrados);
             this.panel1.Controls.Add(this.dataGridViewAdmin);
@@ -103,6 +105,21 @@ namespace SGES
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(574, 318);
             this.panel1.TabIndex = 0;
+            // 
+            // btnEditarEvent
+            // 
+            this.btnEditarEvent.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEditarEvent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(100)))));
+            this.btnEditarEvent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditarEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEditarEvent.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEditarEvent.Location = new System.Drawing.Point(229, 261);
+            this.btnEditarEvent.Name = "btnEditarEvent";
+            this.btnEditarEvent.Size = new System.Drawing.Size(131, 32);
+            this.btnEditarEvent.TabIndex = 10;
+            this.btnEditarEvent.Text = "Editar Evento Seleccionado";
+            this.btnEditarEvent.UseVisualStyleBackColor = false;
+            this.btnEditarEvent.Click += new System.EventHandler(this.btnEditarEvent_Click);
             // 
             // label2
             // 
@@ -158,33 +175,6 @@ namespace SGES
             this.dataGridViewAdmin.TabIndex = 7;
             this.dataGridViewAdmin.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAdmin_CellContentClick);
             // 
-            // btnEliminarEvent
-            // 
-            this.btnEliminarEvent.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnEliminarEvent.BackColor = System.Drawing.Color.Brown;
-            this.btnEliminarEvent.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEliminarEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEliminarEvent.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminarEvent.Location = new System.Drawing.Point(370, 261);
-            this.btnEliminarEvent.Name = "btnEliminarEvent";
-            this.btnEliminarEvent.Size = new System.Drawing.Size(123, 32);
-            this.btnEliminarEvent.TabIndex = 6;
-            this.btnEliminarEvent.Text = "Eliminar Evento";
-            this.btnEliminarEvent.UseVisualStyleBackColor = false;
-            this.btnEliminarEvent.Click += new System.EventHandler(this.btnEliminarEvent_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(155, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(175, 16);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Panel de Administración";
-            // 
             // idEvento
             // 
             this.idEvento.DataPropertyName = "idEvento";
@@ -227,6 +217,33 @@ namespace SGES
             this.HoraFin.Name = "HoraFin";
             this.HoraFin.ReadOnly = true;
             // 
+            // btnEliminarEvent
+            // 
+            this.btnEliminarEvent.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEliminarEvent.BackColor = System.Drawing.Color.Brown;
+            this.btnEliminarEvent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEliminarEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEliminarEvent.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEliminarEvent.Location = new System.Drawing.Point(370, 261);
+            this.btnEliminarEvent.Name = "btnEliminarEvent";
+            this.btnEliminarEvent.Size = new System.Drawing.Size(123, 32);
+            this.btnEliminarEvent.TabIndex = 6;
+            this.btnEliminarEvent.Text = "Eliminar Evento";
+            this.btnEliminarEvent.UseVisualStyleBackColor = false;
+            this.btnEliminarEvent.Click += new System.EventHandler(this.btnEliminarEvent_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(155, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(175, 16);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Panel de Administración";
+            // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,5 +283,6 @@ namespace SGES
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoraInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoraFin;
+        private System.Windows.Forms.Button btnEditarEvent;
     }
 }

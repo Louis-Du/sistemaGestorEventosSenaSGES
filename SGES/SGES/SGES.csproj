@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -14,7 +13,6 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
@@ -25,7 +23,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
@@ -35,7 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,64 +45,59 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Include="Conexion.cs" />
     <Compile Include="Consultas.cs" />
-
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-
     <Compile Include="FormAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAdmin.Designer.cs">
       <DependentUpon>FormAdmin.cs</DependentUpon>
     </Compile>
-
     <Compile Include="FormAprendicesRegistrados.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAprendicesRegistrados.Designer.cs">
       <DependentUpon>FormAprendicesRegistrados.cs</DependentUpon>
     </Compile>
-
     <Compile Include="FormAprendiz.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAprendiz.Designer.cs">
       <DependentUpon>FormAprendiz.cs</DependentUpon>
     </Compile>
-
     <Compile Include="FormCrearEvento.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCrearEvento.Designer.cs">
       <DependentUpon>FormCrearEvento.cs</DependentUpon>
     </Compile>
-
-    <!-- Agregado desde develop -->
+    <Compile Include="FormEditarEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditarEvent.Designer.cs">
+      <DependentUpon>FormEditarEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRecuperarCuenta.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRecuperarCuenta.Designer.cs">
       <DependentUpon>FormRecuperarCuenta.cs</DependentUpon>
     </Compile>
-
     <Compile Include="FormVerificar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormVerificar.Designer.cs">
       <DependentUpon>FormVerificar.cs</DependentUpon>
     </Compile>
-
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,41 +113,36 @@
     <EmbeddedResource Include="FormCrearEvento.resx">
       <DependentUpon>FormCrearEvento.cs</DependentUpon>
     </EmbeddedResource>
-
-    <!-- Agregado desde develop -->
+    <EmbeddedResource Include="FormEditarEvent.resx">
+      <DependentUpon>FormEditarEvent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRecuperarCuenta.resx">
       <DependentUpon>FormRecuperarCuenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVerificar.resx">
       <DependentUpon>FormVerificar.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

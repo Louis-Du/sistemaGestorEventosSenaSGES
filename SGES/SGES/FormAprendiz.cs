@@ -41,9 +41,14 @@ namespace SGES
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            this.Close();
-            FormLogin form = new FormLogin();
-            form.ShowDialog();
+            DialogResult result = MessageBox.Show("¿Está seguro que desea volver al login?", "Confirmar cierre de sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+                FormLogin form = new FormLogin();
+                form.ShowDialog();
+            }
+
         }
 
         private void dataGridViewAprend_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -95,8 +100,7 @@ namespace SGES
 
             if (rawIdEvento == null || !int.TryParse(rawIdEvento.ToString(), out int idEvento))
             {
-                MessageBox.Show("No se pudo obtener el identificador del evento seleccionado. Verifica las columnas del DataGridView y el nombre 'idEvento'.")
-;
+                MessageBox.Show("No se pudo obtener el identificador del evento seleccionado. Verifica las columnas del DataGridView y el nombre 'idEvento'.");
                 return;
             }
 
