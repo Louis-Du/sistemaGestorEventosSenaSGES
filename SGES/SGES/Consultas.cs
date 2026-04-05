@@ -166,6 +166,34 @@ namespace SGES
             }
         }
 
+        public void ActualizarEvento(int idEvent, string nombreEvent, string tipoEvent, DateTime fechaHoraEvent)
+        {
+            try
+            {
+                string query =
+                    "UPDATE Eventos SET nombreEvento = @nombreEvent, tipoEvento = @tipoEvent, fechaEvento = @fechaEvent, horaEvento = @horaEvent " +
+                    "WHERE idEvento = @idEvent"; // Asigna en una variable la consulta a realizar
+                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar())) // Consulta la variable query
+                {
+                    cmd.Parameters.AddWithValue("@idEvent", idEvent);
+                    cmd.Parameters.AddWithValue("@nombreEvent", nombreEvent);
+                    cmd.Parameters.AddWithValue("@tipoEvent", tipoEvent);
+                    cmd.Parameters.AddWithValue("@fechaEvent", fechaHoraEvent.Date);
+                    cmd.Parameters.AddWithValue("@horaEvent", fechaHoraEvent.TimeOfDay);
+                    
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
+        }
+
         public DataSet ConsultarAprendicesRegistrados(int idEvento)
         {
             DataSet ds = new DataSet();

@@ -78,6 +78,12 @@
     <Compile Include="FormCrearEvento.Designer.cs">
       <DependentUpon>FormCrearEvento.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormEditarEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditarEvent.Designer.cs">
+      <DependentUpon>FormEditarEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRecuperarCuenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCrearEvento.resx">
       <DependentUpon>FormCrearEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditarEvent.resx">
+      <DependentUpon>FormEditarEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRecuperarCuenta.resx">
       <DependentUpon>FormRecuperarCuenta.cs</DependentUpon>

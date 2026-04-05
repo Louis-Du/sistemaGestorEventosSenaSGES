@@ -41,9 +41,14 @@ namespace SGES
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            this.Close();
-            FormLogin form = new FormLogin();
-            form.ShowDialog();
+            DialogResult result = MessageBox.Show("¿Está seguro que desea volver al login?", "Confirmar cierre de sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+                FormLogin form = new FormLogin();
+                form.ShowDialog();
+            }
+
         }
 
         private void dataGridViewAprend_CellContentClick(object sender, DataGridViewCellEventArgs e)
