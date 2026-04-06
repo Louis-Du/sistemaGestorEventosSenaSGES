@@ -51,7 +51,7 @@ namespace SGES
                         MessageBox.Show("Bienvenido(a) Administrador!");
                         Estado_conexion = true;
 
-                        FormAdmin frm = new FormAdmin();
+                        FormAdmin frm = new FormAdmin(idUser);
                         frm.Show();
 
                         login.Hide(); // 🔥 ocultas el login
@@ -220,12 +220,6 @@ namespace SGES
 
             try
             {
-                /*
-                 * Palabras claves:
-                 * - using
-                 * - Fill
-                 * - SqlDataAdapter
-                 */
                 using (SqlCommand consulta = new SqlCommand("SELECT * FROM Eventos", cn.Conectar())) // Consulta los eventos registrados en la base de datos
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(consulta))
@@ -242,15 +236,14 @@ namespace SGES
             {
                 cn.Desconectar();
             }
-
             return ds;
         }
 
-        // Inserta evento: guarda fechaHoraInicio/fechaHoraFin y también diaEvento (DATE) para la UI
         public void InsertarEvento(int idEvent, string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin, int idUser)
         {
             try
             {
+
                 // diaEvento: solo la parte DATE, para compatibilidad con el grid/filtrado por día
                 DateTime diaEvento = fechaHoraInicio.Date;
 
@@ -260,6 +253,7 @@ namespace SGES
 
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
                 {
+                    // Establece el valor de cada columna en la tabla antes y la relacionamos con el parametro correspondiente
                     cmd.Parameters.Add("@idEvent", System.Data.SqlDbType.Int).Value = idEvent;
                     cmd.Parameters.Add("@nombreEvent", System.Data.SqlDbType.VarChar, 50).Value = nombreEvent;
                     cmd.Parameters.Add("@tipoEvent", System.Data.SqlDbType.VarChar, 50).Value = tipoEvent;
@@ -271,7 +265,10 @@ namespace SGES
                     cmd.Parameters.Add("@idUser", System.Data.SqlDbType.Int).Value = idUser;
 
                     cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Evento creado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                
             }
             catch (Exception ex)
             {

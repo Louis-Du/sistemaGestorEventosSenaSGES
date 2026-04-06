@@ -31,6 +31,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dtpFechaHoraFin = new System.Windows.Forms.DateTimePicker();
             this.lblID = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,9 +43,6 @@
             this.btnActualizarEvent = new System.Windows.Forms.Button();
             this.txtNombreEvento1 = new System.Windows.Forms.TextBox();
             this.cbTipoEvento1 = new System.Windows.Forms.ComboBox();
-            this.txtIdEvento = new System.Windows.Forms.TextBox();
-            this.dtpFechaHoraFin = new System.Windows.Forms.DateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -79,7 +78,6 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.dtpFechaHoraFin);
-            this.panel1.Controls.Add(this.txtIdEvento);
             this.panel1.Controls.Add(this.lblID);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
@@ -94,6 +92,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(444, 299);
             this.panel1.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label6.Location = new System.Drawing.Point(218, 111);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(176, 16);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Fecha y Hora Fin del Evento";
+            // 
+            // dtpFechaHoraFin
+            // 
+            this.dtpFechaHoraFin.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpFechaHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaHoraFin.Location = new System.Drawing.Point(220, 133);
+            this.dtpFechaHoraFin.Name = "dtpFechaHoraFin";
+            this.dtpFechaHoraFin.Size = new System.Drawing.Size(129, 20);
+            this.dtpFechaHoraFin.TabIndex = 16;
             // 
             // lblID
             // 
@@ -164,7 +183,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label1.Location = new System.Drawing.Point(62, 16);
+            this.label1.Location = new System.Drawing.Point(60, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 16);
             this.label1.TabIndex = 6;
@@ -216,35 +235,6 @@
             this.cbTipoEvento1.Size = new System.Drawing.Size(129, 21);
             this.cbTipoEvento1.TabIndex = 1;
             // 
-            // txtIdEvento
-            // 
-            this.txtIdEvento.Location = new System.Drawing.Point(63, 38);
-            this.txtIdEvento.Name = "txtIdEvento";
-            this.txtIdEvento.Size = new System.Drawing.Size(129, 20);
-            this.txtIdEvento.TabIndex = 15;
-            this.txtIdEvento.TextChanged += new System.EventHandler(this.txtIdEvento_TextChanged);
-            // 
-            // dtpFechaHoraFin
-            // 
-            this.dtpFechaHoraFin.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.dtpFechaHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaHoraFin.Location = new System.Drawing.Point(220, 133);
-            this.dtpFechaHoraFin.Name = "dtpFechaHoraFin";
-            this.dtpFechaHoraFin.Size = new System.Drawing.Size(129, 20);
-            this.dtpFechaHoraFin.TabIndex = 16;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label6.Location = new System.Drawing.Point(218, 111);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(176, 16);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "Fecha y Hora Fin del Evento";
-            // 
             // FormEditarEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,7 +270,6 @@
         private System.Windows.Forms.TextBox txtNombreEvento1;
         private System.Windows.Forms.ComboBox cbTipoEvento1;
         private System.Windows.Forms.Label lblID;
-        private System.Windows.Forms.TextBox txtIdEvento;
         private System.Windows.Forms.DateTimePicker dtpFechaHoraFin;
         private System.Windows.Forms.Label label6;
     }

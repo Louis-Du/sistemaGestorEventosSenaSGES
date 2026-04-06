@@ -20,9 +20,11 @@ namespace SGES
         SqlDataAdapter da = new SqlDataAdapter();
         private FormLogin login;
 
-        public FormAdmin()
+        int idUsuario;
+        public FormAdmin(int idUser)
         {
             InitializeComponent();
+            this.idUsuario = idUser;
         }
 
         public FormAdmin(FormLogin login)
@@ -52,17 +54,15 @@ namespace SGES
             }
         }
 
-        // Función que permite abrir el formulario Crear Eventos al accionar el botón
         private void btnCrearEvent_Click(object sender, EventArgs e)
         {
-            FormCrearEvento form = new FormCrearEvento();
+            FormCrearEvento form = new FormCrearEvento(idUsuario); // Envia el id del usuario con el que se inició sesión
             form.ShowDialog();
 
             dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
             dataGridViewAdmin.DataMember = "Eventos";
         }
 
-        // Función que permite volver al login al accionar el botón
         private void btnVolver_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("¿Está seguro que desea volver al login?", "Confirmar cierre de sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -122,30 +122,23 @@ namespace SGES
 
         private void btnEditarEvent_Click(object sender, EventArgs e)
         {
-            if (dataGridViewAdmin.CurrentRow == null) // para validar que se haya seleccionado un evento para editar
-            {
-                MessageBox.Show("Seleccione un evento para editar");
-                return;
-            }
-            else// Obtener datos de la fila seleccionada en el dataGridViewAdmin
-            {
-                DataGridViewRow fila = dataGridViewAdmin.CurrentRow;
+            // Obtener datos de la fila seleccionada en el dataGridViewAdmin
+            DataGridViewRow fila = dataGridViewAdmin.CurrentRow;
 
-                int idEvent = int.Parse(fila.Cells["idEvento"].Value.ToString());
-                string nombreEvent = fila.Cells["Nombre"].Value.ToString();
-                string tipoEvent = fila.Cells["Tipo"].Value.ToString();
+            int idEvent = int.Parse(fila.Cells["idEvento"].Value.ToString());
+            string nombreEvent = fila.Cells["Nombre"].Value.ToString();
+            string tipoEvent = fila.Cells["Tipo"].Value.ToString();
 
-                // Leer por nombre evita errores cuando cambia el orden de columnas del grid.
-                DateTime fechaHoraInicio = Convert.ToDateTime(fila.Cells["fechaHoraInicio"].Value);
-                DateTime fechaHoraFin = Convert.ToDateTime(fila.Cells["FechaHoraFin"].Value);
+            // Leer por nombre evita errores cuando cambia el orden de columnas del grid.
+            DateTime fechaHoraInicio = Convert.ToDateTime(fila.Cells["fechaHoraInicio"].Value);
+            DateTime fechaHoraFin = Convert.ToDateTime(fila.Cells["FechaHoraFin"].Value);
 
-                // Abrir FormEditar
-                FormEditarEvent frm = new FormEditarEvent(idEvent, nombreEvent, tipoEvent, fechaHoraInicio, fechaHoraFin);
-                frm.ShowDialog();
+            // Abrir FormEditar
+            FormEditarEvent frm = new FormEditarEvent(idEvent, nombreEvent, tipoEvent, fechaHoraInicio, fechaHoraFin);
+            frm.ShowDialog();
 
-                dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos actualizados en el grid del formulario administrador
-                dataGridViewAdmin.DataMember = "Eventos";
-            }
+            dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos actualizados en el grid del formulario administrador
+            dataGridViewAdmin.DataMember = "Eventos";
         }
     }
 }

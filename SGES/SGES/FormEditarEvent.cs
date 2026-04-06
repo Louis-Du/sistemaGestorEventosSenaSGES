@@ -18,9 +18,11 @@ namespace SGES
             InitializeComponent();
             // cargar los datos del evento en los controles del formulario
             lblID.Text = idEvent.ToString(); // Mostrar el ID del evento en una etiqueta (puede ser un control de solo lectura)
+            
+            // Asignamos cada una de las entradas con los valores actuales del evento
             txtNombreEvento1.Text = nombreEvent;
             cbTipoEvento1.Text = tipoEvent;
-            dtpFechaHoraInicio.Value = fechaHoraInicio; // Personalizar el formato de la fecha y hora
+            dtpFechaHoraInicio.Value = fechaHoraInicio; 
             dtpFechaHoraFin.Value = fechaHoraFin;
         }
 
@@ -46,24 +48,28 @@ namespace SGES
 
         private void btnActualizarEvent_Click(object sender, EventArgs e)
         {
-            if (txtNombreEvento1.Text == "" || cbTipoEvento1.Text == "")
+            if (string.IsNullOrWhiteSpace(txtNombreEvento1.Text) || string.IsNullOrWhiteSpace(cbTipoEvento1.Text)) // Validación de espacio en blanco
             {
                 MessageBox.Show("Por favor, complete todos los campos antes de actualizar el evento.");
             }
+
+            else if (dtpFechaHoraFin.Value <= dtpFechaHoraInicio.Value) // Validación de fecha fin menor a fecha inicio
+            {
+                MessageBox.Show("La hora de fin debe ser posterior a la hora de inicio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (dtpFechaHoraInicio.Value < DateTime.Now.Date) // Validación de fecha inicio anterior al día actual
+            {
+                MessageBox.Show("La fecha y hora de inicio no puede ser en el pasado.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             else
             {
-                try
-                {
-                    Consultas co = new Consultas(); // Crear una instancia de la clase Consultas para acceder a los métodos de actualización
+                Consultas co = new Consultas();
 
-                    co.ActualizarEvento(int.Parse(lblID.Text), txtNombreEvento1.Text, cbTipoEvento1.Text, dtpFechaHoraInicio.Value, dtpFechaHoraFin.Value); // Llamar al método ActualizarEvento para actualizar los datos del evento en la base de datos
-                    this.Close(); // Cerrar el formulario de edición
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                co.ActualizarEvento(int.Parse(lblID.Text), txtNombreEvento1.Text, cbTipoEvento1.Text, dtpFechaHoraInicio.Value, dtpFechaHoraFin.Value); // Llamar al método ActualizarEvento para actualizar los datos del evento en la base de datos
+                this.Close(); 
             }
         }
 

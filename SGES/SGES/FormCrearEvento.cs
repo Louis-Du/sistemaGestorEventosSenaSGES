@@ -14,71 +14,41 @@ namespace SGES
 {
     public partial class FormCrearEvento : Form
     {
-        public FormCrearEvento()
+        int idUsuario;
+        public FormCrearEvento(int idUser)
         {
             InitializeComponent();
+            this.idUsuario = idUser;
 
-            // Se personaliza el formato de la fecha y hora
-            dtpFechaEvento.Format = DateTimePickerFormat.Custom; 
-            dtpFechaEvento.CustomFormat = "dd/MM/yyyy HH:mm";
-
-            // Inicializar los DateTimePicker para horas
-            dtpHoraInicioEvento.Format = DateTimePickerFormat.Custom;
-            dtpHoraInicioEvento.CustomFormat = "HH:mm";
-            dtpHoraInicioEvento.ShowUpDown = true;
-            dtpHoraInicioEvento.Value = DateTime.Today.AddHours(9); // 09:00
-
-            dtpHoraFinEvento.Format = DateTimePickerFormat.Custom;
-            dtpHoraFinEvento.CustomFormat = "HH:mm";
-            dtpHoraFinEvento.ShowUpDown = true;
-            dtpHoraFinEvento.Value = DateTime.Today.AddHours(10); // 10:00
-
-            // Fecha: solo fecha
-            dtpFechaEvento.Format = DateTimePickerFormat.Short;
         }
 
-        Consultas co = new Consultas();
-
-        // Función para el botón guardar que permite accionar el registro del nuevo evento en la base de dato
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-                // 1) Validar ID de evento
-                if (!int.TryParse(txtidEvento.Text.Trim(), out int idEvent))
+                Consultas co = new Consultas();
+
+                if (string.IsNullOrWhiteSpace(txtidEvento.Text) || string.IsNullOrWhiteSpace(txtNombreEvento.Text) || string.IsNullOrWhiteSpace(cbTipoEvento.Text))
                 {
-                    MessageBox.Show("ID de evento inválido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    MessageBox.Show("Por favor, complete todos los campos antes de crear un nuevo evento.");
                 }
 
-                // 2) Combinar fecha + horas desde los DateTimePicker
-                DateTime fecha = dtpFechaEvento.Value.Date;
-                DateTime inicio = fecha.Add(dtpHoraInicioEvento.Value.TimeOfDay);
-                DateTime fin = fecha.Add(dtpHoraFinEvento.Value.TimeOfDay);
-
-                // Si quieres permitir eventos que crucen medianoche descomentar la línea siguiente:
-                if (fin <= inicio) fin = fin.AddDays(1);
-
-                // 3) Validaciones básicas
-                if (fin <= inicio)
+                else if (dtpFechaHoraFin.Value <= dtpFechaHoraInicio.Value)
                 {
                     MessageBox.Show("La hora de fin debe ser posterior a la hora de inicio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                if (inicio < DateTime.Now.Date)
+                else if (dtpFechaHoraInicio.Value < DateTime.Now.Date)
                 {
                     MessageBox.Show("La fecha y hora de inicio no puede ser en el pasado.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                else
+                {
+                    co.InsertarEvento(int.Parse(txtidEvento.Text.Trim()), txtNombreEvento.Text.Trim(), cbTipoEvento.Text, dtpFechaHoraInicio.Value, dtpFechaHoraFin.Value, idUsuario);
 
-                // 4) Llamada a la capa de datos
-                // Ajusta idUser según tu contexto; aquí se mantiene 1 por compatibilidad con el proyecto.
-                int idUser = 1;
-                co.InsertarEvento(idEvent, txtNombreEvento.Text.Trim(), cbTipoEvento.Text, inicio, fin, idUser);
-
-                MessageBox.Show("Evento creado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
