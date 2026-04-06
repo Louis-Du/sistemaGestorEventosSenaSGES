@@ -142,15 +142,6 @@ namespace SGES
                 return;
             }
 
-            // 5) Validar máximo 2 miembros
-            if (dtGrupo.Rows.Count >= 2)
-            {
-                MessageBox.Show("Solo puedes seleccionar máximo 2 aprendices para el grupo.");
-                return;
-            }
-
-
-
             // 6) Agregar
             dtGrupo.Rows.Add(idApr, nombreApr, emailApr);
         }
@@ -219,12 +210,6 @@ namespace SGES
             if (idAprActual == 0)
             {
                 MessageBox.Show("No se encontró el aprendiz que inició sesión.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (dtGrupo.Rows.Count != 2)
-            {
-                MessageBox.Show("Debes seleccionar exactamente 2 aprendices para completar el grupo.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
