@@ -132,15 +132,15 @@ namespace SGES
             }
             else// Obtener datos de la fila seleccionada en el dataGridViewAdmin
             {
-                int fila = dataGridViewAdmin.CurrentRow.Index;
+                DataGridViewRow fila = dataGridViewAdmin.CurrentRow;
 
-                int idEvent = int.Parse(dataGridViewAdmin.Rows[fila].Cells[0].Value.ToString());
-                string nombreEvent = dataGridViewAdmin.Rows[fila].Cells[1].Value.ToString();
-                string tipoEvent = dataGridViewAdmin.Rows[fila].Cells[2].Value.ToString();
+                int idEvent = int.Parse(fila.Cells["idEvento"].Value.ToString());
+                string nombreEvent = fila.Cells["Nombre"].Value.ToString();
+                string tipoEvent = fila.Cells["Tipo"].Value.ToString();
 
-                // En develop ahora existen diaEvento/fechaHoraInicio/fechaHoraFin
-                DateTime fechaHoraInicio = Convert.ToDateTime(dataGridViewAdmin.Rows[fila].Cells[3].Value);
-                DateTime fechaHoraFin = Convert.ToDateTime(dataGridViewAdmin.Rows[fila].Cells[4].Value);
+                // Leer por nombre evita errores cuando cambia el orden de columnas del grid.
+                DateTime fechaHoraInicio = Convert.ToDateTime(fila.Cells["fechaHoraInicio"].Value);
+                DateTime fechaHoraFin = Convert.ToDateTime(fila.Cells["FechaHoraFin"].Value);
 
                 // Abrir FormEditar
                 FormEditarEvent frm = new FormEditarEvent(idEvent, nombreEvent, tipoEvent, fechaHoraInicio, fechaHoraFin);
