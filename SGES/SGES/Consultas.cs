@@ -443,6 +443,102 @@ namespace SGES
                 cn.Desconectar();
             }
         }
+
+        public bool RegistrarInscripcionGrupo(System.Collections.Generic.List<int> idsAprendices, int idEvento, string modalidad = "Presencial")
+        {
+            try
+            {
+                if (idsAprendices == null || idsAprendices.Count == 0)
+                {
+                    MessageBox.Show("No hay aprendices seleccionados para registrar.");
+                    return false;
+                }
+
+                var idsUnicos = idsAprendices.Distinct().ToList();
+
+                foreach (int idApr in idsUnicos)
+                {
+                    using (SqlCommand chk = new SqlCommand("SELECT COUNT(1) FROM Inscripciones WHERE idApr = @idApr AND idEvento = @idEvento", cn.Conectar()))
+                    {
+                        chk.Parameters.AddWithValue("@idApr", idApr);
+                        chk.Parameters.AddWithValue("@idEvento", idEvento);
+                        int existe = Convert.ToInt32(chk.ExecuteScalar());
+                        if (existe > 0)
+                        {
+                            MessageBox.Show($"El aprendiz con ID {idApr} ya está inscrito en este evento.");
+                            return false;
+                        }
+                    }
+
+                    if (TieneConflicto(idApr, idEvento))
+                    {
+                        MessageBox.Show($"El aprendiz con ID {idApr} tiene conflicto de horario con este evento.");
+                        return false;
+                    }
+                }
+
+                SqlConnection conn = cn.Conectar();
+                using (SqlTransaction tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        int nuevoIdGrupo;
+                        using (SqlCommand maxGrupo = new SqlCommand("SELECT ISNULL(MAX(idGrupo), 0) + 1 FROM Grupos", conn, tran))
+                        {
+                            nuevoIdGrupo = Convert.ToInt32(maxGrupo.ExecuteScalar());
+                        }
+
+                        using (SqlCommand insGrupo = new SqlCommand("INSERT INTO Grupos (idGrupo, nombreGrupo) VALUES (@idGrupo, @nombreGrupo)", conn, tran))
+                        {
+                            insGrupo.Parameters.AddWithValue("@idGrupo", nuevoIdGrupo);
+                            insGrupo.Parameters.AddWithValue("@nombreGrupo", "Grupo " + nuevoIdGrupo);
+                            insGrupo.ExecuteNonQuery();
+                        }
+
+                        foreach (int idApr in idsUnicos)
+                        {
+                            int nuevoIdInscrip;
+                            using (SqlCommand maxIns = new SqlCommand("SELECT ISNULL(MAX(idInscrip), 0) + 1 FROM Inscripciones", conn, tran))
+                            {
+                                nuevoIdInscrip = Convert.ToInt32(maxIns.ExecuteScalar());
+                            }
+
+                            using (SqlCommand ins = new SqlCommand(
+                                "INSERT INTO Inscripciones (idInscrip, fechaInscrip, modalidadInscrip, idApr, idEvento, idGrupo) " +
+                                "VALUES (@idInscrip, @fechaInscrip, @modalidad, @idApr, @idEvento, @idGrupo)", conn, tran))
+                            {
+                                ins.Parameters.AddWithValue("@idInscrip", nuevoIdInscrip);
+                                ins.Parameters.AddWithValue("@fechaInscrip", DateTime.Now.Date);
+                                ins.Parameters.AddWithValue("@modalidad", modalidad);
+                                ins.Parameters.AddWithValue("@idApr", idApr);
+                                ins.Parameters.AddWithValue("@idEvento", idEvento);
+                                ins.Parameters.AddWithValue("@idGrupo", nuevoIdGrupo);
+                                ins.ExecuteNonQuery();
+                            }
+                        }
+
+                        tran.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        try { tran.Rollback(); } catch { /* ignored */ }
+                        throw;
+                    }
+                }
+
+                MessageBox.Show("Registro grupal realizado correctamente.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
+        }
       
         // Función para eliminar eventos
         public void EliminarEvento(int idEvento)
@@ -482,22 +578,23 @@ namespace SGES
             }
         }
 
-        public DataSet ConsultarAprendicesDisponibles(int idEvento)
+        public DataSet ConsultarAprendicesDisponibles(int idEvento, int idAprActual)
         {
             DataSet ds = new DataSet();
-
             try
             {
                 string query =
                     "SELECT a.idApr, a.nombreApr, a.emailApr " +
                     "FROM Aprendiz a " +
-                    "WHERE NOT EXISTS ( " +
-                    "    SELECT 1 FROM Inscripciones i WHERE i.idApr = a.idApr AND i.idEvento = @idEvento" +
-                    ")";
+                    "WHERE a.idApr <> @idAprActual " +
+                    "AND NOT EXISTS ( " +
+                    "SELECT 1 FROM Inscripciones i WHERE i.idApr = a.idApr AND i.idEvento = @idEvento " +
+                    ") "; // Consulta para obtener los aprendices disponibles para inscribir en un evento, excluyendo al aprendiz actual
 
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
                 {
                     cmd.Parameters.AddWithValue("@idEvento", idEvento);
+                    cmd.Parameters.AddWithValue("@idAprActual", idAprActual);
 
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {

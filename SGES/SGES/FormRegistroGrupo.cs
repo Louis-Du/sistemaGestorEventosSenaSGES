@@ -8,6 +8,7 @@ namespace SGES
     public partial class FormRegistroGrupo : Form
     {
         private readonly int idEvento; // id del evento para el que se registra el grupo
+        private readonly int idAprActual; // aprendiz que inició sesión
         private readonly DataTable dtGrupo; // almacena los miembros seleccionados
 
         public FormRegistroGrupo()
@@ -16,6 +17,7 @@ namespace SGES
 
             // No asignar this.idEvento = idEvento aquí (era un bug)
             this.idEvento = 0;
+            this.idAprActual = 0;
 
             // Inicializar tabla de miembros del grupo
             dtGrupo = new DataTable();
@@ -35,9 +37,10 @@ namespace SGES
         }
 
         // Constructor que permite pasar el idEvento desde el formulario padre (recomendado)
-        public FormRegistroGrupo(int idEvento) : this()
+        public FormRegistroGrupo(int idEvento, int idAprActual) : this()
         {
             this.idEvento = idEvento;
+            this.idAprActual = idAprActual;
         }
 
         private void FormRegistroGrupo_Load(object sender, EventArgs e)
@@ -45,7 +48,7 @@ namespace SGES
             try
             {
                 Consultas consulta = new Consultas();
-                DataSet ds = consulta.ConsultarAprendicesDisponibles(idEvento);
+                DataSet ds = consulta.ConsultarAprendicesDisponibles(idEvento, idAprActual);
 
                 // Aceptamos tanto "Disponibles" como "Aprendices" según cómo implemente el método
                 string tabla = ds.Tables.Contains("Disponibles") ? "Disponibles" :
@@ -68,9 +71,7 @@ namespace SGES
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            FormAprendiz form = new FormAprendiz();
-            form.ShowDialog();
+            this.Close();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -141,7 +142,16 @@ namespace SGES
                 return;
             }
 
-            // 5) Agregar
+            // 5) Validar máximo 2 miembros
+            if (dtGrupo.Rows.Count >= 2)
+            {
+                MessageBox.Show("Solo puedes seleccionar máximo 2 aprendices para el grupo.");
+                return;
+            }
+
+
+
+            // 6) Agregar
             dtGrupo.Rows.Add(idApr, nombreApr, emailApr);
         }
 
@@ -196,6 +206,42 @@ namespace SGES
 
             foreach (var r in rows) r.Delete();
             dtGrupo.AcceptChanges();
+        }
+
+        private void btnRegGrupo_Click(object sender, EventArgs e)
+        {
+            if (idEvento == 0)
+            {
+                MessageBox.Show("No se encontró el evento seleccionado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (idAprActual == 0)
+            {
+                MessageBox.Show("No se encontró el aprendiz que inició sesión.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (dtGrupo.Rows.Count != 2)
+            {
+                MessageBox.Show("Debes seleccionar exactamente 2 aprendices para completar el grupo.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var idsAprendices = new System.Collections.Generic.List<int> { idAprActual };
+
+            foreach (DataRow row in dtGrupo.Rows)
+            {
+                idsAprendices.Add(Convert.ToInt32(row["idApr"]));
+            }
+
+            Consultas consulta = new Consultas();
+            bool ok = consulta.RegistrarInscripcionGrupo(idsAprendices, idEvento);
+
+            if (ok)
+            {
+                this.Close();
+            }
         }
     }
 }

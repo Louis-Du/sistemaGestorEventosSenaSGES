@@ -83,7 +83,7 @@ namespace SGES
             this.btnRegGrupo.TabIndex = 9;
             this.btnRegGrupo.Text = "Registrarme en grupo";
             this.btnRegGrupo.UseVisualStyleBackColor = false;
-            this.btnRegGrupo.Click += new System.EventHandler(this.btnRegGrupo_Click);
+            this.btnRegGrupo.Click += new System.EventHandler(this.btnRegistrarmeEnGrupo_Click);
             // 
             // label2
             // 
@@ -99,6 +99,10 @@ namespace SGES
             // 
             // dataGridViewAprend
             // 
+            this.dataGridViewAprend.AllowUserToAddRows = false;
+            this.dataGridViewAprend.AllowUserToDeleteRows = false;
+            this.dataGridViewAprend.AllowUserToResizeColumns = false;
+            this.dataGridViewAprend.AllowUserToResizeRows = false;
             this.dataGridViewAprend.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
             this.dataGridViewAprend.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAprend.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
