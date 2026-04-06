@@ -41,6 +41,9 @@ namespace SGES
             this.idEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaHoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
@@ -159,6 +162,9 @@ namespace SGES
             this.idEvento,
             this.Nombre,
             this.Tipo,
+            this.Fecha,
+            this.HoraInicio,
+            this.HoraFin,
             this.fechaHoraInicio,
             this.FechaHoraFin});
             this.dataGridViewAdmin.Cursor = System.Windows.Forms.Cursors.Cross;
@@ -221,6 +227,27 @@ namespace SGES
             this.Tipo.Name = "Tipo";
             this.Tipo.ReadOnly = true;
             // 
+            // Fecha
+            // 
+            this.Fecha.DataPropertyName = "diaEvento";
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.ReadOnly = true;
+            // 
+            // HoraInicio
+            // 
+            this.HoraInicio.DataPropertyName = "fechaHoraInicio";
+            this.HoraInicio.HeaderText = "Hora Inicio";
+            this.HoraInicio.Name = "HoraInicio";
+            this.HoraInicio.ReadOnly = true;
+            // 
+            // HoraFin
+            // 
+            this.HoraFin.DataPropertyName = "fechaHoraFin";
+            this.HoraFin.HeaderText = "Hora Fin";
+            this.HoraFin.Name = "HoraFin";
+            this.HoraFin.ReadOnly = true;
+            // 
             // fechaHoraInicio
             // 
             this.fechaHoraInicio.DataPropertyName = "fechaHoraInicio";
@@ -272,6 +299,9 @@ namespace SGES
         private System.Windows.Forms.DataGridViewTextBoxColumn idEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HoraInicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HoraFin;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaHoraInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaHoraFin;
     }

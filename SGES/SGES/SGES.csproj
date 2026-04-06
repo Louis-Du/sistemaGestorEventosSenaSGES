@@ -78,23 +78,30 @@
     <Compile Include="FormCrearEvento.Designer.cs">
       <DependentUpon>FormCrearEvento.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormEditarEvent.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormEditarEvent.Designer.cs">
-      <DependentUpon>FormEditarEvent.cs</DependentUpon>
-    </Compile>
+    <!-- Agregado desde develop -->
     <Compile Include="FormRecuperarCuenta.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRecuperarCuenta.Designer.cs">
       <DependentUpon>FormRecuperarCuenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRegistroGrupo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistroGrupo.Designer.cs">
+      <DependentUpon>FormRegistroGrupo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormVerificar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormVerificar.Designer.cs">
       <DependentUpon>FormVerificar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditarEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditarEvent.Designer.cs">
+      <DependentUpon>FormEditarEvent.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -113,14 +120,18 @@
     <EmbeddedResource Include="FormCrearEvento.resx">
       <DependentUpon>FormCrearEvento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormEditarEvent.resx">
-      <DependentUpon>FormEditarEvent.cs</DependentUpon>
-    </EmbeddedResource>
+    <!-- Agregado desde develop -->
     <EmbeddedResource Include="FormRecuperarCuenta.resx">
       <DependentUpon>FormRecuperarCuenta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistroGrupo.resx">
+      <DependentUpon>FormRegistroGrupo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormVerificar.resx">
       <DependentUpon>FormVerificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditarEvent.resx">
+      <DependentUpon>FormEditarEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

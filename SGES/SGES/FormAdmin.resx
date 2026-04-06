@@ -1,135 +1,154 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <metadata name="idEvento.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Nombre.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Tipo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="fechaHoraInicio.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FechaHoraFin.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-</root>
+namespace SGES
+{
+    public partial class FormAdmin : Form
+    {
+        Conexion cn = new Conexion();
+        Consultas co = new Consultas();
+        DataSet ds = new DataSet();
+        SqlDataAdapter da = new SqlDataAdapter();
+        private FormLogin login;
+
+        public FormAdmin()
+        {
+            InitializeComponent();
+        }
+
+        public FormAdmin(FormLogin login)
+        {
+            this.login = login;
+        }
+
+        // Carga todos los eventos registrados en la base de datos al entrar en el formulario
+        private void FormAdmin_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                // Configuración y relación entre las columnas de el grid y la tabla en la base de datos
+                ds = co.ConsultarEventos();
+                dataGridViewAdmin.DataSource = ds;
+                dataGridViewAdmin.DataMember = "Eventos";
+                dataGridViewAdmin.AutoGenerateColumns = false;
+                idEvento.DataPropertyName = "idEvento";
+                Nombre.DataPropertyName = "nombreEvento";
+                Tipo.DataPropertyName = "tipoEvento";
+                Fecha.DataPropertyName = "diaEvento";
+                HoraInicio.DataPropertyName = "fechaHoraInicio";
+                HoraFin.DataPropertyName = "fechaHoraFin";
+                fechaHoraInicio.DataPropertyName = "fechaHoraInicio";
+                FechaHoraFin.DataPropertyName = "fechaHoraFin";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // Función que permite abrir el formulario Crear Eventos al accionar el botón
+        private void btnCrearEvent_Click(object sender, EventArgs e)
+        {
+            FormCrearEvento form = new FormCrearEvento();
+            form.ShowDialog();
+
+            dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
+            dataGridViewAdmin.DataMember = "Eventos";
+        }
+
+        // Función que permite volver al login al accionar el botón
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Está seguro que desea volver al login?", "Confirmar cierre de sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+
+                FormLogin form = new FormLogin();
+                form.ShowDialog();
+            }
+
+        }
+
+        private void btnEliminarEvent_Click(object sender, EventArgs e)
+        {
+            int idEvento = int.Parse(dataGridViewAdmin.CurrentRow.Cells["idEvento"].Value.ToString());
+
+            DialogResult result = MessageBox.Show("¿Estás seguro de que desea eliminar el evento? El evento se eliminará y no se podrá recuperar", "SGDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                co.EliminarEvento(idEvento);
+                dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
+                dataGridViewAdmin.DataMember = "Eventos";
+            }
+        }
+
+        private void dataGridViewAdmin_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        // Función que permite abrir el formulario con los aprendices registrados a un evento seleccionado
+        private void btnConsultarAprendicesRegistrados_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                int idEvento = int.Parse(dataGridViewAdmin.CurrentRow.Cells["idEvento"].Value.ToString()); // Obtiene la posición de el id de el evento
+
+                DataSet ds = co.ConsultarAprendicesRegistrados(idEvento);
+
+                // Consulta los aprendices registrados al evento y los agregamos al data grid
+                dataGridViewAdmin.DataSource = ds; 
+                dataGridViewAdmin.DataMember = "Aprendices";
+
+                // Obtine el id del evento y lo manda al main del formulari FormAprendicesRegistrados
+                FormAprendicesRegistrados form = new FormAprendicesRegistrados(idEvento); 
+                form.ShowDialog();
+
+                dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
+                dataGridViewAdmin.DataMember = "Eventos";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnEditarEvent_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewAdmin.CurrentRow == null) // para validar que se haya seleccionado un evento para editar
+            {
+                MessageBox.Show("Seleccione un evento para editar");
+                return;
+            }
+            else// Obtener datos de la fila seleccionada en el dataGridViewAdmin
+            {
+                int fila = dataGridViewAdmin.CurrentRow.Index;
+
+                int idEvent = int.Parse(dataGridViewAdmin.Rows[fila].Cells[0].Value.ToString());
+                string nombreEvent = dataGridViewAdmin.Rows[fila].Cells[1].Value.ToString();
+                string tipoEvent = dataGridViewAdmin.Rows[fila].Cells[2].Value.ToString();
+
+                // En develop ahora existen diaEvento/fechaHoraInicio/fechaHoraFin
+                DateTime fechaHoraInicio = Convert.ToDateTime(dataGridViewAdmin.Rows[fila].Cells[3].Value);
+                DateTime fechaHoraFin = Convert.ToDateTime(dataGridViewAdmin.Rows[fila].Cells[4].Value);
+
+                // Abrir FormEditar
+                FormEditarEvent frm = new FormEditarEvent(idEvent, nombreEvent, tipoEvent, fechaHoraInicio, fechaHoraFin);
+                frm.ShowDialog();
+
+                dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos actualizados en el grid del formulario administrador
+                dataGridViewAdmin.DataMember = "Eventos";
+            }
+        }
+    }
+}

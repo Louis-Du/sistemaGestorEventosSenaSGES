@@ -43,6 +43,9 @@ namespace SGES
                 idEvento.DataPropertyName = "idEvento";
                 Nombre.DataPropertyName = "nombreEvento";
                 Tipo.DataPropertyName = "tipoEvento";
+                Fecha.DataPropertyName = "diaEvento";
+                HoraInicio.DataPropertyName = "fechaHoraInicio";
+                HoraFin.DataPropertyName = "fechaHoraFin";
                 fechaHoraInicio.DataPropertyName = "fechaHoraInicio";
                 FechaHoraFin.DataPropertyName = "fechaHoraFin";
             }
@@ -84,7 +87,6 @@ namespace SGES
             if (result == DialogResult.Yes)
             {
                 co.EliminarEvento(idEvento);
-
                 dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
                 dataGridViewAdmin.DataMember = "Eventos";
             }
@@ -105,11 +107,11 @@ namespace SGES
                 DataSet ds = co.ConsultarAprendicesRegistrados(idEvento);
 
                 // Consulta los aprendices registrados al evento y los agregamos al data grid
-                dataGridViewAdmin.DataSource = ds;
+                dataGridViewAdmin.DataSource = ds; 
                 dataGridViewAdmin.DataMember = "Aprendices";
 
                 // Obtine el id del evento y lo manda al main del formulari FormAprendicesRegistrados
-                FormAprendicesRegistrados form = new FormAprendicesRegistrados(idEvento);
+                FormAprendicesRegistrados form = new FormAprendicesRegistrados(idEvento); 
                 form.ShowDialog();
 
                 dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador

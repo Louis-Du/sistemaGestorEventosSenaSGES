@@ -48,7 +48,6 @@ namespace SGES
                 FormLogin form = new FormLogin();
                 form.ShowDialog();
             }
-
         }
 
         private void dataGridViewAprend_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -122,11 +121,54 @@ namespace SGES
             }
         }
 
-        private void btnRegGrupo_Click(object sender, EventArgs e)
+        // Nuevo handler: "Registrarme en grupo"
+        // Requisitos: validar selección, obtener idEvento de forma robusta y abrir FormRegistroGrupo(idEvento)
+        private void btnRegistrarmeEnGrupo_Click(object sender, EventArgs e)
         {
-            this.Close();
-            //FormRegistroGrupo form = new FormRegistroGrupo();
-           // form.ShowDialog();
+            // 1) Verificar fila seleccionada
+            if (dataGridViewAprend.CurrentRow == null)
+            {
+                MessageBox.Show("Selecciona un evento antes de registrar un grupo.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // 2) Obtener idEvento con la misma estrategia robusta usada en btnRegistrarme_Click
+            object rawIdEvento = null;
+
+            if (dataGridViewAprend.CurrentRow.DataBoundItem is DataRowView drv)
+            {
+                if (drv.Row.Table.Columns.Contains("idEvento"))
+                    rawIdEvento = drv["idEvento"];
+            }
+
+            if (rawIdEvento == null && dataGridViewAprend.Columns.Contains("idEvento"))
+            {
+                rawIdEvento = dataGridViewAprend.CurrentRow.Cells["idEvento"].Value;
+            }
+
+            if (rawIdEvento == null)
+            {
+                rawIdEvento = dataGridViewAprend.CurrentRow.Cells[0].Value;
+            }
+
+            if (rawIdEvento == null || !int.TryParse(rawIdEvento.ToString(), out int idEventoSeleccionado))
+            {
+                MessageBox.Show("No se pudo obtener el identificador del evento seleccionado. Verifica la selección y las columnas del grid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // 3) Abrir FormRegistroGrupo pasando idEvento (usar constructor que recibe idEvento)
+            try
+            {
+                using (var frm = new FormRegistroGrupo(idEventoSeleccionado, idApr))
+                {
+                    frm.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo abrir el formulario de registro en grupo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
