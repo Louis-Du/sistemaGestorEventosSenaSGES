@@ -32,6 +32,7 @@ namespace SGES
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnCrearEvent = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnEditarEvent = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnConsultarAprendicesRegistrados = new System.Windows.Forms.Button();
             this.dataGridViewAdmin = new System.Windows.Forms.DataGridView();
@@ -43,6 +44,8 @@ namespace SGES
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaHoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdmin)).BeginInit();
             this.SuspendLayout();
@@ -95,6 +98,7 @@ namespace SGES
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
+            this.panel1.Controls.Add(this.btnEditarEvent);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnConsultarAprendicesRegistrados);
             this.panel1.Controls.Add(this.dataGridViewAdmin);
@@ -103,6 +107,21 @@ namespace SGES
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(574, 318);
             this.panel1.TabIndex = 0;
+            // 
+            // btnEditarEvent
+            // 
+            this.btnEditarEvent.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEditarEvent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(100)))));
+            this.btnEditarEvent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditarEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEditarEvent.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEditarEvent.Location = new System.Drawing.Point(229, 261);
+            this.btnEditarEvent.Name = "btnEditarEvent";
+            this.btnEditarEvent.Size = new System.Drawing.Size(131, 32);
+            this.btnEditarEvent.TabIndex = 10;
+            this.btnEditarEvent.Text = "Editar Evento Seleccionado";
+            this.btnEditarEvent.UseVisualStyleBackColor = false;
+            this.btnEditarEvent.Click += new System.EventHandler(this.btnEditarEvent_Click);
             // 
             // label2
             // 
@@ -145,7 +164,9 @@ namespace SGES
             this.Tipo,
             this.Fecha,
             this.HoraInicio,
-            this.HoraFin});
+            this.HoraFin,
+            this.fechaHoraInicio,
+            this.FechaHoraFin});
             this.dataGridViewAdmin.Cursor = System.Windows.Forms.Cursors.Cross;
             this.dataGridViewAdmin.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridViewAdmin.Location = new System.Drawing.Point(5, 29);
@@ -227,6 +248,20 @@ namespace SGES
             this.HoraFin.Name = "HoraFin";
             this.HoraFin.ReadOnly = true;
             // 
+            // fechaHoraInicio
+            // 
+            this.fechaHoraInicio.DataPropertyName = "fechaHoraInicio";
+            this.fechaHoraInicio.HeaderText = "Fecha y Hora de Inicio";
+            this.fechaHoraInicio.Name = "fechaHoraInicio";
+            this.fechaHoraInicio.ReadOnly = true;
+            // 
+            // FechaHoraFin
+            // 
+            this.FechaHoraFin.DataPropertyName = "fechaHoraFin";
+            this.FechaHoraFin.HeaderText = "Fecha y Hora de Finalización";
+            this.FechaHoraFin.Name = "FechaHoraFin";
+            this.FechaHoraFin.ReadOnly = true;
+            // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -260,11 +295,14 @@ namespace SGES
         private System.Windows.Forms.Button btnEliminarEvent;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnEditarEvent;
         private System.Windows.Forms.DataGridViewTextBoxColumn idEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoraInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoraFin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaHoraInicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaHoraFin;
     }
 }

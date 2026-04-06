@@ -37,6 +37,7 @@
             this.dgSelemail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnConsultarAprendicesRegistrados = new System.Windows.Forms.Button();
             this.dataGridViewGrupo = new System.Windows.Forms.DataGridView();
             this.dgApr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgNombreApr = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +60,7 @@
             this.panel1.Controls.Add(this.dataGridViewSelec);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.btnConsultarAprendicesRegistrados);
             this.panel1.Controls.Add(this.dataGridViewGrupo);
             this.panel1.Location = new System.Drawing.Point(27, 66);
             this.panel1.Name = "panel1";
@@ -161,6 +163,20 @@
             this.label2.Size = new System.Drawing.Size(173, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "Aprendices Disponibles";
+            // 
+            // btnConsultarAprendicesRegistrados
+            // 
+            this.btnConsultarAprendicesRegistrados.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnConsultarAprendicesRegistrados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(100)))));
+            this.btnConsultarAprendicesRegistrados.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConsultarAprendicesRegistrados.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnConsultarAprendicesRegistrados.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnConsultarAprendicesRegistrados.Location = new System.Drawing.Point(506, 249);
+            this.btnConsultarAprendicesRegistrados.Name = "btnConsultarAprendicesRegistrados";
+            this.btnConsultarAprendicesRegistrados.Size = new System.Drawing.Size(101, 32);
+            this.btnConsultarAprendicesRegistrados.TabIndex = 9;
+            this.btnConsultarAprendicesRegistrados.Text = "Registrarse";
+            this.btnConsultarAprendicesRegistrados.UseVisualStyleBackColor = false;
             // 
             // dataGridViewGrupo
             // 
@@ -273,6 +289,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnConsultarAprendicesRegistrados;
         private System.Windows.Forms.DataGridView dataGridViewGrupo;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgApr;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgNombreApr;

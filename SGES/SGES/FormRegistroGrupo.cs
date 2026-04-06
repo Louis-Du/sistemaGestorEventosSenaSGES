@@ -8,7 +8,9 @@ namespace SGES
     public partial class FormRegistroGrupo : Form
     {
         private readonly int idEvento; // id del evento para el que se registra el grupo
+
         private readonly int idAprActual; // aprendiz que inició sesión
+
         private readonly DataTable dtGrupo; // almacena los miembros seleccionados
 
         public FormRegistroGrupo()
@@ -17,6 +19,7 @@ namespace SGES
 
             // No asignar this.idEvento = idEvento aquí (era un bug)
             this.idEvento = 0;
+
             this.idAprActual = 0;
 
             // Inicializar tabla de miembros del grupo
@@ -72,6 +75,8 @@ namespace SGES
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
+            FormAprendiz form = new FormAprendiz();
+            form.ShowDialog();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -142,7 +147,6 @@ namespace SGES
                 return;
             }
 
-            // 6) Agregar
             dtGrupo.Rows.Add(idApr, nombreApr, emailApr);
         }
 
