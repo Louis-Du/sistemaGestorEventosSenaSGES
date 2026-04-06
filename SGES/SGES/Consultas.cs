@@ -17,6 +17,10 @@ namespace SGES
         // Si quieres conservar este estado:
         private Boolean Estado_conexion = false;
 
+        /*
+         * JAVIER
+         */
+
         public Boolean Iniciar_sesion(int idUser, string contraseñaUser, FormLogin login)
         {
             DataSet ds = new DataSet();
@@ -104,6 +108,111 @@ namespace SGES
 
             return Estado_conexion;
         }
+
+        public void ActualizarContraseña(int idUser, string newPassword)
+        {
+            try
+            {
+                using (SqlConnection con = cn.Conectar())
+                {
+                    // 🔹 Usuario
+                    string query1 = "UPDATE Usuario SET contraseñaUser = @newPassword WHERE idUser = @idUser";
+
+                    using (SqlCommand cmd1 = new SqlCommand(query1, con))
+                    {
+                        cmd1.Parameters.Add("@idUser", SqlDbType.Int).Value = idUser;
+                        cmd1.Parameters.Add("@newPassword", SqlDbType.VarChar).Value = newPassword;
+
+                        int filas = cmd1.ExecuteNonQuery();
+
+                        if (filas > 0)
+                        {
+                            MessageBox.Show("Contraseña actualizada correctamente");
+                            return;
+                        }
+                    }
+
+                    // 🔹 Aprendiz
+                    string query2 = "UPDATE Aprendiz SET contraseñaUser = @newPassword WHERE idApr = @idUser";
+
+                    using (SqlCommand cmd2 = new SqlCommand(query2, con))
+                    {
+                        cmd2.Parameters.Add("@idApr", SqlDbType.Int).Value = idUser;
+                        cmd2.Parameters.Add("@pass", SqlDbType.VarChar).Value = newPassword;
+
+                        int filas = cmd2.ExecuteNonQuery();
+
+                        if (filas > 0)
+                        {
+                            MessageBox.Show("Contraseña actualizada correctamente");
+                            return;
+                        }
+                    }
+
+                    MessageBox.Show("No se encontró el usuario");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
+        }
+
+        public bool VerificarUsuario(int idUser, string emailUser) // Método para recuperar cuenta
+        {
+            try
+            {
+                using (SqlConnection con = cn.Conectar())
+                {
+                    // 🔹 Buscar en Usuario
+                    string query1 = "SELECT 1 FROM Usuario WHERE idUser=@idUser AND emailUser=@emailUser";
+                    using (SqlCommand cmd = new SqlCommand(query1, con))
+                    {
+                        cmd.Parameters.Add("@idUser", SqlDbType.Int).Value = idUser;
+                        cmd.Parameters.Add("@emailUser", SqlDbType.VarChar).Value = emailUser;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                                return true;
+                        }
+                    }
+
+                    // 🔹 Buscar en Aprendiz
+                    string query2 = "SELECT 1 FROM Aprendiz WHERE idApr=@id AND emailApr=@emailUser";
+
+                    using (SqlCommand cmd2 = new SqlCommand(query2, con)) // Reutiliza la misma conexión para evitar abrir y cerrar múltiples veces
+                    {
+                        cmd2.Parameters.Add("@id", SqlDbType.Int).Value = idUser;
+                        cmd2.Parameters.Add("@emailUser", SqlDbType.VarChar).Value = emailUser;
+
+                        using (SqlDataReader reader2 = cmd2.ExecuteReader()) // Ejecuta la consulta para el aprendiz
+                        {
+                            if (reader2.Read())
+                                return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
+
+            return false;
+        }
+
+        /*
+         * LUIS DUEÑAS
+         */
 
         public DataSet ConsultarEventos()
         {
@@ -241,58 +350,47 @@ namespace SGES
             return ds;
         }
 
-        public void ActualizarContraseña(int idUser, string newPassword)
+        // Función para eliminar eventos
+        public void EliminarEvento(int idEvento)
         {
-            try
+            if (VerificarInscriptos(idEvento) > 0)
             {
-                using (SqlConnection con = cn.Conectar())
+                DialogResult result = MessageBox.Show("¡Cuidado!: Hay aprendices inscriptos a este evento. ¿De verdad deseas eliminarlo?", "SGDF", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
                 {
-                    // 🔹 Usuario
-                    string query1 = "UPDATE Usuario SET contraseñaUser = @newPassword WHERE idUser = @idUser";
-
-                    using (SqlCommand cmd1 = new SqlCommand(query1, con))
+                    // En caso de que acepte eliminar el evento a pesar de tener inscriptos se eliminan los inscriptos y el evento
+                    string eliminarInscripcion = "DELETE FROM Inscripciones WHERE idEvento = @idEvento";
+                    using (SqlCommand consulta1 = new SqlCommand(eliminarInscripcion, cn.Conectar()))
                     {
-                        cmd1.Parameters.Add("@idUser", SqlDbType.Int).Value = idUser;
-                        cmd1.Parameters.Add("@newPassword", SqlDbType.VarChar).Value = newPassword;
-
-                        int filas = cmd1.ExecuteNonQuery();
-
-                        if (filas > 0)
-                        {
-                            MessageBox.Show("Contraseña actualizada correctamente");
-                            return;
-                        }
+                        consulta1.Parameters.AddWithValue("@idEvento", idEvento);
+                        consulta1.ExecuteNonQuery();
                     }
 
-                    // 🔹 Aprendiz
-                    string query2 = "UPDATE Aprendiz SET contraseñaUser = @newPassword WHERE idApr = @idUser";
-
-                    using (SqlCommand cmd2 = new SqlCommand(query2, con))
+                    // Eliminamos el evento
+                    string eliminarEvento = "DELETE FROM Eventos WHERE idEvento = @idEvento";
+                    using (SqlCommand consulta2 = new SqlCommand(eliminarEvento, cn.Conectar()))
                     {
-                        cmd2.Parameters.Add("@idApr", SqlDbType.Int).Value = idUser;
-                        cmd2.Parameters.Add("@pass", SqlDbType.VarChar).Value = newPassword;
-
-                        int filas = cmd2.ExecuteNonQuery();
-
-                        if (filas > 0)
-                        {
-                            MessageBox.Show("Contraseña actualizada correctamente");
-                            return;
-                        }
+                        consulta2.Parameters.AddWithValue("@idEvento", idEvento);
+                        consulta2.ExecuteNonQuery();
                     }
-
-                    MessageBox.Show("No se encontró el usuario");
+                    MessageBox.Show("¡Evento eliminado con éxito!");
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-            finally
-            {
-                cn.Desconectar();
+                string eliminarEvento = "DELETE FROM Eventos WHERE idEvento = @idEvento";
+                using (SqlCommand consulta = new SqlCommand(eliminarEvento, cn.Conectar()))
+                {
+                    consulta.Parameters.AddWithValue("@idEvento", idEvento);
+                    consulta.ExecuteNonQuery();
+                }
+                MessageBox.Show("¡Evento eliminado con éxito!");
             }
         }
+
+        /*
+         * LUKAS
+         */
 
         /// <summary>
         /// Comprueba si el aprendiz tiene alguna inscripción que solape con el evento indicado.
@@ -346,53 +444,7 @@ namespace SGES
             }
         }
 
-        public bool VerificarUsuario(int idUser, string emailUser) // Método para recuperar cuenta
-        {
-            try
-            {
-                using (SqlConnection con = cn.Conectar())
-                {
-                    // 🔹 Buscar en Usuario
-                    string query1 = "SELECT 1 FROM Usuario WHERE idUser=@idUser AND emailUser=@emailUser";
-                    using (SqlCommand cmd = new SqlCommand(query1, con))
-                    {
-                        cmd.Parameters.Add("@idUser", SqlDbType.Int).Value = idUser;
-                        cmd.Parameters.Add("@emailUser", SqlDbType.VarChar).Value = emailUser;
-
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                                return true;
-                        }
-                    }
-
-                    // 🔹 Buscar en Aprendiz
-                    string query2 = "SELECT 1 FROM Aprendiz WHERE idApr=@id AND emailApr=@emailUser";
-
-                    using (SqlCommand cmd2 = new SqlCommand(query2, con)) // Reutiliza la misma conexión para evitar abrir y cerrar múltiples veces
-                    {
-                        cmd2.Parameters.Add("@id", SqlDbType.Int).Value = idUser;
-                        cmd2.Parameters.Add("@emailUser", SqlDbType.VarChar).Value = emailUser;
-
-                        using (SqlDataReader reader2 = cmd2.ExecuteReader()) // Ejecuta la consulta para el aprendiz
-                        {
-                            if (reader2.Read())
-                                return true;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                cn.Desconectar();
-            }
-
-            return false;
-        }
+        
 
         /// <summary>
         /// Registra la inscripción tras validar duplicado y conflicto de horarios.
@@ -570,44 +622,6 @@ namespace SGES
             finally
             {
                 cn.Desconectar();
-            }
-        }
-
-        // Función para eliminar eventos
-        public void EliminarEvento(int idEvento)
-        {
-            if (VerificarInscriptos(idEvento) > 0)
-            {
-                DialogResult result = MessageBox.Show("¡Cuidado!: Hay aprendices inscriptos a este evento. ¿De verdad deseas eliminarlo?", "SGDF", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result == DialogResult.Yes)
-                {
-                    // En caso de que acepte eliminar el evento a pesar de tener inscriptos se eliminan los inscriptos y el evento
-                    string eliminarInscripcion = "DELETE FROM Inscripciones WHERE idEvento = @idEvento";
-                    using (SqlCommand consulta1 = new SqlCommand(eliminarInscripcion, cn.Conectar()))
-                    {
-                        consulta1.Parameters.AddWithValue("@idEvento", idEvento);
-                        consulta1.ExecuteNonQuery();
-                    }
-
-                    // Eliminamos el evento
-                    string eliminarEvento = "DELETE FROM Eventos WHERE idEvento = @idEvento";
-                    using (SqlCommand consulta2 = new SqlCommand(eliminarEvento, cn.Conectar()))
-                    {
-                        consulta2.Parameters.AddWithValue("@idEvento", idEvento);
-                        consulta2.ExecuteNonQuery();
-                    }
-                    MessageBox.Show("¡Evento eliminado con éxito!");
-                }
-            }
-            else
-            {
-                string eliminarEvento = "DELETE FROM Eventos WHERE idEvento = @idEvento";
-                using (SqlCommand consulta = new SqlCommand(eliminarEvento, cn.Conectar()))
-                {
-                    consulta.Parameters.AddWithValue("@idEvento", idEvento);
-                    consulta.ExecuteNonQuery();
-                }
-                MessageBox.Show("¡Evento eliminado con éxito!");
             }
         }
 
