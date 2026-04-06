@@ -41,9 +41,6 @@ namespace SGES
             this.idEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaHoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
@@ -130,7 +127,7 @@ namespace SGES
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Location = new System.Drawing.Point(10, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 16);
+            this.label2.Size = new System.Drawing.Size(64, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "Eventos";
             // 
@@ -162,9 +159,6 @@ namespace SGES
             this.idEvento,
             this.Nombre,
             this.Tipo,
-            this.Fecha,
-            this.HoraInicio,
-            this.HoraFin,
             this.fechaHoraInicio,
             this.FechaHoraFin});
             this.dataGridViewAdmin.Cursor = System.Windows.Forms.Cursors.Cross;
@@ -202,7 +196,7 @@ namespace SGES
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Location = new System.Drawing.Point(155, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(175, 16);
+            this.label1.Size = new System.Drawing.Size(176, 16);
             this.label1.TabIndex = 6;
             this.label1.Text = "Panel de Administración";
             // 
@@ -226,27 +220,6 @@ namespace SGES
             this.Tipo.HeaderText = "Tipo";
             this.Tipo.Name = "Tipo";
             this.Tipo.ReadOnly = true;
-            // 
-            // Fecha
-            // 
-            this.Fecha.DataPropertyName = "diaEvento";
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            this.Fecha.ReadOnly = true;
-            // 
-            // HoraInicio
-            // 
-            this.HoraInicio.DataPropertyName = "fechaHoraInicio";
-            this.HoraInicio.HeaderText = "Hora Inicio";
-            this.HoraInicio.Name = "HoraInicio";
-            this.HoraInicio.ReadOnly = true;
-            // 
-            // HoraFin
-            // 
-            this.HoraFin.DataPropertyName = "fechaHoraFin";
-            this.HoraFin.HeaderText = "Hora Fin";
-            this.HoraFin.Name = "HoraFin";
-            this.HoraFin.ReadOnly = true;
             // 
             // fechaHoraInicio
             // 
@@ -299,9 +272,6 @@ namespace SGES
         private System.Windows.Forms.DataGridViewTextBoxColumn idEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HoraInicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HoraFin;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaHoraInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaHoraFin;
     }
