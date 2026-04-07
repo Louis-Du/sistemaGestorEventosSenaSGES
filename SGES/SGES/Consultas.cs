@@ -299,14 +299,13 @@ namespace SGES
                 DateTime diaEvento = fechaHoraInicio.Date;
 
                 string query =
-                    "UPDATE Eventos SET nombreEvento = @nombreEvento, tipoEvento = @tipoEvento, diaEvento = @diaEvento, fechaHoraInicio = @fechaHoraInicio, fechaHoraFin = @fechaHoraFin " +
+                    "UPDATE Eventos SET nombreEvento = @nombreEvento, tipoEvento = @tipoEvento, fechaHoraInicio = @fechaHoraInicio, fechaHoraFin = @fechaHoraFin " +
                     "WHERE idEvento = @idEvento"; // Asigna en una variable la consulta a realizar
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar())) // Consulta la variable query
                 {
                     cmd.Parameters.AddWithValue("@idEvento", idEvento);
                     cmd.Parameters.AddWithValue("@nombreEvento", nombreEvento);
                     cmd.Parameters.AddWithValue("@tipoEvento", tipoEvento);
-                    cmd.Parameters.AddWithValue("@diaEvento", diaEvento);
                     cmd.Parameters.AddWithValue("@fechaHoraInicio", fechaHoraInicio);
                     cmd.Parameters.AddWithValue("@fechaHoraFin", fechaHoraFin);
 
