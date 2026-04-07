@@ -42,7 +42,6 @@ namespace SGES
                 dataGridViewAdmin.DataSource = ds;
                 dataGridViewAdmin.DataMember = "Eventos";
                 dataGridViewAdmin.AutoGenerateColumns = false;
-                idEvento.DataPropertyName = "idEvento";
                 Nombre.DataPropertyName = "nombreEvento";
                 Tipo.DataPropertyName = "tipoEvento";
                 fechaHoraInicio.DataPropertyName = "fechaHoraInicio";
@@ -139,6 +138,34 @@ namespace SGES
 
             dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos actualizados en el grid del formulario administrador
             dataGridViewAdmin.DataMember = "Eventos";
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtBuscarNombreEvento.Text))
+            {
+                dataGridViewAdmin.DataSource = co.ConsultarEventos();
+                dataGridViewAdmin.DataMember = "Eventos";
+            }
+            else
+            {
+                dataGridViewAdmin.DataSource = co.FiltrarEvento(txtBuscarNombreEvento.Text);
+                dataGridViewAdmin.DataMember = "Eventos";
+            }
+        }
+
+        private void txtBuscarNombreEvento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtBuscarNombreEvento.Text))
+            {
+                dataGridViewAdmin.DataSource = co.ConsultarEventos();
+                dataGridViewAdmin.DataMember = "Eventos";
+            }
+            else
+            {
+                dataGridViewAdmin.DataSource = co.FiltrarEvento(txtBuscarNombreEvento.Text);
+                dataGridViewAdmin.DataMember = "Eventos";
+            }
         }
     }
 }

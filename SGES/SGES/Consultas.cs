@@ -247,7 +247,7 @@ namespace SGES
             try
             {
                 // Se utiliza using para asegurar que la conexión se cierre correctamente después de la consulta, incluso si ocurre una excepción
-                using (SqlCommand consulta = new SqlCommand("SELECT * FROM Eventos", cn.Conectar())) // Consulta los eventos registrados en la base de datos
+                using (SqlCommand consulta = new SqlCommand("SELECT e.nombreEvento, e.tipoEvento, e.fechaHoraInicio, e.fechaHoraFin  FROM Eventos e", cn.Conectar())) // Consulta los eventos registrados en la base de datos
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(consulta)) // Almacena el resultado de la consulta en un DataSet
                     {
@@ -409,6 +409,37 @@ namespace SGES
                 }
                 MessageBox.Show("¡Evento eliminado con éxito!");
             }
+        }
+
+        public DataSet FiltrarEvento(string nombreEvento)
+        {
+            DataSet ds = new DataSet();
+
+            try
+            {
+                string consulta = "SELECT e.nombreEvento, e.tipoEvento, e.fechaHoraInicio, e.fechaHoraFin " + 
+                    "FROM Eventos e " +
+                    "WHERE nombreEvento LIKE @nombreEvento ";
+
+                using (SqlCommand cmd = new SqlCommand(consulta, cn.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@nombreEvento", "%" + nombreEvento + "%");
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd)) // Almacena el resultado de la consulta en un DataSet
+                    {
+                        da.Fill(ds, "Eventos"); // Ejecuta la consulta
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
+            return ds;
         }
 
         /*
