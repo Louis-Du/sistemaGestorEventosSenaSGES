@@ -87,13 +87,6 @@ namespace SGES
                 return;
             }
 
-            // 2) VALIDAR MÁXIMO DE 19 COMPAÑEROS EN GRID, YA QUE EL APRENDIZ ACTUAL COMPLETA EL GRUPO DE 20
-            if (dtGrupo.Rows.Count >= 19)
-            {
-                MessageBox.Show("Solo puedes agregar hasta 19 compañeros. Con tu registro, el grupo puede tener máximo 20 integrantes.");
-                return;
-            }
-
             int idApr;
             string nombreApr = string.Empty;
             string emailApr = string.Empty;
