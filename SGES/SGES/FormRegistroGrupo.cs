@@ -87,6 +87,13 @@ namespace SGES
                 return;
             }
 
+            // Validar límite de miembros (19)
+            if (dtGrupo.Rows.Count >= 19)
+            {
+                MessageBox.Show("Solo puedes agregar hasta 19 compañeros. Con tu registro, el grupo puede tener máximo 20 integrantes.");
+                return;
+            }
+
             int idApr;
             string nombreApr = string.Empty;
             string emailApr = string.Empty;
@@ -200,6 +207,7 @@ namespace SGES
 
             foreach (var r in rows) r.Delete();
             dtGrupo.AcceptChanges();
+            
         }
 
         private void btnRegGrupo_Click(object sender, EventArgs e)
@@ -213,6 +221,12 @@ namespace SGES
             if (idAprActual == 0)
             {
                 MessageBox.Show("No se encontró el aprendiz que inició sesión.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (dtGrupo.Rows.Count < 2)
+            {
+                MessageBox.Show("Debes seleccionar mínimo 2 aprendices para registrar el grupo.");
                 return;
             }
 
