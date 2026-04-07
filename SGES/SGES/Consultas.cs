@@ -49,7 +49,7 @@ namespace SGES
                 }
 
                 // condicional para verificar si se encontró resultados en Usuario
-                if (ds.Tables["Usuario"].Rows.Count > 0)
+
                 {
                     string tipo = ds.Tables["Usuario"].Rows[0]["tipoUser"].ToString().Trim();
                     if (tipo == "Administrador")
@@ -262,8 +262,8 @@ namespace SGES
                 DateTime diaEvento = fechaHoraInicio.Date;
 
                 string query =
-                    "INSERT INTO Eventos (idEvento, nombreEvento, tipoEvento, diaEvento, fechaHoraInicio, fechaHoraFin, idUser) " +
-                    "VALUES (@idEvent, @nombreEvent, @tipoEvent, @diaEvento, @fechaHoraInicio, @fechaHoraFin, @idUser)";
+                    "INSERT INTO Eventos (idEvento, nombreEvento, tipoEvento, fechaHoraInicio, fechaHoraFin, idUser) " +
+                    "VALUES (@idEvent, @nombreEvent, @tipoEvent, @fechaHoraInicio, @fechaHoraFin, @idUser)";
 
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
                 {
@@ -271,8 +271,6 @@ namespace SGES
                     cmd.Parameters.Add("@idEvent", System.Data.SqlDbType.Int).Value = idEvent;
                     cmd.Parameters.Add("@nombreEvent", System.Data.SqlDbType.VarChar, 50).Value = nombreEvent;
                     cmd.Parameters.Add("@tipoEvent", System.Data.SqlDbType.VarChar, 50).Value = tipoEvent;
-
-                    cmd.Parameters.Add("@diaEvento", System.Data.SqlDbType.Date).Value = diaEvento;
                     cmd.Parameters.Add("@fechaHoraInicio", System.Data.SqlDbType.DateTime2).Value = fechaHoraInicio;
                     cmd.Parameters.Add("@fechaHoraFin", System.Data.SqlDbType.DateTime2).Value = fechaHoraFin;
 
