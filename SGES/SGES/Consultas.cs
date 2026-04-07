@@ -46,24 +46,37 @@ namespace SGES
                     {
                         da.Fill(ds, "Usuario");
                     }
-                }
 
-                // condicional para verificar si se encontró resultados en Usuario
-
-                {
-                    string tipo = ds.Tables["Usuario"].Rows[0]["tipoUser"].ToString().Trim();
-                    if (tipo == "Administrador")
+                    // Verifica si la consulta a la tabla "Usuario" devolvió al menos un registro
+                    // (es decir, si existe un usuario con ese id y contraseña)
+                    if (ds.Tables["Usuario"].Rows.Count > 0)
                     {
-                        MessageBox.Show("Bienvenido(a) Administrador!");
-                        Estado_conexion = true;
+                        // Obtiene el valor de la columna "tipoUser" del primer registro encontrado
+                        // Se convierte a string y se eliminan espacios en blanco al inicio y al final
+                        string tipo = ds.Tables["Usuario"].Rows[0]["tipoUser"].ToString().Trim();
 
-                        // Abre el formulario de administrador pasando el id para futuras consultas
-                        FormAdmin frm = new FormAdmin(idUser);
-                        frm.Show();
+                        // Verifica si el tipo de usuario corresponde a "Administrador"
+                        if (tipo == "Administrador")
+                        {
+                            // Muestra un mensaje de bienvenida para el administrador
+                            MessageBox.Show("Bienvenido(a) Administrador!");
 
-                        login.Hide(); // ocultas el login
+                            // Cambia el estado de conexión a verdadero (login exitoso)
+                            Estado_conexion = true;
 
-                        return true;
+                            // Crea una instancia del formulario de administrador
+                            // y le pasa el id del usuario para futuras operaciones
+                            FormAdmin frm = new FormAdmin(idUser);
+
+                            // Muestra el formulario de administrador
+                            frm.Show();
+
+                            // Oculta el formulario de login
+                            login.Hide();
+
+                            // Retorna true indicando que el inicio de sesión fue exitoso
+                            return true;
+                        }
                     }
                 }
 
@@ -146,8 +159,8 @@ namespace SGES
                     using (SqlCommand cmd2 = new SqlCommand(query2, con))
                     {
                         // Parámetros para la actualización
-                        cmd2.Parameters.Add("@idApr", SqlDbType.Int).Value = idUser;
-                        cmd2.Parameters.Add("@pass", SqlDbType.VarChar).Value = newPassword;
+                        cmd2.Parameters.Add("@idUser", SqlDbType.Int).Value = idUser;
+                        cmd2.Parameters.Add("@newPassword", SqlDbType.VarChar).Value = newPassword;
 
                         int filas = cmd2.ExecuteNonQuery();
 
