@@ -144,6 +144,13 @@ namespace SGES
             {
                 MessageBox.Show("Este aprendiz ya fue agregado al grupo.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
+            } 
+
+            // VALIDAR MÁXIMO DE 2 COMPAÑEROS PARA NO EXCEDER EL LÍMITE DE 3 INTEGRANTES POR GRUPO
+            if (dtGrupo.Rows.Count >= 2)
+            {
+                MessageBox.Show("Solo puedes seleccionar máximo 2 aprendices para el grupo.");
+                return;
             }
 
             // 6) AGREGAR EL APRENDIZ A LA TABLA TEMPORAL dtGrupo Y REFLEJARLO EN EL GRID DERECHO
