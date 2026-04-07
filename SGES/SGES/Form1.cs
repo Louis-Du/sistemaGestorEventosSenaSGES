@@ -61,7 +61,7 @@ namespace SGES
             FormRecuperarCuenta frm = new FormRecuperarCuenta(this); // Crear una instancia del formulario de recuperación de cuenta, pasando el formulario actual como referencia
             frm.Show(); // Mostrar el formulario de recuperación de cuenta
 
-            this.Hide();
+            this.Hide(); // Ocultar el formulario de login para que el usuario no pueda interactuar con él mientras está en el proceso de recuperación de cuenta
         }
 
         private void FormLogin_Load(object sender, EventArgs e)
