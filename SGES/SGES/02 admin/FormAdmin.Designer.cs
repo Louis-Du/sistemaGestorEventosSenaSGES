@@ -101,7 +101,7 @@ namespace SGES
             this.btnEditarEvent.Name = "btnEditarEvent";
             this.btnEditarEvent.Size = new System.Drawing.Size(131, 32);
             this.btnEditarEvent.TabIndex = 10;
-            this.btnEditarEvent.Text = "Editar Evento Seleccionado";
+            this.btnEditarEvent.Text = "Editar Evento";
             this.btnEditarEvent.UseVisualStyleBackColor = false;
             this.btnEditarEvent.Click += new System.EventHandler(this.btnEditarEvent_Click);
             // 
