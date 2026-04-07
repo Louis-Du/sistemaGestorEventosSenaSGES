@@ -31,18 +31,19 @@ namespace SGES
             this.btnVolver = new System.Windows.Forms.Button();
             this.btnCrearEvent = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtBuscarNombreEvento = new System.Windows.Forms.TextBox();
             this.btnEditarEvent = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnConsultarAprendicesRegistrados = new System.Windows.Forms.Button();
             this.dataGridViewAdmin = new System.Windows.Forms.DataGridView();
             this.btnEliminarEvent = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.idEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaHoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtBuscarNombreEvento = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdmin)).BeginInit();
             this.SuspendLayout();
@@ -92,6 +93,34 @@ namespace SGES
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(550, 312);
             this.panel1.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.label3.Location = new System.Drawing.Point(145, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(209, 16);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Buscar evento por su nombre";
+            // 
+            // txtBuscarNombreEvento
+            // 
+            this.txtBuscarNombreEvento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.txtBuscarNombreEvento.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtBuscarNombreEvento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBuscarNombreEvento.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.txtBuscarNombreEvento.Location = new System.Drawing.Point(148, 40);
+            this.txtBuscarNombreEvento.MaxLength = 50;
+            this.txtBuscarNombreEvento.Multiline = true;
+            this.txtBuscarNombreEvento.Name = "txtBuscarNombreEvento";
+            this.txtBuscarNombreEvento.Size = new System.Drawing.Size(277, 14);
+            this.txtBuscarNombreEvento.TabIndex = 11;
+            this.txtBuscarNombreEvento.Tag = "";
+            this.txtBuscarNombreEvento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBuscarNombreEvento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarNombreEvento_KeyPress);
             // 
             // btnEditarEvent
             // 
@@ -145,6 +174,7 @@ namespace SGES
             this.dataGridViewAdmin.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
             this.dataGridViewAdmin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAdmin.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idEvento,
             this.Nombre,
             this.Tipo,
             this.fechaHoraInicio,
@@ -188,6 +218,14 @@ namespace SGES
             this.label1.TabIndex = 6;
             this.label1.Text = "Panel de Administración";
             // 
+            // idEvento
+            // 
+            this.idEvento.DataPropertyName = "idEvento";
+            this.idEvento.HeaderText = "Column1";
+            this.idEvento.Name = "idEvento";
+            this.idEvento.ReadOnly = true;
+            this.idEvento.Visible = false;
+            // 
             // Nombre
             // 
             this.Nombre.DataPropertyName = "nombreEvento";
@@ -215,34 +253,6 @@ namespace SGES
             this.FechaHoraFin.HeaderText = "Fecha y Hora de Finalización";
             this.FechaHoraFin.Name = "FechaHoraFin";
             this.FechaHoraFin.ReadOnly = true;
-            // 
-            // txtBuscarNombreEvento
-            // 
-            this.txtBuscarNombreEvento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.txtBuscarNombreEvento.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.txtBuscarNombreEvento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBuscarNombreEvento.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.txtBuscarNombreEvento.Location = new System.Drawing.Point(148, 40);
-            this.txtBuscarNombreEvento.MaxLength = 50;
-            this.txtBuscarNombreEvento.Multiline = true;
-            this.txtBuscarNombreEvento.Name = "txtBuscarNombreEvento";
-            this.txtBuscarNombreEvento.Size = new System.Drawing.Size(277, 14);
-            this.txtBuscarNombreEvento.TabIndex = 11;
-            this.txtBuscarNombreEvento.Tag = "";
-            this.txtBuscarNombreEvento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtBuscarNombreEvento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarNombreEvento_KeyPress);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.label3.Location = new System.Drawing.Point(145, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(209, 16);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Buscar evento por su nombre";
             // 
             // FormAdmin
             // 
@@ -276,11 +286,12 @@ namespace SGES
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnEditarEvent;
+        private System.Windows.Forms.TextBox txtBuscarNombreEvento;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaHoraInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaHoraFin;
-        private System.Windows.Forms.TextBox txtBuscarNombreEvento;
-        private System.Windows.Forms.Label label3;
     }
 }

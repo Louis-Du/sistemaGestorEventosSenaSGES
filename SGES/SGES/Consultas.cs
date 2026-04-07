@@ -247,7 +247,7 @@ namespace SGES
             try
             {
                 // Se utiliza using para asegurar que la conexión se cierre correctamente después de la consulta, incluso si ocurre una excepción
-                using (SqlCommand consulta = new SqlCommand("SELECT e.nombreEvento, e.tipoEvento, e.fechaHoraInicio, e.fechaHoraFin  FROM Eventos e", cn.Conectar())) // Consulta los eventos registrados en la base de datos
+                using (SqlCommand consulta = new SqlCommand("SELECT e.idEvento, e.nombreEvento, e.tipoEvento, e.fechaHoraInicio, e.fechaHoraFin  FROM Eventos e", cn.Conectar())) // Consulta los eventos registrados en la base de datos
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(consulta)) // Almacena el resultado de la consulta en un DataSet
                     {
@@ -419,11 +419,11 @@ namespace SGES
             {
                 string consulta = "SELECT e.nombreEvento, e.tipoEvento, e.fechaHoraInicio, e.fechaHoraFin " + 
                     "FROM Eventos e " +
-                    "WHERE nombreEvento LIKE @nombreEvento ";
+                    "WHERE nombreEvento LIKE @nombreEvento "; 
 
                 using (SqlCommand cmd = new SqlCommand(consulta, cn.Conectar()))
                 {
-                    cmd.Parameters.AddWithValue("@nombreEvento", "%" + nombreEvento + "%");
+                    cmd.Parameters.AddWithValue("@nombreEvento", "%" + nombreEvento + "%"); // Ignora los primero y últimos caracteres
 
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd)) // Almacena el resultado de la consulta en un DataSet
                     {

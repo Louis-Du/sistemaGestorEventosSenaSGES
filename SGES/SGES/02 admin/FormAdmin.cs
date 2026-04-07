@@ -42,6 +42,8 @@ namespace SGES
                 dataGridViewAdmin.DataSource = ds;
                 dataGridViewAdmin.DataMember = "Eventos";
                 dataGridViewAdmin.AutoGenerateColumns = false;
+
+                idEvento.DataPropertyName = "idEvento";
                 Nombre.DataPropertyName = "nombreEvento";
                 Tipo.DataPropertyName = "tipoEvento";
                 fechaHoraInicio.DataPropertyName = "fechaHoraInicio";
@@ -99,18 +101,18 @@ namespace SGES
             try
             {
                 int idEvento = int.Parse(dataGridViewAdmin.CurrentRow.Cells["idEvento"].Value.ToString()); // Obtiene la posición de el id de el evento
-
+                /*
                 DataSet ds = co.ConsultarAprendicesRegistrados(idEvento);
 
                 // Consulta los aprendices registrados al evento y los agregamos al data grid
                 dataGridViewAdmin.DataSource = ds; 
-                dataGridViewAdmin.DataMember = "Aprendices";
+                dataGridViewAdmin.DataMember = "Aprendices"; */
 
                 // Obtine el id del evento y lo manda al main del formulari FormAprendicesRegistrados
                 FormAprendicesRegistrados form = new FormAprendicesRegistrados(idEvento); 
                 form.ShowDialog();
 
-                dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
+                //dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos en el grid del formulario administrador
                 dataGridViewAdmin.DataMember = "Eventos";
             }
             catch (Exception ex)
@@ -138,20 +140,6 @@ namespace SGES
 
             dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos actualizados en el grid del formulario administrador
             dataGridViewAdmin.DataMember = "Eventos";
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtBuscarNombreEvento.Text))
-            {
-                dataGridViewAdmin.DataSource = co.ConsultarEventos();
-                dataGridViewAdmin.DataMember = "Eventos";
-            }
-            else
-            {
-                dataGridViewAdmin.DataSource = co.FiltrarEvento(txtBuscarNombreEvento.Text);
-                dataGridViewAdmin.DataMember = "Eventos";
-            }
         }
 
         private void txtBuscarNombreEvento_KeyPress(object sender, KeyPressEventArgs e)
