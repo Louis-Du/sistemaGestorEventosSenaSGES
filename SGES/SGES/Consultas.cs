@@ -220,9 +220,10 @@ namespace SGES
 
             try
             {
+                // Se utiliza using para asegurar que la conexión se cierre correctamente después de la consulta, incluso si ocurre una excepción
                 using (SqlCommand consulta = new SqlCommand("SELECT * FROM Eventos", cn.Conectar())) // Consulta los eventos registrados en la base de datos
                 {
-                    using (SqlDataAdapter da = new SqlDataAdapter(consulta))
+                    using (SqlDataAdapter da = new SqlDataAdapter(consulta)) // Almacena el resultado de la consulta en un DataSet
                     {
                         da.Fill(ds, "Eventos"); // Ejecuta la consulta
                     }
