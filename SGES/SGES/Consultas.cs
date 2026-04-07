@@ -136,7 +136,7 @@ namespace SGES
             {
                 using (SqlConnection con = cn.Conectar())
                 {
-                    // 🔹 Usuario
+                    // Usuario
                     string query1 = "UPDATE Usuario SET contraseñaUser = @newPassword WHERE idUser = @idUser";
 
                     using (SqlCommand cmd1 = new SqlCommand(query1, con))
