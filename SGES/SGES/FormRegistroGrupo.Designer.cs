@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRegGrupo = new System.Windows.Forms.Button();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.dataGridViewSelec = new System.Windows.Forms.DataGridView();
@@ -37,14 +38,12 @@
             this.dgSelemail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnConsultarAprendicesRegistrados = new System.Windows.Forms.Button();
             this.dataGridViewGrupo = new System.Windows.Forms.DataGridView();
             this.dgApr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgNombreApr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnVolver = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnRegGrupo = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSelec)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGrupo)).BeginInit();
@@ -60,12 +59,26 @@
             this.panel1.Controls.Add(this.dataGridViewSelec);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.btnConsultarAprendicesRegistrados);
             this.panel1.Controls.Add(this.dataGridViewGrupo);
             this.panel1.Location = new System.Drawing.Point(27, 66);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 299);
             this.panel1.TabIndex = 1;
+            // 
+            // btnRegGrupo
+            // 
+            this.btnRegGrupo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRegGrupo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(100)))));
+            this.btnRegGrupo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRegGrupo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnRegGrupo.Location = new System.Drawing.Point(577, 249);
+            this.btnRegGrupo.Name = "btnRegGrupo";
+            this.btnRegGrupo.Size = new System.Drawing.Size(101, 32);
+            this.btnRegGrupo.TabIndex = 14;
+            this.btnRegGrupo.Text = "Registrarse";
+            this.btnRegGrupo.UseVisualStyleBackColor = false;
+            this.btnRegGrupo.Click += new System.EventHandler(this.btnRegGrupo_Click);
             // 
             // btnQuitar
             // 
@@ -164,20 +177,6 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Aprendices Disponibles";
             // 
-            // btnConsultarAprendicesRegistrados
-            // 
-            this.btnConsultarAprendicesRegistrados.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnConsultarAprendicesRegistrados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(100)))));
-            this.btnConsultarAprendicesRegistrados.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConsultarAprendicesRegistrados.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnConsultarAprendicesRegistrados.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnConsultarAprendicesRegistrados.Location = new System.Drawing.Point(506, 249);
-            this.btnConsultarAprendicesRegistrados.Name = "btnConsultarAprendicesRegistrados";
-            this.btnConsultarAprendicesRegistrados.Size = new System.Drawing.Size(101, 32);
-            this.btnConsultarAprendicesRegistrados.TabIndex = 9;
-            this.btnConsultarAprendicesRegistrados.Text = "Registrarse";
-            this.btnConsultarAprendicesRegistrados.UseVisualStyleBackColor = false;
-            // 
             // dataGridViewGrupo
             // 
             this.dataGridViewGrupo.AllowUserToAddRows = false;
@@ -249,21 +248,6 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Registro en Grupo";
             // 
-            // btnRegGrupo
-            // 
-            this.btnRegGrupo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRegGrupo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(100)))));
-            this.btnRegGrupo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRegGrupo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnRegGrupo.Location = new System.Drawing.Point(577, 249);
-            this.btnRegGrupo.Name = "btnRegGrupo";
-            this.btnRegGrupo.Size = new System.Drawing.Size(101, 32);
-            this.btnRegGrupo.TabIndex = 14;
-            this.btnRegGrupo.Text = "Registrarse";
-            this.btnRegGrupo.UseVisualStyleBackColor = false;
-            this.btnRegGrupo.Click += new System.EventHandler(this.btnRegGrupo_Click);
-            // 
             // FormRegistroGrupo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -289,7 +273,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnConsultarAprendicesRegistrados;
         private System.Windows.Forms.DataGridView dataGridViewGrupo;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgApr;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgNombreApr;

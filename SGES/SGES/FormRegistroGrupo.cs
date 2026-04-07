@@ -74,9 +74,8 @@ namespace SGES
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
+            // Cerrar este formulario vuelve al formulario padre que lo abrió (sin crear nuevas instancias).
             this.Close();
-            FormAprendiz form = new FormAprendiz();
-            form.ShowDialog();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
