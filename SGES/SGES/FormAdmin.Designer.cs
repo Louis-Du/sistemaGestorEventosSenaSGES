@@ -29,20 +29,19 @@ namespace SGES
         private void InitializeComponent()
         {
             this.btnVolver = new System.Windows.Forms.Button();
-            this.btnExportar = new System.Windows.Forms.Button();
             this.btnCrearEvent = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnEditarEvent = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnConsultarAprendicesRegistrados = new System.Windows.Forms.Button();
             this.dataGridViewAdmin = new System.Windows.Forms.DataGridView();
-            this.btnEliminarEvent = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.idEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaHoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEliminarEvent = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdmin)).BeginInit();
             this.SuspendLayout();
@@ -62,20 +61,6 @@ namespace SGES
             this.btnVolver.UseVisualStyleBackColor = false;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
-            // btnExportar
-            // 
-            this.btnExportar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnExportar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(100)))));
-            this.btnExportar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExportar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExportar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnExportar.Location = new System.Drawing.Point(531, 35);
-            this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(96, 32);
-            this.btnExportar.TabIndex = 4;
-            this.btnExportar.Text = "Exportar";
-            this.btnExportar.UseVisualStyleBackColor = false;
-            // 
             // btnCrearEvent
             // 
             this.btnCrearEvent.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -83,7 +68,7 @@ namespace SGES
             this.btnCrearEvent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCrearEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCrearEvent.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnCrearEvent.Location = new System.Drawing.Point(390, 35);
+            this.btnCrearEvent.Location = new System.Drawing.Point(496, 34);
             this.btnCrearEvent.Name = "btnCrearEvent";
             this.btnCrearEvent.Size = new System.Drawing.Size(131, 32);
             this.btnCrearEvent.TabIndex = 5;
@@ -127,7 +112,7 @@ namespace SGES
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Location = new System.Drawing.Point(10, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 16);
+            this.label2.Size = new System.Drawing.Size(63, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "Eventos";
             // 
@@ -173,33 +158,6 @@ namespace SGES
             this.dataGridViewAdmin.TabIndex = 7;
             this.dataGridViewAdmin.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAdmin_CellContentClick);
             // 
-            // btnEliminarEvent
-            // 
-            this.btnEliminarEvent.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnEliminarEvent.BackColor = System.Drawing.Color.Brown;
-            this.btnEliminarEvent.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEliminarEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEliminarEvent.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminarEvent.Location = new System.Drawing.Point(370, 261);
-            this.btnEliminarEvent.Name = "btnEliminarEvent";
-            this.btnEliminarEvent.Size = new System.Drawing.Size(123, 32);
-            this.btnEliminarEvent.TabIndex = 6;
-            this.btnEliminarEvent.Text = "Eliminar Evento";
-            this.btnEliminarEvent.UseVisualStyleBackColor = false;
-            this.btnEliminarEvent.Click += new System.EventHandler(this.btnEliminarEvent_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(155, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(176, 16);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Panel de Administración";
-            // 
             // idEvento
             // 
             this.idEvento.DataPropertyName = "idEvento";
@@ -235,6 +193,33 @@ namespace SGES
             this.FechaHoraFin.Name = "FechaHoraFin";
             this.FechaHoraFin.ReadOnly = true;
             // 
+            // btnEliminarEvent
+            // 
+            this.btnEliminarEvent.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEliminarEvent.BackColor = System.Drawing.Color.Brown;
+            this.btnEliminarEvent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEliminarEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEliminarEvent.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEliminarEvent.Location = new System.Drawing.Point(370, 261);
+            this.btnEliminarEvent.Name = "btnEliminarEvent";
+            this.btnEliminarEvent.Size = new System.Drawing.Size(123, 32);
+            this.btnEliminarEvent.TabIndex = 6;
+            this.btnEliminarEvent.Text = "Eliminar Evento";
+            this.btnEliminarEvent.UseVisualStyleBackColor = false;
+            this.btnEliminarEvent.Click += new System.EventHandler(this.btnEliminarEvent_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(155, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(175, 16);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Panel de Administración";
+            // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,7 +230,6 @@ namespace SGES
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCrearEvent);
-            this.Controls.Add(this.btnExportar);
             this.Controls.Add(this.btnVolver);
             this.Name = "FormAdmin";
             this.Text = "FormAdmin";
@@ -260,7 +244,6 @@ namespace SGES
 
         #endregion
         private System.Windows.Forms.Button btnVolver;
-        private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.Button btnCrearEvent;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnConsultarAprendicesRegistrados;
