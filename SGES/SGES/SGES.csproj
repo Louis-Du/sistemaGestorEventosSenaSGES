@@ -48,89 +48,89 @@
   <ItemGroup>
     <Compile Include="Conexion.cs" />
     <Compile Include="Consultas.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="01 login\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="01 login\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAdmin.cs">
+    <Compile Include="02 admin\FormAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAdmin.Designer.cs">
+    <Compile Include="02 admin\FormAdmin.Designer.cs">
       <DependentUpon>FormAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAprendicesRegistrados.cs">
+    <Compile Include="02 admin\FormAprendicesRegistrados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAprendicesRegistrados.Designer.cs">
+    <Compile Include="02 admin\FormAprendicesRegistrados.Designer.cs">
       <DependentUpon>FormAprendicesRegistrados.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAprendiz.cs">
+    <Compile Include="03 aprendiz\FormAprendiz.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAprendiz.Designer.cs">
+    <Compile Include="03 aprendiz\FormAprendiz.Designer.cs">
       <DependentUpon>FormAprendiz.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCrearEvento.cs">
+    <Compile Include="02 admin\FormCrearEvento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCrearEvento.Designer.cs">
+    <Compile Include="02 admin\FormCrearEvento.Designer.cs">
       <DependentUpon>FormCrearEvento.cs</DependentUpon>
     </Compile>
     <!-- Agregado desde develop -->
-    <Compile Include="FormRecuperarCuenta.cs">
+    <Compile Include="01 login\FormRecuperarCuenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRecuperarCuenta.Designer.cs">
+    <Compile Include="01 login\FormRecuperarCuenta.Designer.cs">
       <DependentUpon>FormRecuperarCuenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRegistroGrupo.cs">
+    <Compile Include="03 aprendiz\FormRegistroGrupo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRegistroGrupo.Designer.cs">
+    <Compile Include="03 aprendiz\FormRegistroGrupo.Designer.cs">
       <DependentUpon>FormRegistroGrupo.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormVerificar.cs">
+    <Compile Include="01 login\FormVerificar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormVerificar.Designer.cs">
+    <Compile Include="01 login\FormVerificar.Designer.cs">
       <DependentUpon>FormVerificar.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormEditarEvent.cs">
+    <Compile Include="02 admin\FormEditarEvent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormEditarEvent.Designer.cs">
+    <Compile Include="02 admin\FormEditarEvent.Designer.cs">
       <DependentUpon>FormEditarEvent.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="01 login\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAdmin.resx">
+    <EmbeddedResource Include="02 admin\FormAdmin.resx">
       <DependentUpon>FormAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAprendicesRegistrados.resx">
+    <EmbeddedResource Include="02 admin\FormAprendicesRegistrados.resx">
       <DependentUpon>FormAprendicesRegistrados.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAprendiz.resx">
+    <EmbeddedResource Include="03 aprendiz\FormAprendiz.resx">
       <DependentUpon>FormAprendiz.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCrearEvento.resx">
+    <EmbeddedResource Include="02 admin\FormCrearEvento.resx">
       <DependentUpon>FormCrearEvento.cs</DependentUpon>
     </EmbeddedResource>
     <!-- Agregado desde develop -->
-    <EmbeddedResource Include="FormRecuperarCuenta.resx">
+    <EmbeddedResource Include="01 login\FormRecuperarCuenta.resx">
       <DependentUpon>FormRecuperarCuenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRegistroGrupo.resx">
+    <EmbeddedResource Include="03 aprendiz\FormRegistroGrupo.resx">
       <DependentUpon>FormRegistroGrupo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormVerificar.resx">
+    <EmbeddedResource Include="01 login\FormVerificar.resx">
       <DependentUpon>FormVerificar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormEditarEvent.resx">
+    <EmbeddedResource Include="02 admin\FormEditarEvent.resx">
       <DependentUpon>FormEditarEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -155,5 +155,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
