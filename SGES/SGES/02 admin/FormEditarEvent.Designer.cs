@@ -218,6 +218,7 @@
             // txtNombreEvento1
             // 
             this.txtNombreEvento1.Location = new System.Drawing.Point(63, 63);
+            this.txtNombreEvento1.MaxLength = 50;
             this.txtNombreEvento1.Name = "txtNombreEvento1";
             this.txtNombreEvento1.Size = new System.Drawing.Size(129, 20);
             this.txtNombreEvento1.TabIndex = 0;

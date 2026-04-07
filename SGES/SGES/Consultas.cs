@@ -266,7 +266,7 @@ namespace SGES
             return ds;
         }
 
-        public void InsertarEvento(int idEvent, string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin, int idUser)
+        public void InsertarEvento(string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin, int idUser)
         {
             try
             {
@@ -275,13 +275,13 @@ namespace SGES
                 DateTime diaEvento = fechaHoraInicio.Date;
 
                 string query =
-                    "INSERT INTO Eventos (idEvento, nombreEvento, tipoEvento, fechaHoraInicio, fechaHoraFin, idUser) " +
-                    "VALUES (@idEvent, @nombreEvent, @tipoEvent, @fechaHoraInicio, @fechaHoraFin, @idUser)";
+                    "INSERT INTO Eventos (nombreEvento, tipoEvento, fechaHoraInicio, fechaHoraFin, idUser) " +
+                    "VALUES (@nombreEvent, @tipoEvent, @fechaHoraInicio, @fechaHoraFin, @idUser)";
 
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
                 {
                     // Establece el valor de cada columna en la tabla antes y la relacionamos con el parametro correspondiente
-                    cmd.Parameters.Add("@idEvent", System.Data.SqlDbType.Int).Value = idEvent;
+                    //cmd.Parameters.Add("@idEvent", System.Data.SqlDbType.Int).Value = idEvent;
                     cmd.Parameters.Add("@nombreEvent", System.Data.SqlDbType.VarChar, 50).Value = nombreEvent;
                     cmd.Parameters.Add("@tipoEvent", System.Data.SqlDbType.VarChar, 50).Value = tipoEvent;
                     cmd.Parameters.Add("@fechaHoraInicio", System.Data.SqlDbType.DateTime2).Value = fechaHoraInicio;
@@ -344,10 +344,12 @@ namespace SGES
             try
             {
                 string query =
-                    "SELECT a.idApr, a.nombreApr, a.emailApr " +
-                    "FROM Inscripciones i " +
-                    "JOIN Aprendiz a ON i.idApr = a.idApr " +
-                    "WHERE i.idEvento = @idEvento"; // Asigna en una variable los aprendices registrados a un evento
+                    "SELECT a.idApr, a.nombreApr, i.fechaInscrip, a.edadApr, a.emailApr, a.contactoApr, a.generoApr, f.codigoFic " +
+                    "FROM Aprendiz a " +
+                    "join Inscripciones i ON a.idApr = i.idApr " +
+                    "join Fichas f ON a.codigoFic = f.codigoFic " +
+                    "join Programas p ON f.codigoProg = p.codigoProg " +
+                    "WHERE i.idEvento = @idEvento "; // Asigna en una variable los aprendices registrados a un evento
 
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))  // Consulta la variable query
                 {
