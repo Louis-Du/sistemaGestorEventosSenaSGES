@@ -11,38 +11,44 @@ namespace SGES
 {
     internal class Consultas
     {
-        // Conexión reutilizable
+        // Instancia de la clase de conexión a la base de datos.
+        // Se reutiliza para abrir y cerrar conexiones.
         private readonly Conexion cn = new Conexion();
 
-        // Si quieres conservar este estado:
+        // Variable para almacenar el estado de la conexión o autenticación.
         private Boolean Estado_conexion = false;
 
         /*
          * JAVIER
          */
 
+        // Método para iniciar sesión tanto para Administrador como Aprendiz
         public Boolean Iniciar_sesion(int idUser, string contraseñaUser, FormLogin login)
         {
-            DataSet ds = new DataSet();
+            DataSet ds = new DataSet(); // DataSet para almacenar los resultados de las consultas
 
             try
             {
-                ds.Tables.Clear();
 
-                // 🔹 BUSCAR EN USUARIO (ADMIN)
+                ds.Tables.Clear(); // Limpia cualquier tabla previa en el DataSet
+
+                // BUSCAR EN USUARIO (ADMIN)
                 using (SqlCommand query = new SqlCommand(
                     "SELECT idUser, tipoUser FROM Usuario WHERE idUser=@idUser AND contraseñaUser=@contraseñaUser",
                     cn.Conectar()))
                 {
+                    // el uso de parámetros es para evitar inyección SQL
                     query.Parameters.AddWithValue("@idUser", idUser);
                     query.Parameters.AddWithValue("@contraseñaUser", contraseñaUser);
 
+                    // Adaptador para llenar el DataSet con los resultados
                     using (SqlDataAdapter da = new SqlDataAdapter(query))
                     {
                         da.Fill(ds, "Usuario");
                     }
                 }
 
+                // condicional para verificar si se encontró resultados en Usuario
                 if (ds.Tables["Usuario"].Rows.Count > 0)
                 {
                     string tipo = ds.Tables["Usuario"].Rows[0]["tipoUser"].ToString().Trim();
@@ -51,16 +57,17 @@ namespace SGES
                         MessageBox.Show("Bienvenido(a) Administrador!");
                         Estado_conexion = true;
 
+                        // Abre el formulario de administrador pasando el id para futuras consultas
                         FormAdmin frm = new FormAdmin(idUser);
                         frm.Show();
 
-                        login.Hide(); // 🔥 ocultas el login
+                        login.Hide(); // ocultas el login
 
                         return true;
                     }
                 }
 
-                // 🔹 BUSCAR EN APRENDIZ
+                // BUSCAR EN APRENDIZ
                 ds.Tables.Clear();
 
                 using (SqlCommand query2 = new SqlCommand(
@@ -80,7 +87,8 @@ namespace SGES
                 if (ds.Tables["Aprendiz"].Rows.Count > 0)
                 {
                     string tipo = ds.Tables["Aprendiz"].Rows[0]["tipoUser"].ToString().Trim();
-                    if (tipo == "Aprendiz")
+                    // Si se actualizó al menos una fila en la tabla Aprendiz, se verifica el tipo de usuario
+                    if (tipo == "Aprendiz") 
                     {
                         MessageBox.Show("Bienvenido(a) Aprendiz!");
                         Estado_conexion = true;
@@ -132,16 +140,18 @@ namespace SGES
                         }
                     }
 
-                    // 🔹 Aprendiz
+                    // ACTUALIZAR EN TABLA APRENDIZ (si no se actualizó en Usuario, se intenta actualizar en Aprendiz, ya que el mismo idUser puede existir en ambas tablas pero con roles diferentes)
                     string query2 = "UPDATE Aprendiz SET contraseñaUser = @newPassword WHERE idApr = @idUser";
 
                     using (SqlCommand cmd2 = new SqlCommand(query2, con))
                     {
+                        // Parámetros para la actualización
                         cmd2.Parameters.Add("@idApr", SqlDbType.Int).Value = idUser;
                         cmd2.Parameters.Add("@pass", SqlDbType.VarChar).Value = newPassword;
 
                         int filas = cmd2.ExecuteNonQuery();
 
+                        // Si se actualizó correctamente
                         if (filas > 0)
                         {
                             MessageBox.Show("Contraseña actualizada correctamente");
@@ -158,17 +168,19 @@ namespace SGES
             }
             finally
             {
+                // Cierra la conexión
                 cn.Desconectar();
             }
         }
 
-        public bool VerificarUsuario(int idUser, string emailUser) // Método para recuperar cuenta
+        // Método para verificar si existe un usuario (para recuperación de cuenta)
+        public bool VerificarUsuario(int idUser, string emailUser) 
         {
             try
             {
                 using (SqlConnection con = cn.Conectar())
                 {
-                    // 🔹 Buscar en Usuario
+                    // Buscar en Usuario
                     string query1 = "SELECT 1 FROM Usuario WHERE idUser=@idUser AND emailUser=@emailUser";
                     using (SqlCommand cmd = new SqlCommand(query1, con))
                     {
@@ -182,7 +194,7 @@ namespace SGES
                         }
                     }
 
-                    // 🔹 Buscar en Aprendiz
+                    // Buscar en Aprendiz
                     string query2 = "SELECT 1 FROM Aprendiz WHERE idApr=@id AND emailApr=@emailUser";
 
                     using (SqlCommand cmd2 = new SqlCommand(query2, con)) // Reutiliza la misma conexión para evitar abrir y cerrar múltiples veces
@@ -198,7 +210,7 @@ namespace SGES
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) // Manejo de errores
             {
                 MessageBox.Show(ex.Message);
             }
@@ -207,6 +219,7 @@ namespace SGES
                 cn.Desconectar();
             }
 
+            // retorna false si no se encontró el usuario en ninguna de las dos tablas
             return false;
         }
 
@@ -220,9 +233,10 @@ namespace SGES
 
             try
             {
+                // Se utiliza using para asegurar que la conexión se cierre correctamente después de la consulta, incluso si ocurre una excepción
                 using (SqlCommand consulta = new SqlCommand("SELECT * FROM Eventos", cn.Conectar())) // Consulta los eventos registrados en la base de datos
                 {
-                    using (SqlDataAdapter da = new SqlDataAdapter(consulta))
+                    using (SqlDataAdapter da = new SqlDataAdapter(consulta)) // Almacena el resultado de la consulta en un DataSet
                     {
                         da.Fill(ds, "Eventos"); // Ejecuta la consulta
                     }
