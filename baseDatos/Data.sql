@@ -4,9 +4,9 @@ INSERT INTO Programas VALUES (102, 'Desarrollo de Software', '2024-02-01', 18, '
 INSERT INTO Programas VALUES (103, 'Ciberseguridad', '2024-03-10', 12, 'Especialización');
 
 -- Insertar en Administrador
-INSERT INTO Usuario VALUES (1, 'Carlos Ruiz', 'carlosruiz@gmail.com', 'Admin12*', 'Administrador');
-INSERT INTO Usuario VALUES (2, 'Ana Martínez', 'anamartines@gmail.com', 'Pass789#', 'Administrador');
-INSERT INTO Usuario VALUES (3, 'Luis Peña', 'luispeña@gmail.com', 'Sena2024', 'Administrador');
+INSERT INTO Usuario VALUES (101, 'Carlos Ruiz', 'carlosruiz@gmail.com', 'Admin12*', 'Administrador');
+INSERT INTO Usuario VALUES (102, 'Ana Martínez', 'anamartines@gmail.com', 'Pass789#', 'Administrador');
+INSERT INTO Usuario VALUES (103, 'Luis Peña', 'luispeña@gmail.com', 'Sena2024', 'Administrador');
 
 
 -- Insertar en Ficha (Depende de Programa)
@@ -15,11 +15,11 @@ INSERT INTO Fichas VALUES (26702, '2024-02-05', '2025-08-05', 102);
 INSERT INTO Fichas VALUES (26703, '2024-03-15', '2025-03-15', 103);
 
 -- Inserciones de ejemplo (ajusta ids si ya existen)
-INSERT INTO Eventos (idEvento, nombreEvento, tipoEvento, diaEvento, fechaHoraInicio, fechaHoraFin, idUser)
+INSERT INTO Eventos (idEvento, nombreEvento, tipoEvento, fechaHoraInicio, fechaHoraFin, idUser)
 VALUES
-(501, 'Conferencia Tech', 'Educativo', '2024-05-10', '09:00:00', '10:00:00', 1),
-(502, 'Hackathon SENA',   'Competencia', '2024-06-15', '08:00:00', '20:00:00', 2),
-(503, 'Feria de Empleo',  'Laboral',     '2024-07-20', '10:00:00', '13:00:00', 1);
+(501, 'Conferencia Tech', 'Educativo', '2024-05-10 09:00:00', '2024-05-11 10:00:00', 101),
+(502, 'Hackathon SENA',   'Cultural', '2024-06-15 08:00:00', '2024-06-15 20:00:00', 102),
+(503, 'Feria de Empleo',  'Deportivo',     '2024-07-20 10:00:00', '2024-07-20 13:00:00', 103);
 
 -- Aprendices
 INSERT INTO Aprendiz VALUES 
@@ -64,6 +64,10 @@ ORDER BY e.fechaHoraInicio;
 SELECT *
 FROM Inscripciones
 WHERE idGrupo IS NOT NULL;
+
+select * from Eventos
+
+select * from Aprendiz
 
 
 
