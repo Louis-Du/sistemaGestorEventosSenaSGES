@@ -5,31 +5,29 @@ using System.Windows.Forms;
 
 namespace SGES
 {
+
+    // FORMULARIO DE REGISTRO GRUPAL: CARGA APRENDICES DISPONIBLES, ARMA EL GRUPO Y ENVÍA EL REGISTRO FINAL
     public partial class FormRegistroGrupo : Form
     {
-        private readonly int idEvento; // id del evento para el que se registra el grupo
-
-        private readonly int idAprActual; // aprendiz que inició sesión
-
-        private readonly DataTable dtGrupo; // almacena los miembros seleccionados
+        private readonly int idEvento; // ID DEL EVENTO SELECCIONADO DESDE FORMAPRENDIZ
+        private readonly int idAprActual; // ID DEL APRENDIZ QUE INICIÓ SESIÓN Y CUENTA COMO MIEMBRO DEL GRUPO
+        private readonly DataTable dtGrupo; // TABLA TEMPORAL EN MEMORIA QUE GUARDA LOS COMPAÑEROS SELECCIONADOS
 
         public FormRegistroGrupo()
         {
             InitializeComponent();
 
-            // No asignar this.idEvento = idEvento aquí (era un bug)
+            // VALORES POR DEFECTO PARA EVITAR ERRORES SI EL FORMULARIO SE ABRE SIN PARÁMETROS
             this.idEvento = 0;
-
             this.idAprActual = 0;
 
-            // Inicializar tabla de miembros del grupo
+            // TABLA TEMPORAL QUE ALIMENTA EL DATAGRIDVIEW DE APRENDICES SELECCIONADOS
             dtGrupo = new DataTable();
             dtGrupo.Columns.Add("idApr", typeof(int));
             dtGrupo.Columns.Add("nombreApr", typeof(string));
             dtGrupo.Columns.Add("emailApr", typeof(string));
 
-            // Si existe un DataGridView para mostrar los miembros (nombre típico: dataGridViewMiembros),
-            // lo enlazamos automáticamente para que el diseñador no tenga que cambiar nada.
+            // ENLAZA dtGrupo AL DATAGRIDVIEW DE LA DERECHA PARA MOSTRAR A LOS APRENDICES AGREGADOS
             var dgvMembers = this.Controls.Find("dataGridViewSelec", true).FirstOrDefault() as DataGridView;
             if (dgvMembers != null)
             {
@@ -39,13 +37,14 @@ namespace SGES
             }
         }
 
-        // Constructor que permite pasar el idEvento desde el formulario padre (recomendado)
+        // CONSTRUCTOR PRINCIPAL: RECIBE EL ID DEL EVENTO Y EL ID DEL APRENDIZ ACTUAL DESDE FORMAPRENDIZ
         public FormRegistroGrupo(int idEvento, int idAprActual) : this()
         {
             this.idEvento = idEvento;
             this.idAprActual = idAprActual;
         }
 
+        // CARGA EL LISTADO DE APRENDICES DISPONIBLES PARA EL EVENTO SELECCIONADO
         private void FormRegistroGrupo_Load(object sender, EventArgs e)
         {
             try
@@ -53,7 +52,7 @@ namespace SGES
                 Consultas consulta = new Consultas();
                 DataSet ds = consulta.ConsultarAprendicesDisponibles(idEvento, idAprActual);
 
-                // Aceptamos tanto "Disponibles" como "Aprendices" según cómo implemente el método
+                // ACEPTA EL NOMBRE DE TABLA DEVUELTO POR CONSULTAS PARA EVITAR ERRORES DE ENLACE
                 string tabla = ds.Tables.Contains("Disponibles") ? "Disponibles" :
                                ds.Tables.Contains("Aprendices") ? "Aprendices" : null;
 
@@ -72,22 +71,23 @@ namespace SGES
             }
         }
 
+        // BOTÓN VOLVER: CIERRA ESTE FORMULARIO Y REGRESA AL ANTERIOR
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            // Cerrar este formulario vuelve al formulario padre que lo abrió (sin crear nuevas instancias).
             this.Close();
         }
 
+        // AGREGA UN APRENDIZ DISPONIBLE AL DATAGRIDVIEW DE SELECCIONADOS
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            // 1) Validar selección
+            // 1) VALIDAR QUE EXISTA UNA FILA SELECCIONADA EN EL GRID DE DISPONIBLES
             if (dataGridViewGrupo.CurrentRow == null)
             {
                 MessageBox.Show("Selecciona un aprendiz.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            // Validar límite de miembros (19)
+            // 2) VALIDAR MÁXIMO DE 19 COMPAÑEROS EN GRID, YA QUE EL APRENDIZ ACTUAL COMPLETA EL GRUPO DE 20
             if (dtGrupo.Rows.Count >= 19)
             {
                 MessageBox.Show("Solo puedes agregar hasta 19 compañeros. Con tu registro, el grupo puede tener máximo 20 integrantes.");
@@ -98,10 +98,10 @@ namespace SGES
             string nombreApr = string.Empty;
             string emailApr = string.Empty;
 
-            // 2) Intento preferente: obtener desde DataBoundItem (DataRowView)
+            // 3) PRIMER INTENTO: OBTENER LOS DATOS DESDE DATABOUNDITEM SI LA FILA ESTÁ ENLAZADA A UN DATATABLE
             if (dataGridViewGrupo.CurrentRow.DataBoundItem is DataRowView drv)
             {
-                // Comprueba que la columna exista en el DataTable
+                // VALIDACIÓN DE EXISTENCIA DE LA COLUMNA idApr EN EL ORIGEN DE DATOS
                 if (!drv.Row.Table.Columns.Contains("idApr"))
                 {
                     MessageBox.Show("La fuente no contiene la columna 'idApr'. Revisa el DataTable.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -114,10 +114,10 @@ namespace SGES
             }
             else
             {
-                // 3) Fallback: buscar la celda por DataPropertyName o por Name
+                // 4) FALLBACK: SI NO HAY DATABOUNDITEM, BUSCAR LOS DATOS DIRECTAMENTE EN LAS COLUMNAS VISIBLES DEL GRID
                 DataGridViewCell cell = null;
 
-                // buscar columna cuyo DataPropertyName sea "idApr"
+                // BUSCAR LA COLUMNA QUE CONTIENE EL ID DEL APRENDIZ
                 foreach (DataGridViewColumn col in dataGridViewGrupo.Columns)
                 {
                     if (string.Equals(col.DataPropertyName, "idApr", StringComparison.OrdinalIgnoreCase) ||
@@ -128,7 +128,7 @@ namespace SGES
                     }
                 }
 
-                // Si no se encontró, usar la primera celda por si el id está en la primera columna
+                // SI NO SE ENCUENTRA LA COLUMNA, USAR LA PRIMERA CELDA COMO ÚLTIMO RECURSO
                 if (cell == null) cell = dataGridViewGrupo.CurrentRow.Cells[0];
 
                 if (cell?.Value == null || !int.TryParse(cell.Value.ToString(), out idApr))
@@ -137,7 +137,7 @@ namespace SGES
                     return;
                 }
 
-                // Intentar leer nombre/email si existen columnas con esos DataPropertyName
+                // INTENTAR LEER TAMBIÉN NOMBRE Y CORREO PARA MOSTRARLOS EN EL GRID DE SELECCIONADOS
                 var colNombre = dataGridViewGrupo.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => string.Equals(c.DataPropertyName, "nombreApr", StringComparison.OrdinalIgnoreCase) || string.Equals(c.Name, "nombreApr", StringComparison.OrdinalIgnoreCase));
                 var colEmail = dataGridViewGrupo.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => string.Equals(c.DataPropertyName, "emailApr", StringComparison.OrdinalIgnoreCase) || string.Equals(c.Name, "emailApr", StringComparison.OrdinalIgnoreCase));
 
@@ -145,7 +145,7 @@ namespace SGES
                 if (colEmail != null) emailApr = dataGridViewGrupo.CurrentRow.Cells[colEmail.Index].Value?.ToString() ?? string.Empty;
             }
 
-            // 4) Evitar duplicados en dtGrupo
+            // 5) EVITAR DUPLICADOS EN EL DATAGRIDVIEW DE SELECCIONADOS
             bool existe = dtGrupo.AsEnumerable().Any(r => r.Field<int>("idApr") == idApr);
             if (existe)
             {
@@ -153,12 +153,14 @@ namespace SGES
                 return;
             }
 
+            // 6) AGREGAR EL APRENDIZ A LA TABLA TEMPORAL dtGrupo Y REFLEJARLO EN EL GRID DERECHO
             dtGrupo.Rows.Add(idApr, nombreApr, emailApr);
         }
 
+        // QUITA UN APRENDIZ DEL GRUPO TEMPORAL ANTES DE REGISTRARLO EN BASE DE DATOS
         private void btnQuitar_Click(object sender, EventArgs e)
         {
-            // Intentar quitar según selección en el DataGridView de seleccion 
+            // TOMAR LA SELECCIÓN DESDE EL GRID DE APRENDICES AGREGADOS
             var dgvMembers = this.Controls.Find("dataGridViewSelec", true).FirstOrDefault() as DataGridView;
 
             int? idAprSeleccionado = null;
@@ -178,7 +180,7 @@ namespace SGES
             }
             else if (dataGridViewGrupo.CurrentRow != null)
             {
-                // Fallback: usar la selección del grid de disponibles para quitar el mismo aprendiz del grupo
+                // FALLBACK: SI NO HAY SELECCIÓN EN EL GRID DERECHO, USAR LA DEL GRID IZQUIERDO
                 if (dataGridViewGrupo.CurrentRow.DataBoundItem is DataRowView drv)
                 {
                     idAprSeleccionado = Convert.ToInt32(drv["idApr"]);
@@ -197,7 +199,7 @@ namespace SGES
                 return;
             }
 
-            // Buscar y eliminar filas en dtGrupo con ese idApr
+            // BUSCAR Y ELIMINAR EN dtGrupo EL APRENDIZ QUE COINCIDA CON EL ID SELECCIONADO
             DataRow[] rows = dtGrupo.Select($"idApr = {idAprSeleccionado.Value}");
             if (rows.Length == 0)
             {
@@ -210,26 +212,31 @@ namespace SGES
             
         }
 
+        // REGISTRA EL GRUPO COMPLETO: APRENDIZ ACTUAL + APRENDICES AGREGADOS EN EL GRID
         private void btnRegGrupo_Click(object sender, EventArgs e)
         {
+            // VALIDAR QUE EL FORMULARIO RECIBIÓ EL EVENTO DESDE FORMAPRENDIZ
             if (idEvento == 0)
             {
                 MessageBox.Show("No se encontró el evento seleccionado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            // VALIDAR QUE EL FORMULARIO RECIBIÓ EL APRENDIZ QUE INICIÓ SESIÓN
             if (idAprActual == 0)
             {
                 MessageBox.Show("No se encontró el aprendiz que inició sesión.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            // VALIDAR MÍNIMO DE 2 COMPAÑEROS EN EL GRID PARA FORMAR UN GRUPO REAL DE 3 INTEGRANTES
             if (dtGrupo.Rows.Count < 2)
             {
                 MessageBox.Show("Debes seleccionar mínimo 2 aprendices para registrar el grupo.");
                 return;
             }
 
+            // ARMAR LA LISTA FINAL DE IDS: PRIMERO EL APRENDIZ LOGUEADO Y LUEGO LOS COMPAÑEROS SELECCIONADOS
             var idsAprendices = new System.Collections.Generic.List<int> { idAprActual };
 
             foreach (DataRow row in dtGrupo.Rows)
@@ -237,6 +244,7 @@ namespace SGES
                 idsAprendices.Add(Convert.ToInt32(row["idApr"]));
             }
 
+            // ENVIAR LA LISTA COMPLETA A CONSULTAS PARA VALIDAR Y REGISTRAR EL GRUPO EN LA BASE DE DATOS
             Consultas consulta = new Consultas();
             bool ok = consulta.RegistrarInscripcionGrupo(idsAprendices, idEvento);
 

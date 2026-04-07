@@ -389,13 +389,12 @@ namespace SGES
          * LUKAS
          */
 
-        /// <summary>
-        /// Comprueba si el aprendiz tiene alguna inscripción que solape con el evento indicado.
-        /// </summary>
+        // VALIDA SI UN APRENDIZ YA TIENE OTRO EVENTO EN EL MISMO HORARIO DEL EVENTO SELECCIONADO
         public bool TieneConflicto(int idApr, int idEvento)
         {
             try
             {
+                // PRIMERO CONSULTA LA FECHA Y HORA DEL EVENTO NUEVO QUE SE QUIERE REGISTRAR
                 DataTable dt = new DataTable();
                 using (SqlCommand cmd = new SqlCommand(
                     "SELECT fechaHoraInicio, fechaHoraFin FROM Eventos WHERE idEvento = @idEvento",
@@ -413,6 +412,7 @@ namespace SGES
                 DateTime inicioNuevo = Convert.ToDateTime(dt.Rows[0]["fechaHoraInicio"]);
                 DateTime finNuevo = Convert.ToDateTime(dt.Rows[0]["fechaHoraFin"]);
 
+                // LUEGO REVISA SI ALGUNA INSCRIPCIÓN DEL APRENDIZ SE CRUZA CON ESE NUEVO HORARIO
                 string sql =
                     "SELECT COUNT(1) FROM Inscripciones i " +
                     "JOIN Eventos e ON i.idEvento = e.idEvento " +
@@ -443,16 +443,12 @@ namespace SGES
 
         
 
-        /// <summary>
-        /// Registra la inscripción tras validar duplicado y conflicto de horarios.
-        /// idGrupo ahora es opcional (int?). Si es null se inserta NULL en la base de datos,
-        /// permitiendo inscripciones individuales sin grupo.
-        /// </summary>
+        // REGISTRO INDIVIDUAL: VALIDA DUPLICADO Y CONFLICTO, Y LUEGO INSERTA UNA SOLA INSCRIPCIÓN
         public bool RegistrarInscripcion(int idApr, int idEvento, string modalidad = "Presencial", int? idGrupo = null)
         {
             try
             {
-                // 1) Duplicado (comprobación rápida)
+                // 1) VALIDAR SI EL APRENDIZ YA ESTÁ INSCRITO EN ESE MISMO EVENTO
                 using (SqlCommand chk = new SqlCommand("SELECT COUNT(1) FROM Inscripciones WHERE idApr = @idApr AND idEvento = @idEvento", cn.Conectar()))
                 {
                     chk.Parameters.AddWithValue("@idApr", idApr);
@@ -465,19 +461,19 @@ namespace SGES
                     }
                 }
 
-                // 2) Conflicto horario (se mantiene igual)
+                // 2) VALIDAR CRUCE DE HORARIO CON OTROS EVENTOS DEL MISMO APRENDIZ
                 if (TieneConflicto(idApr, idEvento))
                 {
                     MessageBox.Show("No puedes inscribirte: el evento entra en conflicto con otra inscripción.");
                     return false;
                 }
 
-                // 3) Generar nuevo idInscrip y insertar dentro de una transacción
+                // 3) PREPARAR EL INSERT DE LA INSCRIPCIÓN Y CONTROLARLO DENTRO DE UNA TRANSACCIÓN
                 int nuevoId = 0;
                 string insert = "INSERT INTO Inscripciones (idInscrip, fechaInscrip, modalidadInscrip, idApr, idEvento, idGrupo) " +
                                 "VALUES (@idInscrip, @fechaInscrip, @modalidad, @idApr, @idEvento, @idGrupo)";
 
-                // Abrimos conexión manualmente para controlar la transacción
+                // ABRIR CONEXIÓN Y TRANSACCIÓN PARA ASEGURAR QUE EL REGISTRO SE HAGA COMPLETO
                 SqlConnection conn = cn.Conectar();
                 using (SqlTransaction tran = conn.BeginTransaction())
                 {
@@ -496,7 +492,7 @@ namespace SGES
                             cmdIns.Parameters.AddWithValue("@idApr", idApr);
                             cmdIns.Parameters.AddWithValue("@idEvento", idEvento);
 
-                            // idGrupo opcional: pasar DBNull.Value si es null
+                            // idGrupo ES OPCIONAL EN INSCRIPCIÓN INDIVIDUAL: SI VIENE NULL, SE GUARDA COMO NULL EN BASE DE DATOS
                             var p = cmdIns.Parameters.Add("@idGrupo", System.Data.SqlDbType.Int);
                             p.Value = (object)idGrupo ?? DBNull.Value;
 
@@ -526,18 +522,22 @@ namespace SGES
             }
         }
 
+        // REGISTRO GRUPAL: VALIDA A TODOS LOS INTEGRANTES, CREA UN GRUPO Y REGISTRA UNA INSCRIPCIÓN PARA CADA APRENDIZ
         public bool RegistrarInscripcionGrupo(System.Collections.Generic.List<int> idsAprendices, int idEvento, string modalidad = "Presencial")
         {
             try
             {
+                // VALIDAR QUE LA LISTA DE APRENDICES LLEGUE CON DATOS
                 if (idsAprendices == null || idsAprendices.Count == 0)
                 {
                     MessageBox.Show("No hay aprendices seleccionados para registrar.");
                     return false;
                 }
 
+                // ELIMINAR POSIBLES IDS REPETIDOS ANTES DE VALIDAR Y REGISTRAR
                 var idsUnicos = idsAprendices.Distinct().ToList();
 
+                // VALIDAR UNO POR UNO SI ALGÚN APRENDIZ YA ESTÁ INSCRITO O TIENE CONFLICTO DE HORARIO
                 foreach (int idApr in idsUnicos)
                 {
                     using (SqlCommand chk = new SqlCommand("SELECT COUNT(1) FROM Inscripciones WHERE idApr = @idApr AND idEvento = @idEvento", cn.Conectar()))
@@ -559,17 +559,20 @@ namespace SGES
                     }
                 }
 
+                // SI TODOS PASAN LAS VALIDACIONES, SE CREA EL GRUPO Y LAS INSCRIPCIONES DENTRO DE UNA TRANSACCIÓN
                 SqlConnection conn = cn.Conectar();
                 using (SqlTransaction tran = conn.BeginTransaction())
                 {
                     try
                     {
+                        // GENERAR EL NUEVO ID DEL GRUPO
                         int nuevoIdGrupo;
                         using (SqlCommand maxGrupo = new SqlCommand("SELECT ISNULL(MAX(idGrupo), 0) + 1 FROM Grupos", conn, tran))
                         {
                             nuevoIdGrupo = Convert.ToInt32(maxGrupo.ExecuteScalar());
                         }
 
+                        // INSERTAR EL GRUPO UNA SOLA VEZ PARA RELACIONAR A TODOS LOS APRENDICES DEL MISMO REGISTRO
                         using (SqlCommand insGrupo = new SqlCommand("INSERT INTO Grupos (idGrupo, nombreGrupo) VALUES (@idGrupo, @nombreGrupo)", conn, tran))
                         {
                             insGrupo.Parameters.AddWithValue("@idGrupo", nuevoIdGrupo);
@@ -577,6 +580,7 @@ namespace SGES
                             insGrupo.ExecuteNonQuery();
                         }
 
+                        // INSERTAR UNA INSCRIPCIÓN POR CADA APRENDIZ USANDO EL MISMO ID DE GRUPO
                         foreach (int idApr in idsUnicos)
                         {
                             int nuevoIdInscrip;
@@ -622,6 +626,7 @@ namespace SGES
             }
         }
 
+        // CONSULTA LOS APRENDICES DISPONIBLES PARA ARMAR UN GRUPO, EXCLUYENDO AL APRENDIZ ACTUAL Y A LOS YA INSCRITOS EN EL EVENTO
         public DataSet ConsultarAprendicesDisponibles(int idEvento, int idAprActual)
         {
             DataSet ds = new DataSet();
@@ -633,7 +638,7 @@ namespace SGES
                     "WHERE a.idApr <> @idAprActual " +
                     "AND NOT EXISTS ( " +
                     "SELECT 1 FROM Inscripciones i WHERE i.idApr = a.idApr AND i.idEvento = @idEvento " +
-                    ") "; // Consulta para obtener los aprendices disponibles para inscribir en un evento, excluyendo al aprendiz actual
+                    ") ";
 
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
                 {
