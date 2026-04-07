@@ -92,6 +92,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(444, 299);
             this.panel1.TabIndex = 10;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label6
             // 
@@ -185,9 +186,8 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
             this.label1.Location = new System.Drawing.Point(60, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 16);
+            this.label1.Size = new System.Drawing.Size(0, 16);
             this.label1.TabIndex = 6;
-            this.label1.Text = "ID del Evento:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // dtpFechaHoraInicio
@@ -218,6 +218,7 @@
             // txtNombreEvento1
             // 
             this.txtNombreEvento1.Location = new System.Drawing.Point(63, 63);
+            this.txtNombreEvento1.MaxLength = 50;
             this.txtNombreEvento1.Name = "txtNombreEvento1";
             this.txtNombreEvento1.Size = new System.Drawing.Size(129, 20);
             this.txtNombreEvento1.TabIndex = 0;

@@ -247,7 +247,8 @@ namespace SGES
             try
             {
                 // Se utiliza using para asegurar que la conexión se cierre correctamente después de la consulta, incluso si ocurre una excepción
-                using (SqlCommand consulta = new SqlCommand("select * from Eventos where Eventos.fechaHoraFin >= getdate()", cn.Conectar())) // Consulta los eventos registrados en la base de datos que aun no han finalizado
+                using (SqlCommand consulta = new SqlCommand("SELECT e.idEvento, e.nombreEvento, e.tipoEvento, e.fechaHoraInicio, e.fechaHoraFin  FROM Eventos e where e.fechaHoraFin >= getdate()", cn.Conectar())) // Consulta los eventos registrados en la base de datos
+
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(consulta)) // Almacena el resultado de la consulta en un DataSet
                     {
@@ -266,7 +267,7 @@ namespace SGES
             return ds;
         }
 
-        public void InsertarEvento(int idEvent, string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin, int idUser)
+        public void InsertarEvento(string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin, int idUser)
         {
             try
             {
@@ -275,13 +276,13 @@ namespace SGES
                 DateTime diaEvento = fechaHoraInicio.Date;
 
                 string query =
-                    "INSERT INTO Eventos (idEvento, nombreEvento, tipoEvento, fechaHoraInicio, fechaHoraFin, idUser) " +
-                    "VALUES (@idEvent, @nombreEvent, @tipoEvent, @fechaHoraInicio, @fechaHoraFin, @idUser)";
+                    "INSERT INTO Eventos (nombreEvento, tipoEvento, fechaHoraInicio, fechaHoraFin, idUser) " +
+                    "VALUES (@nombreEvent, @tipoEvent, @fechaHoraInicio, @fechaHoraFin, @idUser)";
 
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
                 {
                     // Establece el valor de cada columna en la tabla antes y la relacionamos con el parametro correspondiente
-                    cmd.Parameters.Add("@idEvent", System.Data.SqlDbType.Int).Value = idEvent;
+                    //cmd.Parameters.Add("@idEvent", System.Data.SqlDbType.Int).Value = idEvent;
                     cmd.Parameters.Add("@nombreEvent", System.Data.SqlDbType.VarChar, 50).Value = nombreEvent;
                     cmd.Parameters.Add("@tipoEvent", System.Data.SqlDbType.VarChar, 50).Value = tipoEvent;
                     cmd.Parameters.Add("@fechaHoraInicio", System.Data.SqlDbType.DateTime2).Value = fechaHoraInicio;
@@ -344,10 +345,12 @@ namespace SGES
             try
             {
                 string query =
-                    "SELECT a.idApr, a.nombreApr, a.emailApr " +
-                    "FROM Inscripciones i " +
-                    "JOIN Aprendiz a ON i.idApr = a.idApr " +
-                    "WHERE i.idEvento = @idEvento"; // Asigna en una variable los aprendices registrados a un evento
+                    "SELECT a.idApr, a.nombreApr, i.fechaInscrip, a.edadApr, a.emailApr, a.contactoApr, a.generoApr, f.codigoFic " +
+                    "FROM Aprendiz a " +
+                    "join Inscripciones i ON a.idApr = i.idApr " +
+                    "join Fichas f ON a.codigoFic = f.codigoFic " +
+                    "join Programas p ON f.codigoProg = p.codigoProg " +
+                    "WHERE i.idEvento = @idEvento "; // Asigna en una variable los aprendices registrados a un evento
 
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))  // Consulta la variable query
                 {
@@ -407,6 +410,37 @@ namespace SGES
                 }
                 MessageBox.Show("¡Evento eliminado con éxito!");
             }
+        }
+
+        public DataSet FiltrarEvento(string nombreEvento)
+        {
+            DataSet ds = new DataSet();
+
+            try
+            {
+                string consulta = "SELECT e.nombreEvento, e.tipoEvento, e.fechaHoraInicio, e.fechaHoraFin " + 
+                    "FROM Eventos e " +
+                    "WHERE nombreEvento LIKE @nombreEvento "; 
+
+                using (SqlCommand cmd = new SqlCommand(consulta, cn.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@nombreEvento", "%" + nombreEvento + "%"); // Ignora los primero y últimos caracteres
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd)) // Almacena el resultado de la consulta en un DataSet
+                    {
+                        da.Fill(ds, "Eventos"); // Ejecuta la consulta
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
+            return ds;
         }
 
         /*

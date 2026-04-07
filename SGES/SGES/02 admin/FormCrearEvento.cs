@@ -28,11 +28,10 @@ namespace SGES
             {
                 Consultas co = new Consultas();
 
-                if (string.IsNullOrWhiteSpace(txtidEvento.Text) || string.IsNullOrWhiteSpace(txtNombreEvento.Text) || string.IsNullOrWhiteSpace(cbTipoEvento.Text))
+                if (string.IsNullOrWhiteSpace(txtNombreEvento.Text) || string.IsNullOrWhiteSpace(txtNombreEvento.Text) || string.IsNullOrWhiteSpace(cbTipoEvento.Text))
                 {
                     MessageBox.Show("Por favor, complete todos los campos antes de crear un nuevo evento.");
                 }
-
                 else if (dtpFechaHoraFin.Value <= dtpFechaHoraInicio.Value)
                 {
                     MessageBox.Show("La hora de fin debe ser posterior a la hora de inicio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -45,7 +44,7 @@ namespace SGES
                 }
                 else
                 {
-                    co.InsertarEvento(int.Parse(txtidEvento.Text.Trim()), txtNombreEvento.Text.Trim(), cbTipoEvento.Text, dtpFechaHoraInicio.Value, dtpFechaHoraFin.Value, idUsuario);
+                    co.InsertarEvento(txtNombreEvento.Text.Trim(), cbTipoEvento.Text, dtpFechaHoraInicio.Value, dtpFechaHoraFin.Value, idUsuario);
 
                     this.Close();
                 }
