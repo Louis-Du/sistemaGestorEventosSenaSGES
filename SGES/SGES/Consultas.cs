@@ -493,6 +493,7 @@ namespace SGES
                 {
                     try
                     {
+                        // GENERAR EL NUEVO ID DE INSCRIPCIÓN CONSULTANDO EL MÁXIMO ID ACTUAL EN LA TABLA Y SUMANDO 1 
                         using (SqlCommand maxCmd = new SqlCommand("SELECT ISNULL(MAX(idInscrip), 0) + 1 FROM Inscripciones", conn, tran))
                         {
                             nuevoId = Convert.ToInt32(maxCmd.ExecuteScalar());
