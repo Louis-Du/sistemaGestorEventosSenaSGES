@@ -33,6 +33,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtNombreEvento = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpFechaHoraFin = new System.Windows.Forms.DateTimePicker();
@@ -40,14 +41,12 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dtpFechaHoraInicio = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtNombreEvento = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbTipoEvento
             // 
-            this.cbTipoEvento.Enabled = false;
             this.cbTipoEvento.FormattingEnabled = true;
             this.cbTipoEvento.Items.AddRange(new object[] {
             "Educativo",
@@ -118,6 +117,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(393, 301);
             this.panel1.TabIndex = 8;
+            // 
+            // txtNombreEvento
+            // 
+            this.txtNombreEvento.Location = new System.Drawing.Point(52, 57);
+            this.txtNombreEvento.MaxLength = 50;
+            this.txtNombreEvento.Name = "txtNombreEvento";
+            this.txtNombreEvento.Size = new System.Drawing.Size(120, 20);
+            this.txtNombreEvento.TabIndex = 24;
             // 
             // label8
             // 
@@ -200,14 +207,6 @@
             this.label2.Size = new System.Drawing.Size(123, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "Nombre del Evento";
-            // 
-            // txtNombreEvento
-            // 
-            this.txtNombreEvento.Location = new System.Drawing.Point(52, 57);
-            this.txtNombreEvento.MaxLength = 50;
-            this.txtNombreEvento.Name = "txtNombreEvento";
-            this.txtNombreEvento.Size = new System.Drawing.Size(120, 20);
-            this.txtNombreEvento.TabIndex = 24;
             // 
             // FormCrearEvento
             // 

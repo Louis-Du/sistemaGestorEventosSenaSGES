@@ -58,7 +58,7 @@ namespace SGES
                 MessageBox.Show("La hora de fin debe ser posterior a la hora de inicio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else if (dtpFechaHoraInicio.Value < DateTime.Now.Date) // Validación de fecha inicio anterior al día actual
+            else if (dtpFechaHoraInicio.Value < DateTime.Now) // Validación de fecha inicio anterior al día actual
             {
                 MessageBox.Show("La fecha y hora de inicio no puede ser en el pasado.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
