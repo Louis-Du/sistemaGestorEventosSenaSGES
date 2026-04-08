@@ -41,6 +41,7 @@ namespace SGES
             this.label1 = new System.Windows.Forms.Label();
             this.idEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaHoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,7 +56,7 @@ namespace SGES
             this.btnVolver.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVolver.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnVolver.Location = new System.Drawing.Point(52, 19);
+            this.btnVolver.Location = new System.Drawing.Point(82, 19);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(96, 32);
             this.btnVolver.TabIndex = 3;
@@ -70,7 +71,7 @@ namespace SGES
             this.btnCrearEvent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCrearEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCrearEvent.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnCrearEvent.Location = new System.Drawing.Point(496, 18);
+            this.btnCrearEvent.Location = new System.Drawing.Point(526, 18);
             this.btnCrearEvent.Name = "btnCrearEvent";
             this.btnCrearEvent.Size = new System.Drawing.Size(131, 32);
             this.btnCrearEvent.TabIndex = 5;
@@ -89,9 +90,9 @@ namespace SGES
             this.panel1.Controls.Add(this.btnConsultarAprendicesRegistrados);
             this.panel1.Controls.Add(this.dataGridViewAdmin);
             this.panel1.Controls.Add(this.btnEliminarEvent);
-            this.panel1.Location = new System.Drawing.Point(53, 97);
+            this.panel1.Location = new System.Drawing.Point(55, 97);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(550, 312);
+            this.panel1.Size = new System.Drawing.Size(610, 312);
             this.panel1.TabIndex = 0;
             // 
             // label3
@@ -100,9 +101,9 @@ namespace SGES
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.label3.Location = new System.Drawing.Point(145, 14);
+            this.label3.Location = new System.Drawing.Point(175, 14);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(209, 16);
+            this.label3.Size = new System.Drawing.Size(210, 16);
             this.label3.TabIndex = 8;
             this.label3.Text = "Buscar evento por su nombre";
             // 
@@ -112,7 +113,7 @@ namespace SGES
             this.txtBuscarNombreEvento.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtBuscarNombreEvento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBuscarNombreEvento.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.txtBuscarNombreEvento.Location = new System.Drawing.Point(148, 40);
+            this.txtBuscarNombreEvento.Location = new System.Drawing.Point(178, 40);
             this.txtBuscarNombreEvento.MaxLength = 50;
             this.txtBuscarNombreEvento.Multiline = true;
             this.txtBuscarNombreEvento.Name = "txtBuscarNombreEvento";
@@ -129,7 +130,7 @@ namespace SGES
             this.btnEditarEvent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditarEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEditarEvent.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEditarEvent.Location = new System.Drawing.Point(244, 255);
+            this.btnEditarEvent.Location = new System.Drawing.Point(254, 255);
             this.btnEditarEvent.Name = "btnEditarEvent";
             this.btnEditarEvent.Size = new System.Drawing.Size(131, 32);
             this.btnEditarEvent.TabIndex = 10;
@@ -145,7 +146,7 @@ namespace SGES
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Location = new System.Drawing.Point(52, 62);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 16);
+            this.label2.Size = new System.Drawing.Size(64, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "Eventos";
             // 
@@ -156,7 +157,7 @@ namespace SGES
             this.btnConsultarAprendicesRegistrados.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarAprendicesRegistrados.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnConsultarAprendicesRegistrados.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnConsultarAprendicesRegistrados.Location = new System.Drawing.Point(55, 255);
+            this.btnConsultarAprendicesRegistrados.Location = new System.Drawing.Point(39, 255);
             this.btnConsultarAprendicesRegistrados.Name = "btnConsultarAprendicesRegistrados";
             this.btnConsultarAprendicesRegistrados.Size = new System.Drawing.Size(179, 32);
             this.btnConsultarAprendicesRegistrados.TabIndex = 9;
@@ -176,18 +177,19 @@ namespace SGES
             this.dataGridViewAdmin.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idEvento,
             this.Nombre,
+            this.Categoria,
             this.Tipo,
             this.fechaHoraInicio,
             this.FechaHoraFin});
             this.dataGridViewAdmin.Cursor = System.Windows.Forms.Cursors.Cross;
             this.dataGridViewAdmin.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridViewAdmin.Location = new System.Drawing.Point(55, 80);
+            this.dataGridViewAdmin.Location = new System.Drawing.Point(39, 80);
             this.dataGridViewAdmin.MultiSelect = false;
             this.dataGridViewAdmin.Name = "dataGridViewAdmin";
             this.dataGridViewAdmin.ReadOnly = true;
             this.dataGridViewAdmin.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewAdmin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewAdmin.Size = new System.Drawing.Size(445, 149);
+            this.dataGridViewAdmin.Size = new System.Drawing.Size(545, 149);
             this.dataGridViewAdmin.TabIndex = 7;
             this.dataGridViewAdmin.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAdmin_CellContentClick);
             // 
@@ -198,7 +200,7 @@ namespace SGES
             this.btnEliminarEvent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminarEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEliminarEvent.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminarEvent.Location = new System.Drawing.Point(385, 255);
+            this.btnEliminarEvent.Location = new System.Drawing.Point(415, 255);
             this.btnEliminarEvent.Name = "btnEliminarEvent";
             this.btnEliminarEvent.Size = new System.Drawing.Size(123, 32);
             this.btnEliminarEvent.TabIndex = 6;
@@ -212,9 +214,9 @@ namespace SGES
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(155, 26);
+            this.label1.Location = new System.Drawing.Point(185, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(175, 16);
+            this.label1.Size = new System.Drawing.Size(176, 16);
             this.label1.TabIndex = 6;
             this.label1.Text = "Panel de Administración";
             // 
@@ -232,6 +234,12 @@ namespace SGES
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
+            // 
+            // Categoria
+            // 
+            this.Categoria.HeaderText = "Categoria";
+            this.Categoria.Name = "Categoria";
+            this.Categoria.ReadOnly = true;
             // 
             // Tipo
             // 
@@ -259,7 +267,7 @@ namespace SGES
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.ClientSize = new System.Drawing.Size(688, 470);
+            this.ClientSize = new System.Drawing.Size(748, 470);
             this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
@@ -290,6 +298,7 @@ namespace SGES
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn idEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaHoraInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaHoraFin;

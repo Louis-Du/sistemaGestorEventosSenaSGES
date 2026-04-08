@@ -41,6 +41,8 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dtpFechaHoraInicio = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
+            this.cbCategoriaEvento = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +67,7 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnGuardar.Location = new System.Drawing.Point(91, 167);
+            this.btnGuardar.Location = new System.Drawing.Point(91, 195);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(208, 40);
             this.btnGuardar.TabIndex = 3;
@@ -80,7 +82,7 @@
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(143, 48);
+            this.panel2.Location = new System.Drawing.Point(143, 46);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(393, 47);
             this.panel2.TabIndex = 7;
@@ -103,6 +105,8 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.cbCategoriaEvento);
             this.panel1.Controls.Add(this.txtNombreEvento);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label4);
@@ -113,9 +117,9 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnGuardar);
             this.panel1.Controls.Add(this.cbTipoEvento);
-            this.panel1.Location = new System.Drawing.Point(143, 96);
+            this.panel1.Location = new System.Drawing.Point(143, 94);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(393, 301);
+            this.panel1.Size = new System.Drawing.Size(393, 326);
             this.panel1.TabIndex = 8;
             // 
             // txtNombreEvento
@@ -132,9 +136,9 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label8.Location = new System.Drawing.Point(193, 95);
+            this.label8.Location = new System.Drawing.Point(193, 94);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(176, 16);
+            this.label8.Size = new System.Drawing.Size(177, 16);
             this.label8.TabIndex = 21;
             this.label8.Text = "Fecha y Hora Fin del Evento";
             // 
@@ -144,9 +148,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label4.Location = new System.Drawing.Point(44, 94);
+            this.label4.Location = new System.Drawing.Point(44, 93);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 16);
+            this.label4.Size = new System.Drawing.Size(100, 16);
             this.label4.TabIndex = 12;
             this.label4.Text = "Tipo de Evento";
             // 
@@ -165,9 +169,9 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label9.Location = new System.Drawing.Point(191, 39);
+            this.label9.Location = new System.Drawing.Point(191, 38);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(189, 16);
+            this.label9.Size = new System.Drawing.Size(190, 16);
             this.label9.TabIndex = 19;
             this.label9.Text = "Fecha y Hora inicio del Evento";
             this.label9.Click += new System.EventHandler(this.label9_Click);
@@ -179,7 +183,7 @@
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.White;
-            this.btnCancelar.Location = new System.Drawing.Point(91, 213);
+            this.btnCancelar.Location = new System.Drawing.Point(91, 244);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(208, 40);
             this.btnCancelar.TabIndex = 11;
@@ -202,18 +206,41 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label2.Location = new System.Drawing.Point(43, 38);
+            this.label2.Location = new System.Drawing.Point(43, 37);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 16);
+            this.label2.Size = new System.Drawing.Size(124, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "Nombre del Evento";
+            // 
+            // cbCategoriaEvento
+            // 
+            this.cbCategoriaEvento.FormattingEnabled = true;
+            this.cbCategoriaEvento.Items.AddRange(new object[] {
+            "Grupal",
+            "Indivual"});
+            this.cbCategoriaEvento.Location = new System.Drawing.Point(52, 162);
+            this.cbCategoriaEvento.Name = "cbCategoriaEvento";
+            this.cbCategoriaEvento.Size = new System.Drawing.Size(121, 21);
+            this.cbCategoriaEvento.TabIndex = 25;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label1.Location = new System.Drawing.Point(49, 141);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 16);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Categoria";
             // 
             // FormCrearEvento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.ClientSize = new System.Drawing.Size(688, 434);
+            this.ClientSize = new System.Drawing.Size(688, 470);
             this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -242,5 +269,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker dtpFechaHoraInicio;
         private System.Windows.Forms.TextBox txtNombreEvento;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbCategoriaEvento;
     }
 }

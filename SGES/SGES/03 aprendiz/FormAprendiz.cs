@@ -121,7 +121,7 @@ namespace SGES
             if (ok)
             {
                 // Opcional: deshabilitar botón para evitar doble click; conservar CRUD sencillo.
-                btnRegistrarme.Enabled = false;
+                btnRegistrarme.Enabled = true;
                 // Si quieres refrescar el grid: volver a cargar eventos
                 // FormAprendiz_Load(this, EventArgs.Empty);
             }

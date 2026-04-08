@@ -247,7 +247,7 @@ namespace SGES
             try
             {
                 // Se utiliza using para asegurar que la conexión se cierre correctamente después de la consulta, incluso si ocurre una excepción
-                using (SqlCommand consulta = new SqlCommand("SELECT e.idEvento, e.nombreEvento, e.tipoEvento, e.fechaHoraInicio, e.fechaHoraFin  FROM Eventos e where e.fechaHoraFin >= getdate()", cn.Conectar())) // Consulta los eventos registrados en la base de datos
+                using (SqlCommand consulta = new SqlCommand("SELECT e.idEvento, e.nombreEvento, e.categoriaEvento, e.tipoEvento, e.fechaHoraInicio, e.fechaHoraFin  FROM Eventos e where e.fechaHoraFin >= getdate()", cn.Conectar())) // Consulta los eventos registrados en la base de datos
 
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(consulta)) // Almacena el resultado de la consulta en un DataSet
@@ -267,7 +267,7 @@ namespace SGES
             return ds;
         }
 
-        public void InsertarEvento(string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin, int idUser)
+        public void InsertarEvento(string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin, string categoriaEvento, int idUser)
         {
             try
             {
@@ -276,8 +276,8 @@ namespace SGES
                 DateTime diaEvento = fechaHoraInicio.Date;
 
                 string query =
-                    "INSERT INTO Eventos (nombreEvento, tipoEvento, fechaHoraInicio, fechaHoraFin, idUser) " +
-                    "VALUES (@nombreEvent, @tipoEvent, @fechaHoraInicio, @fechaHoraFin, @idUser)";
+                    "INSERT INTO Eventos (nombreEvento, tipoEvento, fechaHoraInicio, fechaHoraFin, categoriaEvento, idUser) " +
+                    "VALUES (@nombreEvent, @tipoEvent, @fechaHoraInicio, @fechaHoraFin, @categoriaEvento, @idUser)";
 
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
                 {
@@ -287,6 +287,7 @@ namespace SGES
                     cmd.Parameters.Add("@tipoEvent", System.Data.SqlDbType.VarChar, 50).Value = tipoEvent;
                     cmd.Parameters.Add("@fechaHoraInicio", System.Data.SqlDbType.DateTime2).Value = fechaHoraInicio;
                     cmd.Parameters.Add("@fechaHoraFin", System.Data.SqlDbType.DateTime2).Value = fechaHoraFin;
+                    cmd.Parameters.Add("@categoriaEvento", System.Data.SqlDbType.VarChar, 50).Value = categoriaEvento;
 
                     cmd.Parameters.Add("@idUser", System.Data.SqlDbType.Int).Value = idUser;
 

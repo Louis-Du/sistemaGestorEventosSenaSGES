@@ -44,7 +44,7 @@ namespace SGES
                 }
                 else
                 {
-                    co.InsertarEvento(txtNombreEvento.Text.Trim(), cbTipoEvento.Text, dtpFechaHoraInicio.Value, dtpFechaHoraFin.Value, idUsuario);
+                    co.InsertarEvento(txtNombreEvento.Text.Trim(), cbTipoEvento.Text, dtpFechaHoraInicio.Value, dtpFechaHoraFin.Value, cbCategoriaEvento.Text, idUsuario);
 
                     this.Close();
                 }
