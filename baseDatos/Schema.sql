@@ -21,7 +21,7 @@ CREATE TABLE Usuario(
 );
 
 CREATE TABLE Eventos (
-    idEvento INT NOT NULL PRIMARY KEY,
+    idEvento INT IDENTITY PRIMARY KEY,
     nombreEvento VARCHAR(50) NOT NULL,
     tipoEvento VARCHAR(50) NOT NULL,
     fechaHoraInicio DATETIME2(0) NOT NULL,
