@@ -143,5 +143,14 @@ namespace SGES
                 nudCantidadIntegrantes.Visible = false;
             }
         }
+
+        private void txtNombreEvento_TextChanged(object sender, EventArgs e)
+        {
+            int max = txtNombreEvento.MaxLength;
+            int usados = txtNombreEvento.Text.Length;
+            int restantes = max - usados;
+
+            lblCaracteresRestantes.Text = "Caracteres restantes: " + restantes;
+        }
     }
 }

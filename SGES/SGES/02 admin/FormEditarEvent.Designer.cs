@@ -31,6 +31,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.nudCantidadIntegrantes = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbCategoriaEvento = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dtpFechaHoraFin = new System.Windows.Forms.DateTimePicker();
             this.lblID = new System.Windows.Forms.Label();
@@ -43,10 +47,7 @@
             this.btnActualizarEvent = new System.Windows.Forms.Button();
             this.txtNombreEvento1 = new System.Windows.Forms.TextBox();
             this.cbTipoEvento1 = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cbCategoriaEvento = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.nudCantidadIntegrantes = new System.Windows.Forms.NumericUpDown();
+            this.lblCaracteresRestantes = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadIntegrantes)).BeginInit();
@@ -59,7 +60,7 @@
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(75, 23);
+            this.panel2.Location = new System.Drawing.Point(75, 35);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(444, 47);
             this.panel2.TabIndex = 9;
@@ -81,6 +82,7 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lblCaracteresRestantes);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.nudCantidadIntegrantes);
             this.panel1.Controls.Add(this.label7);
@@ -97,11 +99,72 @@
             this.panel1.Controls.Add(this.btnActualizarEvent);
             this.panel1.Controls.Add(this.txtNombreEvento1);
             this.panel1.Controls.Add(this.cbTipoEvento1);
-            this.panel1.Location = new System.Drawing.Point(75, 71);
+            this.panel1.Location = new System.Drawing.Point(75, 83);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(444, 299);
+            this.panel1.Size = new System.Drawing.Size(444, 336);
             this.panel1.TabIndex = 10;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label8.Location = new System.Drawing.Point(222, 137);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(145, 16);
+            this.label8.TabIndex = 30;
+            this.label8.Text = "Cantidad de integantes";
+            this.label8.Visible = false;
+            // 
+            // nudCantidadIntegrantes
+            // 
+            this.nudCantidadIntegrantes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.nudCantidadIntegrantes.Location = new System.Drawing.Point(223, 158);
+            this.nudCantidadIntegrantes.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudCantidadIntegrantes.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nudCantidadIntegrantes.Name = "nudCantidadIntegrantes";
+            this.nudCantidadIntegrantes.Size = new System.Drawing.Size(46, 20);
+            this.nudCantidadIntegrantes.TabIndex = 29;
+            this.nudCantidadIntegrantes.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nudCantidadIntegrantes.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label7.Location = new System.Drawing.Point(62, 136);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 16);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Categoria";
+            // 
+            // cbCategoriaEvento
+            // 
+            this.cbCategoriaEvento.FormattingEnabled = true;
+            this.cbCategoriaEvento.Items.AddRange(new object[] {
+            "Grupal",
+            "Individual"});
+            this.cbCategoriaEvento.Location = new System.Drawing.Point(65, 157);
+            this.cbCategoriaEvento.Name = "cbCategoriaEvento";
+            this.cbCategoriaEvento.Size = new System.Drawing.Size(121, 21);
+            this.cbCategoriaEvento.TabIndex = 27;
+            this.cbCategoriaEvento.SelectedIndexChanged += new System.EventHandler(this.cbCategoriaEvento_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -109,7 +172,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label6.Location = new System.Drawing.Point(218, 66);
+            this.label6.Location = new System.Drawing.Point(218, 77);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(176, 16);
             this.label6.TabIndex = 17;
@@ -119,7 +182,7 @@
             // 
             this.dtpFechaHoraFin.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dtpFechaHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaHoraFin.Location = new System.Drawing.Point(220, 88);
+            this.dtpFechaHoraFin.Location = new System.Drawing.Point(220, 99);
             this.dtpFechaHoraFin.Name = "dtpFechaHoraFin";
             this.dtpFechaHoraFin.Size = new System.Drawing.Size(129, 20);
             this.dtpFechaHoraFin.TabIndex = 16;
@@ -130,7 +193,7 @@
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.lblID.Location = new System.Drawing.Point(175, 16);
+            this.lblID.Location = new System.Drawing.Point(175, 35);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(0, 16);
             this.lblID.TabIndex = 14;
@@ -153,7 +216,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label4.Location = new System.Drawing.Point(64, 65);
+            this.label4.Location = new System.Drawing.Point(64, 76);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 16);
             this.label4.TabIndex = 12;
@@ -166,7 +229,7 @@
             this.btnCancelarAct.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancelarAct.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelarAct.ForeColor = System.Drawing.Color.White;
-            this.btnCancelarAct.Location = new System.Drawing.Point(113, 232);
+            this.btnCancelarAct.Location = new System.Drawing.Point(113, 251);
             this.btnCancelarAct.Name = "btnCancelarAct";
             this.btnCancelarAct.Size = new System.Drawing.Size(208, 40);
             this.btnCancelarAct.TabIndex = 11;
@@ -193,7 +256,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label1.Location = new System.Drawing.Point(60, 16);
+            this.label1.Location = new System.Drawing.Point(60, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 16);
             this.label1.TabIndex = 6;
@@ -216,7 +279,7 @@
             this.btnActualizarEvent.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnActualizarEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizarEvent.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnActualizarEvent.Location = new System.Drawing.Point(113, 186);
+            this.btnActualizarEvent.Location = new System.Drawing.Point(113, 205);
             this.btnActualizarEvent.Name = "btnActualizarEvent";
             this.btnActualizarEvent.Size = new System.Drawing.Size(208, 40);
             this.btnActualizarEvent.TabIndex = 3;
@@ -226,7 +289,7 @@
             // 
             // txtNombreEvento1
             // 
-            this.txtNombreEvento1.Location = new System.Drawing.Point(63, 34);
+            this.txtNombreEvento1.Location = new System.Drawing.Point(59, 34);
             this.txtNombreEvento1.MaxLength = 50;
             this.txtNombreEvento1.Name = "txtNombreEvento1";
             this.txtNombreEvento1.Size = new System.Drawing.Size(129, 20);
@@ -240,78 +303,28 @@
             "Educativo",
             "Cultural",
             "Deportivo"});
-            this.cbTipoEvento1.Location = new System.Drawing.Point(63, 88);
+            this.cbTipoEvento1.Location = new System.Drawing.Point(63, 99);
             this.cbTipoEvento1.Name = "cbTipoEvento1";
             this.cbTipoEvento1.Size = new System.Drawing.Size(129, 21);
             this.cbTipoEvento1.TabIndex = 1;
             // 
-            // label7
+            // lblCaracteresRestantes
             // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label7.Location = new System.Drawing.Point(62, 125);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 16);
-            this.label7.TabIndex = 28;
-            this.label7.Text = "Categoria";
-            // 
-            // cbCategoriaEvento
-            // 
-            this.cbCategoriaEvento.FormattingEnabled = true;
-            this.cbCategoriaEvento.Items.AddRange(new object[] {
-            "Grupal",
-            "Individual"});
-            this.cbCategoriaEvento.Location = new System.Drawing.Point(65, 146);
-            this.cbCategoriaEvento.Name = "cbCategoriaEvento";
-            this.cbCategoriaEvento.Size = new System.Drawing.Size(121, 21);
-            this.cbCategoriaEvento.TabIndex = 27;
-            this.cbCategoriaEvento.SelectedIndexChanged += new System.EventHandler(this.cbCategoriaEvento_SelectedIndexChanged);
-            // 
-            // label8
-            // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label8.Location = new System.Drawing.Point(222, 126);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(145, 16);
-            this.label8.TabIndex = 30;
-            this.label8.Text = "Cantidad de integantes";
-            this.label8.Visible = false;
-            // 
-            // nudCantidadIntegrantes
-            // 
-            this.nudCantidadIntegrantes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.nudCantidadIntegrantes.Location = new System.Drawing.Point(223, 147);
-            this.nudCantidadIntegrantes.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nudCantidadIntegrantes.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.nudCantidadIntegrantes.Name = "nudCantidadIntegrantes";
-            this.nudCantidadIntegrantes.Size = new System.Drawing.Size(46, 20);
-            this.nudCantidadIntegrantes.TabIndex = 29;
-            this.nudCantidadIntegrantes.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.nudCantidadIntegrantes.Visible = false;
+            this.lblCaracteresRestantes.AutoSize = true;
+            this.lblCaracteresRestantes.Font = new System.Drawing.Font("Segoe UI Historic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCaracteresRestantes.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lblCaracteresRestantes.Location = new System.Drawing.Point(64, 57);
+            this.lblCaracteresRestantes.Name = "lblCaracteresRestantes";
+            this.lblCaracteresRestantes.Size = new System.Drawing.Size(128, 13);
+            this.lblCaracteresRestantes.TabIndex = 30;
+            this.lblCaracteresRestantes.Text = "Caracteres restantes: 50";
             // 
             // FormEditarEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.ClientSize = new System.Drawing.Size(596, 427);
+            this.ClientSize = new System.Drawing.Size(596, 451);
             this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -348,5 +361,6 @@
         private System.Windows.Forms.ComboBox cbCategoriaEvento;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown nudCantidadIntegrantes;
+        private System.Windows.Forms.Label lblCaracteresRestantes;
     }
 }

@@ -95,7 +95,11 @@ namespace SGES
 
         private void txtNombreEvento1_TextChanged(object sender, EventArgs e)
         {
+            int max = txtNombreEvento1.MaxLength;
+            int usados = txtNombreEvento1.Text.Length;
+            int restantes = max - usados;
 
+            lblCaracteresRestantes.Text = "Caracteres restantes: " + restantes;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
