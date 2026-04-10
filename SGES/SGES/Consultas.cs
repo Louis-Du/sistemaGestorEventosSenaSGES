@@ -247,7 +247,7 @@ namespace SGES
             try
             {
                 // Se utiliza using para asegurar que la conexión se cierre correctamente después de la consulta, incluso si ocurre una excepción
-                using (SqlCommand consulta = new SqlCommand("SELECT e.idEvento, e.nombreEvento, e.categoriaEvento, e.tipoEvento, e.fechaHoraInicio, e.fechaHoraFin  FROM Eventos e where e.fechaHoraFin >= getdate()", cn.Conectar())) // Consulta los eventos registrados en la base de datos
+                using (SqlCommand consulta = new SqlCommand("SELECT e.idEvento, e.nombreEvento, e.categoriaEvento, e.cantIntegrantes, e.tipoEvento, e.fechaHoraInicio, e.fechaHoraFin  FROM Eventos e where e.fechaHoraFin >= getdate()", cn.Conectar())) // Consulta los eventos registrados en la base de datos
 
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(consulta)) // Almacena el resultado de la consulta en un DataSet
@@ -267,7 +267,7 @@ namespace SGES
             return ds;
         }
 
-        public void InsertarEvento(string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin, string categoriaEvento, int idUser)
+        public void InsertarEvento(string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin, string categoriaEvento, int? cantIntegrantes, int idUser)
         {
             try
             {
@@ -276,19 +276,23 @@ namespace SGES
                 DateTime diaEvento = fechaHoraInicio.Date;
 
                 string query =
-                    "INSERT INTO Eventos (nombreEvento, tipoEvento, fechaHoraInicio, fechaHoraFin, categoriaEvento, idUser) " +
-                    "VALUES (@nombreEvent, @tipoEvent, @fechaHoraInicio, @fechaHoraFin, @categoriaEvento, @idUser)";
+                    "INSERT INTO Eventos (nombreEvento, tipoEvento, fechaHoraInicio, fechaHoraFin, categoriaEvento, cantIntegrantes, idUser) " +
+                    "VALUES (@nombreEvent, @tipoEvent, @fechaHoraInicio, @fechaHoraFin, @categoriaEvento, @cantIntegrantes, @idUser)";
 
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
                 {
                     // Establece el valor de cada columna en la tabla antes y la relacionamos con el parametro correspondiente
-                    //cmd.Parameters.Add("@idEvent", System.Data.SqlDbType.Int).Value = idEvent;
                     cmd.Parameters.Add("@nombreEvent", System.Data.SqlDbType.VarChar, 50).Value = nombreEvent;
                     cmd.Parameters.Add("@tipoEvent", System.Data.SqlDbType.VarChar, 50).Value = tipoEvent;
                     cmd.Parameters.Add("@fechaHoraInicio", System.Data.SqlDbType.DateTime2).Value = fechaHoraInicio;
                     cmd.Parameters.Add("@fechaHoraFin", System.Data.SqlDbType.DateTime2).Value = fechaHoraFin;
                     cmd.Parameters.Add("@categoriaEvento", System.Data.SqlDbType.VarChar, 50).Value = categoriaEvento;
-
+                    object valorIntegrantes = DBNull.Value;
+                    if (categoriaEvento == "Grupal")
+                    {
+                        valorIntegrantes = cantIntegrantes;
+                    }
+                    cmd.Parameters.Add("@cantIntegrantes", SqlDbType.Int).Value = (object)cantIntegrantes ?? DBNull.Value;
                     cmd.Parameters.Add("@idUser", System.Data.SqlDbType.Int).Value = idUser;
 
                     cmd.ExecuteNonQuery();
@@ -307,14 +311,14 @@ namespace SGES
             }
         }
 
-        public void ActualizarEvento(int idEvento, string nombreEvento, string tipoEvento, DateTime fechaHoraInicio, DateTime fechaHoraFin)
+        public void ActualizarEvento(int idEvento, string nombreEvento, string tipoEvento, string categoriaEvento, int? cantIntegrantes, DateTime fechaHoraInicio, DateTime fechaHoraFin)
         {
             try
             {
                 DateTime diaEvento = fechaHoraInicio.Date;
 
                 string query =
-                    "UPDATE Eventos SET nombreEvento = @nombreEvento, tipoEvento = @tipoEvento, fechaHoraInicio = @fechaHoraInicio, fechaHoraFin = @fechaHoraFin " +
+                    "UPDATE Eventos SET nombreEvento = @nombreEvento, tipoEvento = @tipoEvento, categoriaEvento = @categoriaEvento, CantIntegrantes = @CantIntegrantes, fechaHoraInicio = @fechaHoraInicio, fechaHoraFin = @fechaHoraFin " +
                     "WHERE idEvento = @idEvento"; // Asigna en una variable la consulta a realizar
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar())) // Consulta la variable query
                 {
@@ -323,6 +327,13 @@ namespace SGES
                     cmd.Parameters.AddWithValue("@tipoEvento", tipoEvento);
                     cmd.Parameters.AddWithValue("@fechaHoraInicio", fechaHoraInicio);
                     cmd.Parameters.AddWithValue("@fechaHoraFin", fechaHoraFin);
+                    cmd.Parameters.Add("@categoriaEvento", System.Data.SqlDbType.VarChar, 50).Value = categoriaEvento;
+                    object valorIntegrantes = DBNull.Value;
+                    if (categoriaEvento == "Grupal")
+                    {
+                        valorIntegrantes = cantIntegrantes;
+                    }
+                    cmd.Parameters.Add("@cantIntegrantes", SqlDbType.Int).Value = (object)cantIntegrantes ?? DBNull.Value;
 
                     cmd.ExecuteNonQuery();
 

@@ -43,8 +43,13 @@
             this.btnActualizarEvent = new System.Windows.Forms.Button();
             this.txtNombreEvento1 = new System.Windows.Forms.TextBox();
             this.cbTipoEvento1 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbCategoriaEvento = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.nudCantidadIntegrantes = new System.Windows.Forms.NumericUpDown();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidadIntegrantes)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -76,6 +81,10 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.nudCantidadIntegrantes);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.cbCategoriaEvento);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.dtpFechaHoraFin);
             this.panel1.Controls.Add(this.lblID);
@@ -100,7 +109,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label6.Location = new System.Drawing.Point(218, 111);
+            this.label6.Location = new System.Drawing.Point(218, 66);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(176, 16);
             this.label6.TabIndex = 17;
@@ -110,7 +119,7 @@
             // 
             this.dtpFechaHoraFin.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dtpFechaHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaHoraFin.Location = new System.Drawing.Point(220, 133);
+            this.dtpFechaHoraFin.Location = new System.Drawing.Point(220, 88);
             this.dtpFechaHoraFin.Name = "dtpFechaHoraFin";
             this.dtpFechaHoraFin.Size = new System.Drawing.Size(129, 20);
             this.dtpFechaHoraFin.TabIndex = 16;
@@ -132,7 +141,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label5.Location = new System.Drawing.Point(218, 43);
+            this.label5.Location = new System.Drawing.Point(218, 14);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(189, 16);
             this.label5.TabIndex = 13;
@@ -144,7 +153,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label4.Location = new System.Drawing.Point(64, 110);
+            this.label4.Location = new System.Drawing.Point(64, 65);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 16);
             this.label4.TabIndex = 12;
@@ -171,7 +180,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label2.Location = new System.Drawing.Point(60, 43);
+            this.label2.Location = new System.Drawing.Point(60, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(123, 16);
             this.label2.TabIndex = 7;
@@ -194,7 +203,7 @@
             // 
             this.dtpFechaHoraInicio.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dtpFechaHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaHoraInicio.Location = new System.Drawing.Point(220, 61);
+            this.dtpFechaHoraInicio.Location = new System.Drawing.Point(220, 32);
             this.dtpFechaHoraInicio.Name = "dtpFechaHoraInicio";
             this.dtpFechaHoraInicio.Size = new System.Drawing.Size(129, 20);
             this.dtpFechaHoraInicio.TabIndex = 2;
@@ -217,7 +226,7 @@
             // 
             // txtNombreEvento1
             // 
-            this.txtNombreEvento1.Location = new System.Drawing.Point(63, 63);
+            this.txtNombreEvento1.Location = new System.Drawing.Point(63, 34);
             this.txtNombreEvento1.MaxLength = 50;
             this.txtNombreEvento1.Name = "txtNombreEvento1";
             this.txtNombreEvento1.Size = new System.Drawing.Size(129, 20);
@@ -231,10 +240,71 @@
             "Educativo",
             "Cultural",
             "Deportivo"});
-            this.cbTipoEvento1.Location = new System.Drawing.Point(63, 133);
+            this.cbTipoEvento1.Location = new System.Drawing.Point(63, 88);
             this.cbTipoEvento1.Name = "cbTipoEvento1";
             this.cbTipoEvento1.Size = new System.Drawing.Size(129, 21);
             this.cbTipoEvento1.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label7.Location = new System.Drawing.Point(62, 125);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 16);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Categoria";
+            // 
+            // cbCategoriaEvento
+            // 
+            this.cbCategoriaEvento.FormattingEnabled = true;
+            this.cbCategoriaEvento.Items.AddRange(new object[] {
+            "Grupal",
+            "Individual"});
+            this.cbCategoriaEvento.Location = new System.Drawing.Point(65, 146);
+            this.cbCategoriaEvento.Name = "cbCategoriaEvento";
+            this.cbCategoriaEvento.Size = new System.Drawing.Size(121, 21);
+            this.cbCategoriaEvento.TabIndex = 27;
+            this.cbCategoriaEvento.SelectedIndexChanged += new System.EventHandler(this.cbCategoriaEvento_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label8.Location = new System.Drawing.Point(222, 126);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(145, 16);
+            this.label8.TabIndex = 30;
+            this.label8.Text = "Cantidad de integantes";
+            this.label8.Visible = false;
+            // 
+            // nudCantidadIntegrantes
+            // 
+            this.nudCantidadIntegrantes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.nudCantidadIntegrantes.Location = new System.Drawing.Point(223, 147);
+            this.nudCantidadIntegrantes.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudCantidadIntegrantes.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nudCantidadIntegrantes.Name = "nudCantidadIntegrantes";
+            this.nudCantidadIntegrantes.Size = new System.Drawing.Size(46, 20);
+            this.nudCantidadIntegrantes.TabIndex = 29;
+            this.nudCantidadIntegrantes.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nudCantidadIntegrantes.Visible = false;
             // 
             // FormEditarEvent
             // 
@@ -252,6 +322,7 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidadIntegrantes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -273,5 +344,9 @@
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.DateTimePicker dtpFechaHoraFin;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbCategoriaEvento;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown nudCantidadIntegrantes;
     }
 }

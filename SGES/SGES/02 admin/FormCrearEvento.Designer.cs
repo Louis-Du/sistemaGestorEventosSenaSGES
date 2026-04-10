@@ -33,6 +33,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.nudCantidadIntegrantes = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbCategoriaEvento = new System.Windows.Forms.ComboBox();
             this.txtNombreEvento = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,10 +45,11 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dtpFechaHoraInicio = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.cbCategoriaEvento = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.performanceCounter1 = new System.Diagnostics.PerformanceCounter();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidadIntegrantes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.performanceCounter1)).BeginInit();
             this.SuspendLayout();
             // 
             // cbTipoEvento
@@ -105,6 +110,8 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.nudCantidadIntegrantes);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.cbCategoriaEvento);
             this.panel1.Controls.Add(this.txtNombreEvento);
@@ -122,6 +129,67 @@
             this.panel1.Size = new System.Drawing.Size(393, 326);
             this.panel1.TabIndex = 8;
             // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label5.Location = new System.Drawing.Point(193, 141);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(145, 16);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "Cantidad de integantes";
+            this.label5.Visible = false;
+            // 
+            // nudCantidadIntegrantes
+            // 
+            this.nudCantidadIntegrantes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.nudCantidadIntegrantes.Location = new System.Drawing.Point(194, 162);
+            this.nudCantidadIntegrantes.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudCantidadIntegrantes.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nudCantidadIntegrantes.Name = "nudCantidadIntegrantes";
+            this.nudCantidadIntegrantes.Size = new System.Drawing.Size(46, 20);
+            this.nudCantidadIntegrantes.TabIndex = 27;
+            this.nudCantidadIntegrantes.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nudCantidadIntegrantes.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.label1.Location = new System.Drawing.Point(49, 141);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 16);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Categoria";
+            // 
+            // cbCategoriaEvento
+            // 
+            this.cbCategoriaEvento.FormattingEnabled = true;
+            this.cbCategoriaEvento.Items.AddRange(new object[] {
+            "Grupal",
+            "Individual"});
+            this.cbCategoriaEvento.Location = new System.Drawing.Point(52, 162);
+            this.cbCategoriaEvento.Name = "cbCategoriaEvento";
+            this.cbCategoriaEvento.Size = new System.Drawing.Size(121, 21);
+            this.cbCategoriaEvento.TabIndex = 25;
+            this.cbCategoriaEvento.SelectedIndexChanged += new System.EventHandler(this.cbCategoriaEvento_SelectedIndexChanged);
+            // 
             // txtNombreEvento
             // 
             this.txtNombreEvento.Location = new System.Drawing.Point(52, 57);
@@ -138,7 +206,7 @@
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
             this.label8.Location = new System.Drawing.Point(193, 94);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(177, 16);
+            this.label8.Size = new System.Drawing.Size(176, 16);
             this.label8.TabIndex = 21;
             this.label8.Text = "Fecha y Hora Fin del Evento";
             // 
@@ -150,7 +218,7 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
             this.label4.Location = new System.Drawing.Point(44, 93);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 16);
+            this.label4.Size = new System.Drawing.Size(99, 16);
             this.label4.TabIndex = 12;
             this.label4.Text = "Tipo de Evento";
             // 
@@ -160,7 +228,7 @@
             this.dtpFechaHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFechaHoraFin.Location = new System.Drawing.Point(198, 113);
             this.dtpFechaHoraFin.Name = "dtpFechaHoraFin";
-            this.dtpFechaHoraFin.Size = new System.Drawing.Size(119, 20);
+            this.dtpFechaHoraFin.Size = new System.Drawing.Size(140, 20);
             this.dtpFechaHoraFin.TabIndex = 20;
             // 
             // label9
@@ -171,7 +239,7 @@
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
             this.label9.Location = new System.Drawing.Point(191, 38);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(190, 16);
+            this.label9.Size = new System.Drawing.Size(189, 16);
             this.label9.TabIndex = 19;
             this.label9.Text = "Fecha y Hora inicio del Evento";
             this.label9.Click += new System.EventHandler(this.label9_Click);
@@ -197,7 +265,7 @@
             this.dtpFechaHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFechaHoraInicio.Location = new System.Drawing.Point(198, 56);
             this.dtpFechaHoraInicio.Name = "dtpFechaHoraInicio";
-            this.dtpFechaHoraInicio.Size = new System.Drawing.Size(119, 20);
+            this.dtpFechaHoraInicio.Size = new System.Drawing.Size(140, 20);
             this.dtpFechaHoraInicio.TabIndex = 18;
             // 
             // label2
@@ -208,32 +276,9 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
             this.label2.Location = new System.Drawing.Point(43, 37);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 16);
+            this.label2.Size = new System.Drawing.Size(123, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "Nombre del Evento";
-            // 
-            // cbCategoriaEvento
-            // 
-            this.cbCategoriaEvento.FormattingEnabled = true;
-            this.cbCategoriaEvento.Items.AddRange(new object[] {
-            "Grupal",
-            "Indivual"});
-            this.cbCategoriaEvento.Location = new System.Drawing.Point(52, 162);
-            this.cbCategoriaEvento.Name = "cbCategoriaEvento";
-            this.cbCategoriaEvento.Size = new System.Drawing.Size(121, 21);
-            this.cbCategoriaEvento.TabIndex = 25;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label1.Location = new System.Drawing.Point(49, 141);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 16);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "Categoria";
             // 
             // FormCrearEvento
             // 
@@ -271,5 +316,8 @@
         private System.Windows.Forms.TextBox txtNombreEvento;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbCategoriaEvento;
+        private System.Windows.Forms.NumericUpDown nudCantidadIntegrantes;
+        private System.Diagnostics.PerformanceCounter performanceCounter1;
+        private System.Windows.Forms.Label label5;
     }
 }
