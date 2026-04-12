@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,42 +23,46 @@ namespace SGES
 
         }
 
+        private void FormCrearEvento_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
                 Consultas co = new Consultas();
 
-                if (string.IsNullOrWhiteSpace(txtNombreEvento.Text) || string.IsNullOrWhiteSpace(txtNombreEvento.Text) || string.IsNullOrWhiteSpace(cbTipoEvento.Text))
+                if (string.IsNullOrWhiteSpace(txtNombreEvento.Text) || string.IsNullOrWhiteSpace(cbTipoEvento.Text) || string.IsNullOrWhiteSpace(cbCategoriaEvento.Text))
                 {
                     MessageBox.Show("Por favor, complete todos los campos antes de crear un nuevo evento.");
+                    return;
                 }
-                else if (dtpFechaHoraFin.Value <= dtpFechaHoraInicio.Value)
+                if (dtpFechaHoraFin.Value <= dtpFechaHoraInicio.Value)
                 {
                     MessageBox.Show("La hora de fin debe ser posterior a la hora de inicio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                else if (dtpFechaHoraInicio.Value < DateTime.Now)
+                if (dtpFechaHoraInicio.Value < DateTime.Now)
                 {
                     MessageBox.Show("La fecha y hora de inicio no puede ser en el pasado.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                else
-                {
-                    co.InsertarEvento(txtNombreEvento.Text.Trim(), cbTipoEvento.Text, dtpFechaHoraInicio.Value, dtpFechaHoraFin.Value, idUsuario);
 
-                    this.Close();
+                int? cantIntegrantes = null;
+                if (cbCategoriaEvento.Text == "Grupal")
+                {
+                    cantIntegrantes = (int)nudCantidadIntegrantes.Value;
                 }
+
+                co.InsertarEvento(txtNombreEvento.Text.Trim(), cbTipoEvento.Text, dtpFechaHoraInicio.Value, dtpFechaHoraFin.Value, cbCategoriaEvento.Text, cantIntegrantes, idUsuario);
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al crear el evento: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void FormCrearEvento_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void cbTipoEvento_SelectedIndexChanged(object sender, EventArgs e)
@@ -123,6 +128,29 @@ namespace SGES
         private void label9_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbCategoriaEvento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbCategoriaEvento.Text == "Grupal")
+            {
+                label5.Visible = true;
+                nudCantidadIntegrantes.Visible = true;
+            }
+            else
+            {
+                label5.Visible = false;
+                nudCantidadIntegrantes.Visible = false;
+            }
+        }
+
+        private void txtNombreEvento_TextChanged(object sender, EventArgs e)
+        {
+            int max = txtNombreEvento.MaxLength;
+            int usados = txtNombreEvento.Text.Length;
+            int restantes = max - usados;
+
+            lblCaracteresRestantes.Text = "Caracteres restantes: " + restantes;
         }
     }
 }
