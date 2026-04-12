@@ -37,7 +37,6 @@
             this.cbCategoriaEvento = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dtpFechaHoraFin = new System.Windows.Forms.DateTimePicker();
-            this.lblID = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCancelarAct = new System.Windows.Forms.Button();
@@ -89,7 +88,6 @@
             this.panel1.Controls.Add(this.cbCategoriaEvento);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.dtpFechaHoraFin);
-            this.panel1.Controls.Add(this.lblID);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.btnCancelarAct);
@@ -187,24 +185,13 @@
             this.dtpFechaHoraFin.Size = new System.Drawing.Size(129, 20);
             this.dtpFechaHoraFin.TabIndex = 16;
             // 
-            // lblID
-            // 
-            this.lblID.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblID.AutoSize = true;
-            this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.lblID.Location = new System.Drawing.Point(175, 35);
-            this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(0, 16);
-            this.lblID.TabIndex = 14;
-            // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.label5.Location = new System.Drawing.Point(218, 14);
+            this.label5.Location = new System.Drawing.Point(218, 12);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(189, 16);
             this.label5.TabIndex = 13;
@@ -289,7 +276,7 @@
             // 
             // txtNombreEvento1
             // 
-            this.txtNombreEvento1.Location = new System.Drawing.Point(59, 34);
+            this.txtNombreEvento1.Location = new System.Drawing.Point(63, 35);
             this.txtNombreEvento1.MaxLength = 50;
             this.txtNombreEvento1.Name = "txtNombreEvento1";
             this.txtNombreEvento1.Size = new System.Drawing.Size(129, 20);
@@ -354,7 +341,6 @@
         private System.Windows.Forms.Button btnActualizarEvent;
         private System.Windows.Forms.TextBox txtNombreEvento1;
         private System.Windows.Forms.ComboBox cbTipoEvento1;
-        private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.DateTimePicker dtpFechaHoraFin;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
