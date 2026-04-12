@@ -73,7 +73,7 @@ CREATE TABLE Inscripciones(
 	modalidadInscrip varchar(10) NOT NULL,
 	idApr int NOT NULL,
 	idEvento int NOT NULL,
-	idGrupo int NOT NULL,
+	idGrupo int NULL,
 	FOREIGN KEY (idApr) REFERENCES Aprendiz(idApr),
 	FOREIGN KEY (idEvento) REFERENCES Eventos(idEvento),
 	FOREIGN KEY (idGrupo) REFERENCES Grupos(idGrupo)
