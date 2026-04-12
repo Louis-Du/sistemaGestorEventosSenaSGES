@@ -1,5 +1,4 @@
-CREATE DATABASE SGES;
-go
+
 
 -- Script de creación de tablas y datos de ejemplo (IDs manuales).
 
@@ -23,6 +22,8 @@ CREATE TABLE Usuario(
 CREATE TABLE Eventos (
     idEvento INT IDENTITY PRIMARY KEY,
     nombreEvento VARCHAR(50) NOT NULL,
+	categoriaEvento VARCHAR(17) NOT NULL,
+	cantIntegrantes int null,
     tipoEvento VARCHAR(50) NOT NULL,
     fechaHoraInicio DATETIME2(0) NOT NULL,
     fechaHoraFin   DATETIME2(0) NOT NULL,
@@ -63,17 +64,17 @@ CREATE TABLE Aprendiz(
 );
 
 CREATE TABLE Grupos(
-	idGrupo int NOT NULL PRIMARY KEY,
+	idGrupo int PRIMARY KEY,
 	nombreGrupo varchar(20) NOT NULL
 );
 
 CREATE TABLE Inscripciones(
-	idInscrip int NOT NULL PRIMARY KEY,
+	idInscrip int PRIMARY KEY,
 	fechaInscrip DATE NOT NULL,
 	modalidadInscrip varchar(10) NOT NULL,
 	idApr int NOT NULL,
 	idEvento int NOT NULL,
-	idGrupo int NOT NULL,
+	idGrupo int NULL,
 	FOREIGN KEY (idApr) REFERENCES Aprendiz(idApr),
 	FOREIGN KEY (idEvento) REFERENCES Eventos(idEvento),
 	FOREIGN KEY (idGrupo) REFERENCES Grupos(idGrupo)
