@@ -20,7 +20,7 @@ CREATE TABLE Usuario(
 );
 
 CREATE TABLE Eventos (
-    idEvento INT identity PRIMARY KEY,
+    idEvento INT IDENTITY PRIMARY KEY,
     nombreEvento VARCHAR(50) NOT NULL,
 	categoriaEvento VARCHAR(17) NOT NULL,
 	cantIntegrantes int null,

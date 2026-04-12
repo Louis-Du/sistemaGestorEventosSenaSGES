@@ -33,14 +33,13 @@ namespace SGES
             this.btnRegGrupo = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewAprend = new System.Windows.Forms.DataGridView();
+            this.btnRegistrarme = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.dgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgHorafin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnRegistrarme = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAprend)).BeginInit();
             this.SuspendLayout();
@@ -93,7 +92,7 @@ namespace SGES
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Location = new System.Drawing.Point(8, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 16);
+            this.label2.Size = new System.Drawing.Size(123, 16);
             this.label2.TabIndex = 8;
             this.label2.Text = "Listado de Eventos";
             // 
@@ -109,7 +108,6 @@ namespace SGES
             this.dgID,
             this.dgNom,
             this.dgTipo,
-            this.dgFecha,
             this.dgHoraInicio,
             this.dgHorafin});
             this.dataGridViewAprend.Location = new System.Drawing.Point(11, 34);
@@ -117,42 +115,6 @@ namespace SGES
             this.dataGridViewAprend.Size = new System.Drawing.Size(552, 216);
             this.dataGridViewAprend.TabIndex = 5;
             this.dataGridViewAprend.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAprend_CellContentClick);
-            // 
-            // dgID
-            // 
-            this.dgID.DataPropertyName = "idEvento";
-            this.dgID.HeaderText = "ID";
-            this.dgID.Name = "dgID";
-            // 
-            // dgNom
-            // 
-            this.dgNom.DataPropertyName = "nombreEvento";
-            this.dgNom.HeaderText = "Nombre";
-            this.dgNom.Name = "dgNom";
-            // 
-            // dgTipo
-            // 
-            this.dgTipo.DataPropertyName = "tipoEvento";
-            this.dgTipo.HeaderText = "Tipo";
-            this.dgTipo.Name = "dgTipo";
-            // 
-            // dgFecha
-            // 
-            this.dgFecha.DataPropertyName = "diaEvento";
-            this.dgFecha.HeaderText = "Fecha";
-            this.dgFecha.Name = "dgFecha";
-            // 
-            // dgHoraInicio
-            // 
-            this.dgHoraInicio.DataPropertyName = "fechaHoraInicio";
-            this.dgHoraInicio.HeaderText = "Hora Inicio";
-            this.dgHoraInicio.Name = "dgHoraInicio";
-            // 
-            // dgHorafin
-            // 
-            this.dgHorafin.DataPropertyName = "fechaHoraFin";
-            this.dgHorafin.HeaderText = "Hora Fin";
-            this.dgHorafin.Name = "dgHorafin";
             // 
             // btnRegistrarme
             // 
@@ -179,6 +141,37 @@ namespace SGES
             this.label1.Size = new System.Drawing.Size(172, 20);
             this.label1.TabIndex = 7;
             this.label1.Text = "Eventos Disponibles";
+            // 
+            // dgID
+            // 
+            this.dgID.DataPropertyName = "idEvento";
+            this.dgID.HeaderText = "ID";
+            this.dgID.Name = "dgID";
+            this.dgID.Visible = false;
+            // 
+            // dgNom
+            // 
+            this.dgNom.DataPropertyName = "nombreEvento";
+            this.dgNom.HeaderText = "Nombre";
+            this.dgNom.Name = "dgNom";
+            // 
+            // dgTipo
+            // 
+            this.dgTipo.DataPropertyName = "tipoEvento";
+            this.dgTipo.HeaderText = "Tipo";
+            this.dgTipo.Name = "dgTipo";
+            // 
+            // dgHoraInicio
+            // 
+            this.dgHoraInicio.DataPropertyName = "fechaHoraInicio";
+            this.dgHoraInicio.HeaderText = "Hora Inicio";
+            this.dgHoraInicio.Name = "dgHoraInicio";
+            // 
+            // dgHorafin
+            // 
+            this.dgHorafin.DataPropertyName = "fechaHoraFin";
+            this.dgHorafin.HeaderText = "Hora Fin";
+            this.dgHorafin.Name = "dgHorafin";
             // 
             // FormAprendiz
             // 
@@ -209,12 +202,11 @@ namespace SGES
         private System.Windows.Forms.Button btnRegistrarme;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnRegGrupo;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgNom;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgTipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgFecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgHoraInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgHorafin;
-        private System.Windows.Forms.Button btnRegGrupo;
     }
 }

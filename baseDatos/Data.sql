@@ -29,33 +29,3 @@ INSERT INTO Aprendiz VALUES
 (5, 'Diego Fernandez', 23, 'diegdx@outlook.com', 3049876543, 'Diego Fernandez', 'diegdx@outlook.com', 'pass789', 'Aprendiz', 'M', 26702),
 (6, 'Valentina Lopez', 20, 'vale2d9@outlook.com', 3054567890, 'Valentina Lopez', 'vale2d9@outlook.com', 'clave321', 'Aprendiz', 'F', 26703);
 
-
-
-
--- Consultas de verificacion para comprobar que idGrupo es opcional y se pueden eliminar grupos sin afectar inscripciones.
-SELECT TOP 20 idInscrip, idApr, idEvento, idGrupo, fechaInscrip
-FROM Inscripciones
-ORDER BY idInscrip DESC;
-
-SELECT idApr, idEvento, COUNT(*) AS cantidad
-FROM Inscripciones
-GROUP BY idApr, idEvento
-HAVING COUNT(*) > 1;
-
-SELECT i.idApr, i.idEvento, e.nombreEvento, e.fechaHoraInicio, e.fechaHoraFin, i.idGrupo
-FROM Inscripciones i
-JOIN Eventos e ON i.idEvento = e.idEvento
-WHERE i.idApr = 1
-ORDER BY e.fechaHoraInicio;
-
-SELECT *
-FROM Inscripciones
-WHERE idGrupo IS NOT NULL;
-
-select * from Eventos
-
-select * from Aprendiz
-
-
-
-
