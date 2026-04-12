@@ -67,7 +67,6 @@ CREATE TABLE Grupos(
 	idGrupo int PRIMARY KEY,
 	nombreGrupo varchar(20) NOT NULL
 );
-select * from Grupos
 
 CREATE TABLE Inscripciones(
 	idInscrip int PRIMARY KEY,
