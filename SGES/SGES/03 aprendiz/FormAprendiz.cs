@@ -38,6 +38,8 @@ namespace SGES
 
             dataGridViewAprend.AutoGenerateColumns = false;
             dataGridViewAprend.DataSource = ds.Tables["Eventos"];
+            dataGridViewAprend.SelectionChanged += dataGridViewAprend_SelectionChanged;
+            ActualizarBotonesSegunCategoria();
         }
 
         // BOTÓN PARA VOLVER AL LOGIN (CIERRE DE SESIÓN)
@@ -55,6 +57,41 @@ namespace SGES
         private void dataGridViewAprend_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // MANEJO DE CLICKS (NO SE UTILIZA)
+        }
+
+        // ACTUALIZA EL ESTADO DE LOS BOTONES SEGÚN LA CATEGORÍA DEL EVENTO SELECCIONADO
+        private void dataGridViewAprend_SelectionChanged(object sender, EventArgs e)
+        {
+            ActualizarBotonesSegunCategoria();
+        }
+
+        // SI EL EVENTO ES INDIVIDUAL SOLO HABILITA EL REGISTRO INDIVIDUAL; SI ES GRUPAL SOLO HABILITA EL REGISTRO GRUPAL
+        private void ActualizarBotonesSegunCategoria()
+        {
+            btnRegistrarme.Enabled = false;
+            btnRegGrupo.Enabled = false;
+
+            if (dataGridViewAprend.CurrentRow == null) return;
+
+            string categoriaEvento = string.Empty;
+
+            if (dataGridViewAprend.CurrentRow.DataBoundItem is DataRowView drv && drv.Row.Table.Columns.Contains("categoriaEvento"))
+            {
+                categoriaEvento = drv["categoriaEvento"]?.ToString() ?? string.Empty;
+            }
+            else if (dataGridViewAprend.Columns.Contains("categoriaEvento"))
+            {
+                categoriaEvento = dataGridViewAprend.CurrentRow.Cells["categoriaEvento"].Value?.ToString() ?? string.Empty;
+            }
+
+            if (categoriaEvento == "Individual")
+            {
+                btnRegistrarme.Enabled = true;
+            }
+            else if (categoriaEvento == "Grupal")
+            {
+                btnRegGrupo.Enabled = true;
+            }
         }
 
         private void btnRegistrarme_Click(object sender, EventArgs e)
@@ -120,8 +157,8 @@ namespace SGES
             // YA EL METODO MUESTRA MENSAJES DE CONFIRMACIÓN O ERROR, ASÍ QUE AQUÍ SOLO SE PUEDE REALIZAR ACCIONES POST-REGISTRO (EJ: DESHABILITAR BOTÓN, REFRESCAR GRID, ETC)
             if (ok)
             {
-                // Opcional: deshabilitar botón para evitar doble click; conservar CRUD sencillo.
-                btnRegistrarme.Enabled = true;
+                // SI EL REGISTRO FUE EXITOSO, REFRESCA EL ESTADO DE LOS BOTONES SEGÚN EL EVENTO ACTUAL
+                ActualizarBotonesSegunCategoria();
                 // Si quieres refrescar el grid: volver a cargar eventos
                 // FormAprendiz_Load(this, EventArgs.Empty);
             }

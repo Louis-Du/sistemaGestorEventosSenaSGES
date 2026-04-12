@@ -519,6 +519,14 @@ namespace SGES
         {
             try
             {
+                // 0) VALIDAR QUE EL EVENTO SEA DE CATEGORÍA INDIVIDUAL ANTES DE REGISTRAR
+                string categoriaEvento = ObtenerCategoriaEvento(idEvento);
+                if (categoriaEvento == "Grupal")
+                {
+                    MessageBox.Show("Este evento es grupal. Debes usar el registro en grupo.");
+                    return false;
+                }
+
                 // 1) VALIDAR SI EL APRENDIZ YA ESTÁ INSCRITO EN ESE MISMO EVENTO
                 using (SqlCommand chk = new SqlCommand("SELECT COUNT(1) FROM Inscripciones WHERE idApr = @idApr AND idEvento = @idEvento", cn.Conectar()))
                 {
@@ -599,6 +607,14 @@ namespace SGES
         {
             try
             {
+                // 0) VALIDAR QUE EL EVENTO SEA DE CATEGORÍA GRUPAL ANTES DE REGISTRAR
+                string categoriaEvento = ObtenerCategoriaEvento(idEvento);
+                if (categoriaEvento == "Individual")
+                {
+                    MessageBox.Show("Este evento es individual. No permite registro grupal.");
+                    return false;
+                }
+
                 // VALIDAR QUE LA LISTA DE APRENDICES LLEGUE CON DATOS
                 if (idsAprendices == null || idsAprendices.Count == 0)
                 {
@@ -691,6 +707,29 @@ namespace SGES
             {
                 MessageBox.Show(ex.Message);
                 return false;
+            }
+            finally
+            {
+                cn.Desconectar();
+            }
+        }
+
+        // CONSULTA LA CATEGORÍA DEL EVENTO PARA VALIDAR SI ADMITE REGISTRO INDIVIDUAL O GRUPAL
+        public string ObtenerCategoriaEvento(int idEvento)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT categoriaEvento FROM Eventos WHERE idEvento = @idEvento", cn.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@idEvento", idEvento);
+                    object resultado = cmd.ExecuteScalar();
+                    return resultado?.ToString() ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return string.Empty;
             }
             finally
             {
