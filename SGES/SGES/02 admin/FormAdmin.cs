@@ -38,13 +38,15 @@ namespace SGES
             try
             {
                 // Configuración y relación entre las columnas de el grid y la tabla en la base de datos
+                dataGridViewAdmin.AutoGenerateColumns = false;
                 ds = co.ConsultarEventos();
                 dataGridViewAdmin.DataSource = ds;
                 dataGridViewAdmin.DataMember = "Eventos";
-                dataGridViewAdmin.AutoGenerateColumns = false;
 
                 idEvento.DataPropertyName = "idEvento";
                 Nombre.DataPropertyName = "nombreEvento";
+                categoriaEvento.DataPropertyName = "categoriaEvento";
+                cantIntegrantes.DataPropertyName = "cantIntegrantes";
                 Tipo.DataPropertyName = "tipoEvento";
                 fechaHoraInicio.DataPropertyName = "fechaHoraInicio";
                 FechaHoraFin.DataPropertyName = "fechaHoraFin";
@@ -101,12 +103,6 @@ namespace SGES
             try
             {
                 int idEvento = int.Parse(dataGridViewAdmin.CurrentRow.Cells["idEvento"].Value.ToString()); // Obtiene la posición de el id de el evento
-                /*
-                DataSet ds = co.ConsultarAprendicesRegistrados(idEvento);
-
-                // Consulta los aprendices registrados al evento y los agregamos al data grid
-                dataGridViewAdmin.DataSource = ds; 
-                dataGridViewAdmin.DataMember = "Aprendices"; */
 
                 // Obtine el id del evento y lo manda al main del formulari FormAprendicesRegistrados
                 FormAprendicesRegistrados form = new FormAprendicesRegistrados(idEvento); 
@@ -129,13 +125,24 @@ namespace SGES
             int idEvent = int.Parse(fila.Cells["idEvento"].Value.ToString());
             string nombreEvent = fila.Cells["Nombre"].Value.ToString();
             string tipoEvent = fila.Cells["Tipo"].Value.ToString();
+            string categoriaEvento = fila.Cells["categoriaEvento"].Value.ToString();
+
+            int? cantIntegrantes = null;
+            if (categoriaEvento == "Grupal")
+            {
+                object valor = fila.Cells["cantIntegrantes"].Value.ToString();
+                if(valor != null && valor != DBNull.Value)
+                {
+                    cantIntegrantes = Convert.ToInt32(valor);
+                }
+            }
 
             // Leer por nombre evita errores cuando cambia el orden de columnas del grid.
             DateTime fechaHoraInicio = Convert.ToDateTime(fila.Cells["fechaHoraInicio"].Value);
             DateTime fechaHoraFin = Convert.ToDateTime(fila.Cells["FechaHoraFin"].Value);
 
             // Abrir FormEditar
-            FormEditarEvent frm = new FormEditarEvent(idEvent, nombreEvent, tipoEvent, fechaHoraInicio, fechaHoraFin);
+            FormEditarEvent frm = new FormEditarEvent(idEvent, nombreEvent, tipoEvent, categoriaEvento, cantIntegrantes, fechaHoraInicio, fechaHoraFin);
             frm.ShowDialog();
 
             dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos actualizados en el grid del formulario administrador

@@ -13,7 +13,7 @@ namespace SGES
 {
     public partial class FormEditarEvent : Form
     {
-        public FormEditarEvent(int idEvent, string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin)
+        public FormEditarEvent(int idEvent, string nombreEvent, string tipoEvent, string categoriaEvento, int? cantIntegrantes, DateTime fechaHoraInicio, DateTime fechaHoraFin)
         {
             InitializeComponent();
             // cargar los datos del evento en los controles del formulario
@@ -22,6 +22,8 @@ namespace SGES
             // Asignamos cada una de las entradas con los valores actuales del evento
             txtNombreEvento1.Text = nombreEvent;
             cbTipoEvento1.Text = tipoEvent;
+            cbCategoriaEvento.Text = categoriaEvento;
+            //nudCantidadIntegrantes.Value = cantIntegrantes;
             dtpFechaHoraInicio.Value = fechaHoraInicio; 
             dtpFechaHoraFin.Value = fechaHoraFin;
         }
@@ -48,29 +50,32 @@ namespace SGES
 
         private void btnActualizarEvent_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtNombreEvento1.Text) || string.IsNullOrWhiteSpace(cbTipoEvento1.Text)) // Validación de espacio en blanco
+            if (string.IsNullOrWhiteSpace(txtNombreEvento1.Text) || string.IsNullOrWhiteSpace(cbTipoEvento1.Text) || string.IsNullOrWhiteSpace(cbCategoriaEvento.Text)) // Validación de espacio en blanco
             {
                 MessageBox.Show("Por favor, complete todos los campos antes de actualizar el evento.");
+                return;
             }
-
-            else if (dtpFechaHoraFin.Value <= dtpFechaHoraInicio.Value) // Validación de fecha fin menor a fecha inicio
+            if (dtpFechaHoraFin.Value <= dtpFechaHoraInicio.Value) // Validación de fecha fin menor a fecha inicio
             {
                 MessageBox.Show("La hora de fin debe ser posterior a la hora de inicio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else if (dtpFechaHoraInicio.Value < DateTime.Now) // Validación de fecha inicio anterior al día actual
+            if (dtpFechaHoraInicio.Value < DateTime.Now) // Validación de fecha inicio anterior al día actual
             {
                 MessageBox.Show("La fecha y hora de inicio no puede ser en el pasado.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            else
+            int? cantIntegrantes = null;
+            if (cbCategoriaEvento.Text == "Grupal")
             {
-                Consultas co = new Consultas();
-
-                co.ActualizarEvento(int.Parse(lblID.Text), txtNombreEvento1.Text, cbTipoEvento1.Text, dtpFechaHoraInicio.Value, dtpFechaHoraFin.Value); // Llamar al método ActualizarEvento para actualizar los datos del evento en la base de datos
-                this.Close(); 
+                cantIntegrantes = (int)nudCantidadIntegrantes.Value;
             }
+
+            Consultas co = new Consultas();
+
+            co.ActualizarEvento(int.Parse(lblID.Text), txtNombreEvento1.Text, cbTipoEvento1.Text, cbCategoriaEvento.Text, cantIntegrantes, dtpFechaHoraInicio.Value, dtpFechaHoraFin.Value); // Llamar al método ActualizarEvento para actualizar los datos del evento en la base de datos
+            this.Close(); 
         }
 
         private void txtIdEvento_TextChanged(object sender, EventArgs e)
@@ -90,12 +95,30 @@ namespace SGES
 
         private void txtNombreEvento1_TextChanged(object sender, EventArgs e)
         {
+            int max = txtNombreEvento1.MaxLength;
+            int usados = txtNombreEvento1.Text.Length;
+            int restantes = max - usados;
 
+            lblCaracteresRestantes.Text = "Caracteres restantes: " + restantes;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void cbCategoriaEvento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbCategoriaEvento.Text == "Grupal")
+            {
+                label5.Visible = true;
+                nudCantidadIntegrantes.Visible = true;
+            }
+            else
+            {
+                label5.Visible = false;
+                nudCantidadIntegrantes.Visible = false;
+            }
         }
     }
 }

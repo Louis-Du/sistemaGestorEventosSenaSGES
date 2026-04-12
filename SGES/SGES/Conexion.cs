@@ -19,7 +19,6 @@ namespace SGES
             {
                 // Cadena de conexión: Data Source indica el servidor/instancia, Initial Catalog la base de datos.
                 con = new SqlConnection("Data Source=.\\SQLEXPRESS01;Initial Catalog=SGES;Integrated Security=True");
-
                 con.Open(); // Abrir la conexión
             }
             catch (Exception e)
