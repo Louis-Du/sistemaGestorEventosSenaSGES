@@ -357,9 +357,10 @@ namespace SGES
             try
             {
                 string query =
-                    "SELECT a.idApr, a.nombreApr, i.fechaInscrip, a.edadApr, a.emailApr, a.contactoApr, a.generoApr, f.codigoFic " +
+                    "SELECT a.nombreApr, i.fechaInscrip, g.nombreGrupo, a.edadApr, a.emailApr, a.contactoApr, a.generoApr, f.codigoFic " +
                     "FROM Aprendiz a " +
                     "join Inscripciones i ON a.idApr = i.idApr " +
+                    "join Grupos g ON i.idGrupo = g.idGrupo " +
                     "join Fichas f ON a.codigoFic = f.codigoFic " +
                     "join Programas p ON f.codigoProg = p.codigoProg " +
                     "WHERE i.idEvento = @idEvento "; // Asigna en una variable los aprendices registrados a un evento

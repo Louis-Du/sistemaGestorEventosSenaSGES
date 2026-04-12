@@ -31,6 +31,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCaracteresRestantes = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.nudCantidadIntegrantes = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
@@ -47,7 +48,6 @@
             this.btnActualizarEvent = new System.Windows.Forms.Button();
             this.txtNombreEvento1 = new System.Windows.Forms.TextBox();
             this.cbTipoEvento1 = new System.Windows.Forms.ComboBox();
-            this.lblCaracteresRestantes = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadIntegrantes)).BeginInit();
@@ -104,6 +104,17 @@
             this.panel1.Size = new System.Drawing.Size(444, 336);
             this.panel1.TabIndex = 10;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // lblCaracteresRestantes
+            // 
+            this.lblCaracteresRestantes.AutoSize = true;
+            this.lblCaracteresRestantes.Font = new System.Drawing.Font("Segoe UI Historic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCaracteresRestantes.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lblCaracteresRestantes.Location = new System.Drawing.Point(64, 57);
+            this.lblCaracteresRestantes.Name = "lblCaracteresRestantes";
+            this.lblCaracteresRestantes.Size = new System.Drawing.Size(128, 13);
+            this.lblCaracteresRestantes.TabIndex = 30;
+            this.lblCaracteresRestantes.Text = "Caracteres restantes: 50";
             // 
             // label8
             // 
@@ -289,7 +300,7 @@
             // 
             // txtNombreEvento1
             // 
-            this.txtNombreEvento1.Location = new System.Drawing.Point(59, 34);
+            this.txtNombreEvento1.Location = new System.Drawing.Point(63, 34);
             this.txtNombreEvento1.MaxLength = 50;
             this.txtNombreEvento1.Name = "txtNombreEvento1";
             this.txtNombreEvento1.Size = new System.Drawing.Size(129, 20);
@@ -307,17 +318,6 @@
             this.cbTipoEvento1.Name = "cbTipoEvento1";
             this.cbTipoEvento1.Size = new System.Drawing.Size(129, 21);
             this.cbTipoEvento1.TabIndex = 1;
-            // 
-            // lblCaracteresRestantes
-            // 
-            this.lblCaracteresRestantes.AutoSize = true;
-            this.lblCaracteresRestantes.Font = new System.Drawing.Font("Segoe UI Historic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCaracteresRestantes.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lblCaracteresRestantes.Location = new System.Drawing.Point(64, 57);
-            this.lblCaracteresRestantes.Name = "lblCaracteresRestantes";
-            this.lblCaracteresRestantes.Size = new System.Drawing.Size(128, 13);
-            this.lblCaracteresRestantes.TabIndex = 30;
-            this.lblCaracteresRestantes.Text = "Caracteres restantes: 50";
             // 
             // FormEditarEvent
             // 
