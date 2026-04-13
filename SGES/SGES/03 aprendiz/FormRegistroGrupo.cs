@@ -11,6 +11,7 @@ namespace SGES
     {
         private readonly int idEvento; // ID DEL EVENTO SELECCIONADO DESDE FORMAPRENDIZ
         private readonly int idAprActual; // ID DEL APRENDIZ QUE INICIÓ SESIÓN Y CUENTA COMO MIEMBRO DEL GRUPO
+        private readonly int cantIntegrantes; // hsg
         private readonly DataTable dtGrupo; // TABLA TEMPORAL EN MEMORIA QUE GUARDA LOS COMPAÑEROS SELECCIONADOS
 
         public FormRegistroGrupo()
@@ -38,10 +39,11 @@ namespace SGES
         }
 
         // CONSTRUCTOR PRINCIPAL: RECIBE EL ID DEL EVENTO Y EL ID DEL APRENDIZ ACTUAL DESDE FORMAPRENDIZ
-        public FormRegistroGrupo(int idEvento, int idAprActual) : this()
+        public FormRegistroGrupo(int idEvento, int idAprActual, int cantIntegrantes) : this()
         {
             this.idEvento = idEvento;
             this.idAprActual = idAprActual;
+            this.cantIntegrantes = cantIntegrantes;
         }
 
         // CARGA EL LISTADO DE APRENDICES DISPONIBLES PARA EL EVENTO SELECCIONADO
@@ -144,12 +146,13 @@ namespace SGES
             {
                 MessageBox.Show("Este aprendiz ya fue agregado al grupo.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
-            } 
+            }
 
             // VALIDAR MÁXIMO DE 2 COMPAÑEROS PARA NO EXCEDER EL LÍMITE DE 3 INTEGRANTES POR GRUPO
-            if (dtGrupo.Rows.Count >= 2)
+            int cantidadPermitido = cantIntegrantes - 1;
+            if (dtGrupo.Rows.Count >= cantidadPermitido)
             {
-                MessageBox.Show("Solo puedes seleccionar máximo 2 aprendices para el grupo.");
+                MessageBox.Show("Haz seleccionado más del número de participantes permitidos");
                 return;
             }
 

@@ -30,16 +30,18 @@ namespace SGES
         {
             this.btnVolver = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridViewAprend = new System.Windows.Forms.DataGridView();
+            this.idEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoriaEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantIntegrantes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaHoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnRegGrupo = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridViewAprend = new System.Windows.Forms.DataGridView();
             this.btnRegistrarme = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgHorafin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAprend)).BeginInit();
             this.SuspendLayout();
@@ -61,14 +63,90 @@ namespace SGES
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
+            this.panel1.Controls.Add(this.dataGridViewAprend);
             this.panel1.Controls.Add(this.btnRegGrupo);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.dataGridViewAprend);
             this.panel1.Controls.Add(this.btnRegistrarme);
             this.panel1.Location = new System.Drawing.Point(48, 83);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(574, 318);
+            this.panel1.Size = new System.Drawing.Size(617, 318);
             this.panel1.TabIndex = 4;
+            // 
+            // dataGridViewAprend
+            // 
+            this.dataGridViewAprend.AllowUserToAddRows = false;
+            this.dataGridViewAprend.AllowUserToDeleteRows = false;
+            this.dataGridViewAprend.AllowUserToResizeColumns = false;
+            this.dataGridViewAprend.AllowUserToResizeRows = false;
+            this.dataGridViewAprend.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dataGridViewAprend.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
+            this.dataGridViewAprend.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAprend.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idEvento,
+            this.Nombre,
+            this.categoriaEvento,
+            this.cantIntegrantes,
+            this.Tipo,
+            this.fechaHoraInicio,
+            this.FechaHoraFin});
+            this.dataGridViewAprend.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.dataGridViewAprend.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dataGridViewAprend.Location = new System.Drawing.Point(-35, 75);
+            this.dataGridViewAprend.MultiSelect = false;
+            this.dataGridViewAprend.Name = "dataGridViewAprend";
+            this.dataGridViewAprend.ReadOnly = true;
+            this.dataGridViewAprend.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridViewAprend.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridViewAprend.Size = new System.Drawing.Size(643, 149);
+            this.dataGridViewAprend.TabIndex = 10;
+            // 
+            // idEvento
+            // 
+            this.idEvento.DataPropertyName = "idEvento";
+            this.idEvento.HeaderText = "Column1";
+            this.idEvento.Name = "idEvento";
+            this.idEvento.ReadOnly = true;
+            this.idEvento.Visible = false;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "nombreEvento";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // categoriaEvento
+            // 
+            this.categoriaEvento.HeaderText = "Categoria";
+            this.categoriaEvento.Name = "categoriaEvento";
+            this.categoriaEvento.ReadOnly = true;
+            // 
+            // cantIntegrantes
+            // 
+            this.cantIntegrantes.HeaderText = "Cantidad de  integrantes";
+            this.cantIntegrantes.Name = "cantIntegrantes";
+            this.cantIntegrantes.ReadOnly = true;
+            // 
+            // Tipo
+            // 
+            this.Tipo.DataPropertyName = "tipoEvento";
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            // 
+            // fechaHoraInicio
+            // 
+            this.fechaHoraInicio.DataPropertyName = "fechaHoraInicio";
+            this.fechaHoraInicio.HeaderText = "Fecha y Hora de Inicio";
+            this.fechaHoraInicio.Name = "fechaHoraInicio";
+            this.fechaHoraInicio.ReadOnly = true;
+            // 
+            // FechaHoraFin
+            // 
+            this.FechaHoraFin.DataPropertyName = "fechaHoraFin";
+            this.FechaHoraFin.HeaderText = "Fecha y Hora de Finalización";
+            this.FechaHoraFin.Name = "FechaHoraFin";
+            this.FechaHoraFin.ReadOnly = true;
             // 
             // btnRegGrupo
             // 
@@ -90,31 +168,11 @@ namespace SGES
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(8, 12);
+            this.label2.Location = new System.Drawing.Point(29, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(123, 16);
             this.label2.TabIndex = 8;
             this.label2.Text = "Listado de Eventos";
-            // 
-            // dataGridViewAprend
-            // 
-            this.dataGridViewAprend.AllowUserToAddRows = false;
-            this.dataGridViewAprend.AllowUserToDeleteRows = false;
-            this.dataGridViewAprend.AllowUserToResizeColumns = false;
-            this.dataGridViewAprend.AllowUserToResizeRows = false;
-            this.dataGridViewAprend.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
-            this.dataGridViewAprend.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAprend.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgID,
-            this.dgNom,
-            this.dgTipo,
-            this.dgHoraInicio,
-            this.dgHorafin});
-            this.dataGridViewAprend.Location = new System.Drawing.Point(11, 34);
-            this.dataGridViewAprend.Name = "dataGridViewAprend";
-            this.dataGridViewAprend.Size = new System.Drawing.Size(552, 216);
-            this.dataGridViewAprend.TabIndex = 5;
-            this.dataGridViewAprend.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAprend_CellContentClick);
             // 
             // btnRegistrarme
             // 
@@ -136,49 +194,18 @@ namespace SGES
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(163, 40);
+            this.label1.Location = new System.Drawing.Point(186, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(172, 20);
             this.label1.TabIndex = 7;
             this.label1.Text = "Eventos Disponibles";
-            // 
-            // dgID
-            // 
-            this.dgID.DataPropertyName = "idEvento";
-            this.dgID.HeaderText = "ID";
-            this.dgID.Name = "dgID";
-            this.dgID.Visible = false;
-            // 
-            // dgNom
-            // 
-            this.dgNom.DataPropertyName = "nombreEvento";
-            this.dgNom.HeaderText = "Nombre";
-            this.dgNom.Name = "dgNom";
-            // 
-            // dgTipo
-            // 
-            this.dgTipo.DataPropertyName = "tipoEvento";
-            this.dgTipo.HeaderText = "Tipo";
-            this.dgTipo.Name = "dgTipo";
-            // 
-            // dgHoraInicio
-            // 
-            this.dgHoraInicio.DataPropertyName = "fechaHoraInicio";
-            this.dgHoraInicio.HeaderText = "Hora Inicio";
-            this.dgHoraInicio.Name = "dgHoraInicio";
-            // 
-            // dgHorafin
-            // 
-            this.dgHorafin.DataPropertyName = "fechaHoraFin";
-            this.dgHorafin.HeaderText = "Hora Fin";
-            this.dgHorafin.Name = "dgHorafin";
             // 
             // FormAprendiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.ClientSize = new System.Drawing.Size(688, 434);
+            this.ClientSize = new System.Drawing.Size(734, 434);
             this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
@@ -198,15 +225,17 @@ namespace SGES
 
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dataGridViewAprend;
         private System.Windows.Forms.Button btnRegistrarme;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnRegGrupo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgNom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgTipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgHoraInicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgHorafin;
+        private System.Windows.Forms.DataGridView dataGridViewAprend;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idEvento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn categoriaEvento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantIntegrantes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaHoraInicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaHoraFin;
     }
 }

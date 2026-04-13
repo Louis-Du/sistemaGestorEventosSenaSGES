@@ -35,8 +35,18 @@ namespace SGES
         {
             Consultas consulta = new Consultas();
             DataSet ds = consulta.ConsultarEventos();
-
             dataGridViewAprend.AutoGenerateColumns = false;
+            dataGridViewAprend.DataSource = ds;
+            dataGridViewAprend.DataMember = "Eventos";
+
+            idEvento.DataPropertyName = "idEvento";
+            Nombre.DataPropertyName = "nombreEvento";
+            categoriaEvento.DataPropertyName = "categoriaEvento";
+            cantIntegrantes.DataPropertyName = "cantIntegrantes";
+            Tipo.DataPropertyName = "tipoEvento";
+            fechaHoraInicio.DataPropertyName = "fechaHoraInicio";
+            FechaHoraFin.DataPropertyName = "fechaHoraFin"; 
+
             dataGridViewAprend.DataSource = ds.Tables["Eventos"];
             dataGridViewAprend.SelectionChanged += dataGridViewAprend_SelectionChanged;
             ActualizarBotonesSegunCategoria();
@@ -204,7 +214,9 @@ namespace SGES
             //ABRE EL FORMULARIO DE REGISTRO EN GRUPO USANDO LA ID DE EVENTO Y APRENDIZ SELECCIONADOS
             try
             {
-                using (var frm = new FormRegistroGrupo(idEventoSeleccionado, idApr))
+                int cantidadIntegrantes = Convert.ToInt32(dataGridViewAprend.CurrentRow.Cells["cantIntegrantes"].Value); // convierte la columna cantIntegrantes en entero
+
+                using (var frm = new FormRegistroGrupo(idEventoSeleccionado, idApr, cantidadIntegrantes))
                 {
                     frm.ShowDialog();
                 }
