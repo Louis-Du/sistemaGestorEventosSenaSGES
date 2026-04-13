@@ -519,6 +519,28 @@ namespace SGES
         {
             try
             {
+                // 0) VALIDAR SI EL EVENTO YA FINALIZÓ PARA IMPEDIR INSCRIPCIONES TARDÍAS
+                DateTime fechaHoraFinEvento;
+                using (SqlCommand cmdFecha = new SqlCommand("SELECT fechaHoraFin FROM Eventos WHERE idEvento = @idEvento", cn.Conectar()))
+                {
+                    cmdFecha.Parameters.AddWithValue("@idEvento", idEvento);
+                    object resultado = cmdFecha.ExecuteScalar();
+
+                    if (resultado == null || resultado == DBNull.Value)
+                    {
+                        MessageBox.Show("No se encontró el evento seleccionado.");
+                        return false;
+                    }
+
+                    fechaHoraFinEvento = Convert.ToDateTime(resultado);
+                }
+
+                if (fechaHoraFinEvento < DateTime.Now)
+                {
+                    MessageBox.Show("No puedes inscribirte en un evento que ya ha finalizado.");
+                    return false;
+                }
+
                 // 0) VALIDAR QUE EL EVENTO SEA DE CATEGORÍA INDIVIDUAL ANTES DE REGISTRAR
                 string categoriaEvento = ObtenerCategoriaEvento(idEvento);
                 if (categoriaEvento == "Grupal")
@@ -607,6 +629,28 @@ namespace SGES
         {
             try
             {
+                // 0) VALIDAR SI EL EVENTO YA FINALIZÓ PARA IMPEDIR INSCRIPCIONES GRUPALES TARDÍAS
+                DateTime fechaHoraFinEvento;
+                using (SqlCommand cmdFecha = new SqlCommand("SELECT fechaHoraFin FROM Eventos WHERE idEvento = @idEvento", cn.Conectar()))
+                {
+                    cmdFecha.Parameters.AddWithValue("@idEvento", idEvento);
+                    object resultado = cmdFecha.ExecuteScalar();
+
+                    if (resultado == null || resultado == DBNull.Value)
+                    {
+                        MessageBox.Show("No se encontró el evento seleccionado.");
+                        return false;
+                    }
+
+                    fechaHoraFinEvento = Convert.ToDateTime(resultado);
+                }
+
+                if (fechaHoraFinEvento < DateTime.Now)
+                {
+                    MessageBox.Show("No puedes inscribirte en un evento que ya ha finalizado.");
+                    return false;
+                }
+
                 // 0) VALIDAR QUE EL EVENTO SEA DE CATEGORÍA GRUPAL ANTES DE REGISTRAR
                 string categoriaEvento = ObtenerCategoriaEvento(idEvento);
                 if (categoriaEvento == "Individual")
