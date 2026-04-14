@@ -9,6 +9,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace SGES
 {
@@ -206,6 +208,52 @@ namespace SGES
             dtpFiltroFin.Checked = false;
             dataGridViewAdmin.DataSource = co.ConsultarEventos();
             dataGridViewAdmin.DataMember = "Eventos";
+        }
+
+        // BOTÓN PARA EXPORTAR EVENTOS A PDF (Crystal Reports)
+        private void btnExportarEventos_Click(object sender, EventArgs e)
+        {
+            // NOTA: Debes agregar el archivo ReporteEventos.rpt al proyecto en Windows
+            // y diseñar el reporte visualmente con los campos de la tabla Eventos.
+            try
+            {
+                DataSet ds = co.ConsultarEventos();
+                ReportDocument reporte = new ReportDocument();
+                reporte.Load("ReporteEventos.rpt"); // Debe estar en la carpeta del ejecutable o ruta absoluta
+                reporte.SetDataSource(ds.Tables["Eventos"]);
+                reporte.ExportToDisk(ExportFormatType.PortableDocFormat, "EventosExportados.pdf");
+                MessageBox.Show("Exportación a PDF completada (EventosExportados.pdf)");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
+            }
+        }
+
+        // BOTÓN PARA EXPORTAR INSCRIPCIONES A PDF (Crystal Reports)
+        private void btnExportarInscripciones_Click(object sender, EventArgs e)
+        {
+            // NOTA: Debes agregar el archivo ReporteInscripciones.rpt al proyecto en Windows
+            // y diseñar el reporte visualmente con los campos de la tabla Aprendices.
+            try
+            {
+                if (dataGridViewAdmin.CurrentRow == null)
+                {
+                    MessageBox.Show("Selecciona un evento para exportar sus inscripciones.");
+                    return;
+                }
+                int idEvento = Convert.ToInt32(dataGridViewAdmin.CurrentRow.Cells["idEvento"].Value);
+                DataSet ds = co.ConsultarAprendicesRegistrados(idEvento);
+                ReportDocument reporte = new ReportDocument();
+                reporte.Load("ReporteInscripciones.rpt");
+                reporte.SetDataSource(ds.Tables["Aprendices"]);
+                reporte.ExportToDisk(ExportFormatType.PortableDocFormat, "InscripcionesExportadas.pdf");
+                MessageBox.Show("Exportación a PDF completada (InscripcionesExportadas.pdf)");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
+            }
         }
     }
 }

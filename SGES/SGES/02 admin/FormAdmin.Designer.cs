@@ -30,6 +30,8 @@ namespace SGES
         {
             this.btnVolver = new System.Windows.Forms.Button();
             this.btnCrearEvent = new System.Windows.Forms.Button();
+            this.btnExportarEventos = new System.Windows.Forms.Button();
+            this.btnExportarInscripciones = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.txtBuscarNombreEvento = new System.Windows.Forms.TextBox();
@@ -87,6 +89,22 @@ namespace SGES
             this.btnCrearEvent.UseVisualStyleBackColor = false;
             this.btnCrearEvent.Click += new System.EventHandler(this.btnCrearEvent_Click);
             // 
+            // btnExportarEventos
+            // 
+            this.btnExportarEventos.Text = "Exportar Eventos PDF";
+            this.btnExportarEventos.Location = new System.Drawing.Point(500, 320);
+            this.btnExportarEventos.Size = new System.Drawing.Size(120, 23);
+            this.btnExportarEventos.TabIndex = 20;
+            this.btnExportarEventos.Click += new System.EventHandler(this.btnExportarEventos_Click);
+            // 
+            // btnExportarInscripciones
+            // 
+            this.btnExportarInscripciones.Text = "Exportar Inscripciones PDF";
+            this.btnExportarInscripciones.Location = new System.Drawing.Point(350, 320);
+            this.btnExportarInscripciones.Size = new System.Drawing.Size(140, 23);
+            this.btnExportarInscripciones.TabIndex = 21;
+            this.btnExportarInscripciones.Click += new System.EventHandler(this.btnExportarInscripciones_Click);
+            // 
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -103,6 +121,8 @@ namespace SGES
             this.panel1.Controls.Add(this.dtpFiltroInicio);
             this.panel1.Controls.Add(this.dtpFiltroFin);
             this.panel1.Controls.Add(this.btnLimpiarFiltros);
+            this.panel1.Controls.Add(this.btnExportarEventos);
+            this.panel1.Controls.Add(this.btnExportarInscripciones);
             this.panel1.Location = new System.Drawing.Point(34, 84);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(630, 359);
@@ -369,6 +389,8 @@ namespace SGES
         #endregion
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Button btnCrearEvent;
+        private System.Windows.Forms.Button btnExportarEventos;
+        private System.Windows.Forms.Button btnExportarInscripciones;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnConsultarAprendicesRegistrados;
         private System.Windows.Forms.Button btnEliminarEvent;
