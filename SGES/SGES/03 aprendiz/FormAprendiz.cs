@@ -35,10 +35,17 @@ namespace SGES
         {
             Consultas consulta = new Consultas();
             DataSet ds = consulta.ConsultarEventos();
+            // Filtrar eventos solo con inscripción vigente
+            DataTable eventos = ds.Tables["Eventos"];
+            DateTime ahora = DateTime.Now;
+            var eventosDisponibles = eventos.AsEnumerable()
+                .Where(r =>
+                    r.Field<DateTime>("fechaHoraInicioInscripcion") <= ahora &&
+                    r.Field<DateTime>("fechaHoraFinInscripcion") >= ahora
+                );
+            DataTable dtFiltrado = eventosDisponibles.Any() ? eventosDisponibles.CopyToDataTable() : eventos.Clone();
             dataGridViewAprend.AutoGenerateColumns = false;
-            dataGridViewAprend.DataSource = ds;
-            dataGridViewAprend.DataMember = "Eventos";
-
+            dataGridViewAprend.DataSource = dtFiltrado;
             idEvento.DataPropertyName = "idEvento";
             Nombre.DataPropertyName = "nombreEvento";
             categoriaEvento.DataPropertyName = "categoriaEvento";

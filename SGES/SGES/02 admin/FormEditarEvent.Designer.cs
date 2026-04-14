@@ -48,6 +48,10 @@
             this.btnActualizarEvent = new System.Windows.Forms.Button();
             this.txtNombreEvento1 = new System.Windows.Forms.TextBox();
             this.cbTipoEvento1 = new System.Windows.Forms.ComboBox();
+            this.labelInscripcionInicio = new System.Windows.Forms.Label();
+            this.labelInscripcionFin = new System.Windows.Forms.Label();
+            this.dtpFechaHoraInicioInscripcion = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaHoraFinInscripcion = new System.Windows.Forms.DateTimePicker();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadIntegrantes)).BeginInit();
@@ -83,6 +87,61 @@
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.lblCaracteresRestantes);
+            // Controles para inscripción
+            this.labelInscripcionInicio = new System.Windows.Forms.Label();
+            this.labelInscripcionFin = new System.Windows.Forms.Label();
+            this.dtpFechaHoraInicioInscripcion = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaHoraFinInscripcion = new System.Windows.Forms.DateTimePicker();
+            //
+            // labelInscripcionInicio
+            //
+            this.labelInscripcionInicio.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelInscripcionInicio.AutoSize = true;
+            this.labelInscripcionInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelInscripcionInicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.labelInscripcionInicio.Location = new System.Drawing.Point(62, 190);
+            this.labelInscripcionInicio.Name = "labelInscripcionInicio";
+            this.labelInscripcionInicio.Size = new System.Drawing.Size(140, 16);
+            this.labelInscripcionInicio.TabIndex = 40;
+            this.labelInscripcionInicio.Text = "Inicio Inscripción";
+            this.panel1.Controls.Add(this.labelInscripcionInicio);
+            //
+            // dtpFechaHoraInicioInscripcion
+            //
+            this.dtpFechaHoraInicioInscripcion.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpFechaHoraInicioInscripcion.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaHoraInicioInscripcion.Location = new System.Drawing.Point(220, 190);
+            this.dtpFechaHoraInicioInscripcion.Name = "dtpFechaHoraInicioInscripcion";
+            this.dtpFechaHoraInicioInscripcion.Size = new System.Drawing.Size(140, 20);
+            this.dtpFechaHoraInicioInscripcion.TabIndex = 41;
+            this.panel1.Controls.Add(this.dtpFechaHoraInicioInscripcion);
+            //
+            // labelInscripcionFin
+            //
+            this.labelInscripcionFin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelInscripcionFin.AutoSize = true;
+            this.labelInscripcionFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelInscripcionFin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.labelInscripcionFin.Location = new System.Drawing.Point(62, 220);
+            this.labelInscripcionFin.Name = "labelInscripcionFin";
+            this.labelInscripcionFin.Size = new System.Drawing.Size(130, 16);
+            this.labelInscripcionFin.TabIndex = 42;
+            this.labelInscripcionFin.Text = "Fin Inscripción";
+            this.panel1.Controls.Add(this.labelInscripcionFin);
+            //
+            // dtpFechaHoraFinInscripcion
+            //
+            this.dtpFechaHoraFinInscripcion.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpFechaHoraFinInscripcion.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaHoraFinInscripcion.Location = new System.Drawing.Point(220, 220);
+            this.dtpFechaHoraFinInscripcion.Name = "dtpFechaHoraFinInscripcion";
+            this.dtpFechaHoraFinInscripcion.Size = new System.Drawing.Size(140, 20);
+            this.dtpFechaHoraFinInscripcion.TabIndex = 43;
+            this.panel1.Controls.Add(this.dtpFechaHoraFinInscripcion);
+                private System.Windows.Forms.Label labelInscripcionInicio;
+                private System.Windows.Forms.Label labelInscripcionFin;
+                private System.Windows.Forms.DateTimePicker dtpFechaHoraInicioInscripcion;
+                private System.Windows.Forms.DateTimePicker dtpFechaHoraFinInscripcion;
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.nudCantidadIntegrantes);
             this.panel1.Controls.Add(this.label7);
@@ -362,5 +421,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown nudCantidadIntegrantes;
         private System.Windows.Forms.Label lblCaracteresRestantes;
+        private System.Windows.Forms.Label labelInscripcionInicio;
+        private System.Windows.Forms.Label labelInscripcionFin;
+        private System.Windows.Forms.DateTimePicker dtpFechaHoraInicioInscripcion;
+        private System.Windows.Forms.DateTimePicker dtpFechaHoraFinInscripcion;
     }
 }

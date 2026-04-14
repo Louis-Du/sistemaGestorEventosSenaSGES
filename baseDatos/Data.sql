@@ -15,10 +15,10 @@ INSERT INTO Fichas VALUES (26702, '2024-02-05', '2025-08-05', 102);
 INSERT INTO Fichas VALUES (26703, '2024-03-15', '2025-03-15', 103);
 
 -- Inserciones de ejemplo (ajusta ids si ya existen)
-INSERT INTO Eventos (nombreEvento, tipoEvento, categoriaEvento, cantIntegrantes, fechaHoraInicio, fechaHoraFin, idUser) VALUES 
-('Conferencia Tech', 'Educativo', 'Grupal', '3', '2026-05-10 09:00:00', '2026-05-11 10:00:00', 101),
-('Hackathon SENA',   'Cultural', 'Individual', null, '2026-07-15 08:00:00', '2026-07-16 20:00:00', 102),
-('Feria de Empleo',  'Deportivo', 'Individual', null, '2026-07-20 10:00:00', '2026-07-23 13:00:00', 103);
+INSERT INTO Eventos (nombreEvento, tipoEvento, categoriaEvento, cantIntegrantes, fechaHoraInicio, fechaHoraFin, fechaHoraInicioInscripcion, fechaHoraFinInscripcion, idUser) VALUES 
+('Conferencia Tech', 'Educativo', 'Grupal', 3, '2026-05-10 09:00:00', '2026-05-11 10:00:00', '2026-04-01 08:00:00', '2026-05-09 23:59:00', 101),
+('Hackathon SENA',   'Cultural', 'Individual', null, '2026-07-15 08:00:00', '2026-07-16 20:00:00', '2026-06-01 08:00:00', '2026-07-14 23:59:00', 102),
+('Feria de Empleo',  'Deportivo', 'Individual', null, '2026-07-20 10:00:00', '2026-07-23 13:00:00', '2026-06-15 08:00:00', '2026-07-19 23:59:00', 103);
 
 -- Aprendices
 INSERT INTO Aprendiz VALUES 

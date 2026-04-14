@@ -46,6 +46,13 @@ namespace SGES
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaHoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaHoraInicioInscripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaHoraFinInscripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbTipoFiltro = new System.Windows.Forms.ComboBox();
+            this.cbCategoriaFiltro = new System.Windows.Forms.ComboBox();
+            this.dtpFiltroInicio = new System.Windows.Forms.DateTimePicker();
+            this.dtpFiltroFin = new System.Windows.Forms.DateTimePicker();
+            this.btnLimpiarFiltros = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdmin)).BeginInit();
             this.SuspendLayout();
@@ -91,6 +98,11 @@ namespace SGES
             this.panel1.Controls.Add(this.btnConsultarAprendicesRegistrados);
             this.panel1.Controls.Add(this.dataGridViewAdmin);
             this.panel1.Controls.Add(this.btnEliminarEvent);
+            this.panel1.Controls.Add(this.cbTipoFiltro);
+            this.panel1.Controls.Add(this.cbCategoriaFiltro);
+            this.panel1.Controls.Add(this.dtpFiltroInicio);
+            this.panel1.Controls.Add(this.dtpFiltroFin);
+            this.panel1.Controls.Add(this.btnLimpiarFiltros);
             this.panel1.Location = new System.Drawing.Point(34, 84);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(630, 359);
@@ -182,7 +194,9 @@ namespace SGES
             this.cantIntegrantes,
             this.Tipo,
             this.fechaHoraInicio,
-            this.FechaHoraFin});
+            this.FechaHoraFin,
+            this.fechaHoraInicioInscripcion,
+            this.fechaHoraFinInscripcion});
             this.dataGridViewAdmin.Cursor = System.Windows.Forms.Cursors.Cross;
             this.dataGridViewAdmin.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridViewAdmin.Location = new System.Drawing.Point(-35, 123);
@@ -270,6 +284,66 @@ namespace SGES
             this.FechaHoraFin.Name = "FechaHoraFin";
             this.FechaHoraFin.ReadOnly = true;
             // 
+            // fechaHoraInicioInscripcion
+            // 
+            this.fechaHoraInicioInscripcion.DataPropertyName = "fechaHoraInicioInscripcion";
+            this.fechaHoraInicioInscripcion.HeaderText = "Inicio Inscripción";
+            this.fechaHoraInicioInscripcion.Name = "fechaHoraInicioInscripcion";
+            this.fechaHoraInicioInscripcion.ReadOnly = true;
+            // 
+            // fechaHoraFinInscripcion
+            // 
+            this.fechaHoraFinInscripcion.DataPropertyName = "fechaHoraFinInscripcion";
+            this.fechaHoraFinInscripcion.HeaderText = "Fin Inscripción";
+            this.fechaHoraFinInscripcion.Name = "fechaHoraFinInscripcion";
+            this.fechaHoraFinInscripcion.ReadOnly = true;
+            // 
+            // cbTipoFiltro
+            // 
+            this.cbTipoFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipoFiltro.Items.AddRange(new object[] {"", "Educativo", "Cultural", "Deportivo"});
+            this.cbTipoFiltro.Location = new System.Drawing.Point(450, 66);
+            this.cbTipoFiltro.Name = "cbTipoFiltro";
+            this.cbTipoFiltro.Size = new System.Drawing.Size(100, 21);
+            this.cbTipoFiltro.TabIndex = 12;
+            this.cbTipoFiltro.SelectedIndexChanged += new System.EventHandler(this.FiltrosAvanzados_Changed);
+            // 
+            // cbCategoriaFiltro
+            // 
+            this.cbCategoriaFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCategoriaFiltro.Items.AddRange(new object[] {"", "Grupal", "Individual"});
+            this.cbCategoriaFiltro.Location = new System.Drawing.Point(560, 66);
+            this.cbCategoriaFiltro.Name = "cbCategoriaFiltro";
+            this.cbCategoriaFiltro.Size = new System.Drawing.Size(80, 21);
+            this.cbCategoriaFiltro.TabIndex = 13;
+            this.cbCategoriaFiltro.SelectedIndexChanged += new System.EventHandler(this.FiltrosAvanzados_Changed);
+            // 
+            // dtpFiltroInicio
+            // 
+            this.dtpFiltroInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFiltroInicio.Location = new System.Drawing.Point(157, 100);
+            this.dtpFiltroInicio.Name = "dtpFiltroInicio";
+            this.dtpFiltroInicio.Size = new System.Drawing.Size(120, 20);
+            this.dtpFiltroInicio.TabIndex = 14;
+            this.dtpFiltroInicio.ValueChanged += new System.EventHandler(this.FiltrosAvanzados_Changed);
+            // 
+            // dtpFiltroFin
+            // 
+            this.dtpFiltroFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFiltroFin.Location = new System.Drawing.Point(277, 100);
+            this.dtpFiltroFin.Name = "dtpFiltroFin";
+            this.dtpFiltroFin.Size = new System.Drawing.Size(120, 20);
+            this.dtpFiltroFin.TabIndex = 15;
+            this.dtpFiltroFin.ValueChanged += new System.EventHandler(this.FiltrosAvanzados_Changed);
+            // 
+            // btnLimpiarFiltros
+            // 
+            this.btnLimpiarFiltros.Text = "Limpiar Filtros";
+            this.btnLimpiarFiltros.Location = new System.Drawing.Point(410, 100);
+            this.btnLimpiarFiltros.Size = new System.Drawing.Size(100, 23);
+            this.btnLimpiarFiltros.TabIndex = 16;
+            this.btnLimpiarFiltros.Click += new System.EventHandler(this.btnLimpiarFiltros_Click);
+            // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -310,6 +384,13 @@ namespace SGES
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaHoraInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaHoraFin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaHoraInicioInscripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaHoraFinInscripcion;
+        private System.Windows.Forms.ComboBox cbTipoFiltro;
+        private System.Windows.Forms.ComboBox cbCategoriaFiltro;
+        private System.Windows.Forms.DateTimePicker dtpFiltroInicio;
+        private System.Windows.Forms.DateTimePicker dtpFiltroFin;
+        private System.Windows.Forms.Button btnLimpiarFiltros;
         private System.Windows.Forms.DataGridView dataGridViewAdmin;
     }
 }

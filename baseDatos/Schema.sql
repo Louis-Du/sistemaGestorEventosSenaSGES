@@ -19,17 +19,21 @@ CREATE TABLE Usuario(
 	tipoUser varchar(20) not null
 );
 
+
 CREATE TABLE Eventos (
-    idEvento INT IDENTITY PRIMARY KEY,
-    nombreEvento VARCHAR(50) NOT NULL,
+	idEvento INT IDENTITY PRIMARY KEY,
+	nombreEvento VARCHAR(50) NOT NULL,
 	categoriaEvento VARCHAR(17) NOT NULL,
 	cantIntegrantes int null,
-    tipoEvento VARCHAR(50) NOT NULL,
-    fechaHoraInicio DATETIME2(0) NOT NULL,
-    fechaHoraFin   DATETIME2(0) NOT NULL,
-    idUser INT NOT NULL,
-    CONSTRAINT FK_Eventos_Usuario FOREIGN KEY (idUser) REFERENCES Usuario(idUser),
-    CONSTRAINT CK_Eventos_Fechas CHECK (fechaHoraFin > fechaHoraInicio)
+	tipoEvento VARCHAR(50) NOT NULL,
+	fechaHoraInicio DATETIME2(0) NOT NULL,
+	fechaHoraFin   DATETIME2(0) NOT NULL,
+	fechaHoraInicioInscripcion DATETIME2(0) NOT NULL,
+	fechaHoraFinInscripcion DATETIME2(0) NOT NULL,
+	idUser INT NOT NULL,
+	CONSTRAINT FK_Eventos_Usuario FOREIGN KEY (idUser) REFERENCES Usuario(idUser),
+	CONSTRAINT CK_Eventos_Fechas CHECK (fechaHoraFin > fechaHoraInicio),
+	CONSTRAINT CK_Inscripcion_Rango CHECK (fechaHoraInicioInscripcion < fechaHoraFinInscripcion AND fechaHoraFinInscripcion <= fechaHoraInicio)
 );
 
 CREATE TABLE Programas(

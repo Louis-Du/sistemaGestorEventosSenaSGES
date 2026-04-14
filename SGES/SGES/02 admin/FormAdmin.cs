@@ -50,6 +50,8 @@ namespace SGES
                 Tipo.DataPropertyName = "tipoEvento";
                 fechaHoraInicio.DataPropertyName = "fechaHoraInicio";
                 FechaHoraFin.DataPropertyName = "fechaHoraFin";
+                fechaHoraInicioInscripcion.DataPropertyName = "fechaHoraInicioInscripcion";
+                fechaHoraFinInscripcion.DataPropertyName = "fechaHoraFinInscripcion";
             }
             catch (Exception ex)
             {
@@ -130,22 +132,23 @@ namespace SGES
             int? cantIntegrantes = null;
             if (categoriaEvento == "Grupal")
             {
-                object valor = fila.Cells["cantIntegrantes"].Value.ToString();
-                if(valor != null && valor != DBNull.Value)
+                object valor = fila.Cells["cantIntegrantes"].Value;
+                if(valor != null && valor != DBNull.Value && !string.IsNullOrWhiteSpace(valor.ToString()))
                 {
                     cantIntegrantes = Convert.ToInt32(valor);
                 }
             }
 
-            // Leer por nombre evita errores cuando cambia el orden de columnas del grid.
             DateTime fechaHoraInicio = Convert.ToDateTime(fila.Cells["fechaHoraInicio"].Value);
             DateTime fechaHoraFin = Convert.ToDateTime(fila.Cells["FechaHoraFin"].Value);
+            DateTime fechaHoraInicioInscripcion = Convert.ToDateTime(fila.Cells["fechaHoraInicioInscripcion"].Value);
+            DateTime fechaHoraFinInscripcion = Convert.ToDateTime(fila.Cells["fechaHoraFinInscripcion"].Value);
 
-            // Abrir FormEditar
-            FormEditarEvent frm = new FormEditarEvent(idEvent, nombreEvent, tipoEvent, categoriaEvento, cantIntegrantes, fechaHoraInicio, fechaHoraFin);
+            // Abrir FormEditar con fechas de inscripción
+            FormEditarEvent frm = new FormEditarEvent(idEvent, nombreEvent, tipoEvent, categoriaEvento, cantIntegrantes, fechaHoraInicio, fechaHoraFin, fechaHoraInicioInscripcion, fechaHoraFinInscripcion);
             frm.ShowDialog();
 
-            dataGridViewAdmin.DataSource = co.ConsultarEventos(); // Mantine los eventos actualizados en el grid del formulario administrador
+            dataGridViewAdmin.DataSource = co.ConsultarEventos();
             dataGridViewAdmin.DataMember = "Eventos";
         }
 
@@ -161,6 +164,48 @@ namespace SGES
                 dataGridViewAdmin.DataSource = co.FiltrarEvento(txtBuscarNombreEvento.Text);
                 dataGridViewAdmin.DataMember = "Eventos";
             }
+        }
+
+        // Evento para cualquier cambio en los filtros avanzados
+        private void FiltrosAvanzados_Changed(object sender, EventArgs e)
+        {
+            string nombre = txtBuscarNombreEvento.Text.Trim();
+            string tipo = cbTipoFiltro.SelectedItem?.ToString() ?? "";
+            string categoria = cbCategoriaFiltro.SelectedItem?.ToString() ?? "";
+            DateTime? fechaInicio = dtpFiltroInicio.Checked ? dtpFiltroInicio.Value.Date : (DateTime?)null;
+            DateTime? fechaFin = dtpFiltroFin.Checked ? dtpFiltroFin.Value.Date : (DateTime?)null;
+
+            DataTable eventos = co.ConsultarEventos().Tables["Eventos"];
+            IEnumerable<DataRow> query = eventos.AsEnumerable();
+
+            if (!string.IsNullOrWhiteSpace(nombre))
+                query = query.Where(r => r.Field<string>("nombreEvento").IndexOf(nombre, StringComparison.OrdinalIgnoreCase) >= 0);
+            if (!string.IsNullOrWhiteSpace(tipo))
+                query = query.Where(r => r.Field<string>("tipoEvento") == tipo);
+            if (!string.IsNullOrWhiteSpace(categoria))
+                query = query.Where(r => r.Field<string>("categoriaEvento") == categoria);
+            if (fechaInicio.HasValue)
+                query = query.Where(r => r.Field<DateTime>("fechaHoraInicio") >= fechaInicio.Value);
+            if (fechaFin.HasValue)
+                query = query.Where(r => r.Field<DateTime>("fechaHoraFin") <= fechaFin.Value);
+
+            if (query.Any())
+                dataGridViewAdmin.DataSource = query.CopyToDataTable();
+            else
+                dataGridViewAdmin.DataSource = null;
+        }
+
+        private void btnLimpiarFiltros_Click(object sender, EventArgs e)
+        {
+            txtBuscarNombreEvento.Text = "";
+            cbTipoFiltro.SelectedIndex = 0;
+            cbCategoriaFiltro.SelectedIndex = 0;
+            dtpFiltroInicio.Value = DateTime.Now;
+            dtpFiltroInicio.Checked = false;
+            dtpFiltroFin.Value = DateTime.Now;
+            dtpFiltroFin.Checked = false;
+            dataGridViewAdmin.DataSource = co.ConsultarEventos();
+            dataGridViewAdmin.DataMember = "Eventos";
         }
     }
 }

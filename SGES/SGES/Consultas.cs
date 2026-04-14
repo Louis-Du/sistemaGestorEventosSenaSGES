@@ -246,13 +246,14 @@ namespace SGES
 
             try
             {
-                // Se utiliza using para asegurar que la conexión se cierre correctamente después de la consulta, incluso si ocurre una excepción
-                using (SqlCommand consulta = new SqlCommand("SELECT e.idEvento, e.nombreEvento, e.categoriaEvento, e.cantIntegrantes, e.tipoEvento, e.fechaHoraInicio, e.fechaHoraFin  FROM Eventos e where e.fechaHoraFin >= getdate()", cn.Conectar())) // Consulta los eventos registrados en la base de datos
-
+                // Ahora incluye fechas de inscripción en la consulta
+                using (SqlCommand consulta = new SqlCommand(
+                    "SELECT e.idEvento, e.nombreEvento, e.categoriaEvento, e.cantIntegrantes, e.tipoEvento, e.fechaHoraInicio, e.fechaHoraFin, e.fechaHoraInicioInscripcion, e.fechaHoraFinInscripcion FROM Eventos e WHERE e.fechaHoraFin >= getdate()",
+                    cn.Conectar()))
                 {
-                    using (SqlDataAdapter da = new SqlDataAdapter(consulta)) // Almacena el resultado de la consulta en un DataSet
+                    using (SqlDataAdapter da = new SqlDataAdapter(consulta))
                     {
-                        da.Fill(ds, "Eventos"); // Ejecuta la consulta
+                        da.Fill(ds, "Eventos");
                     }
                 }
             }
@@ -267,7 +268,7 @@ namespace SGES
             return ds;
         }
 
-        public void InsertarEvento(string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin, string categoriaEvento, int? cantIntegrantes, int idUser)
+        public void InsertarEvento(string nombreEvent, string tipoEvent, DateTime fechaHoraInicio, DateTime fechaHoraFin, DateTime fechaHoraInicioInscripcion, DateTime fechaHoraFinInscripcion, string categoriaEvento, int? cantIntegrantes, int idUser)
         {
             try
             {
@@ -275,17 +276,19 @@ namespace SGES
                 // diaEvento: solo la parte DATE, para compatibilidad con el grid/filtrado por día
                 DateTime diaEvento = fechaHoraInicio.Date;
 
+
                 string query =
-                    "INSERT INTO Eventos (nombreEvento, tipoEvento, fechaHoraInicio, fechaHoraFin, categoriaEvento, cantIntegrantes, idUser) " +
-                    "VALUES (@nombreEvent, @tipoEvent, @fechaHoraInicio, @fechaHoraFin, @categoriaEvento, @cantIntegrantes, @idUser)";
+                    "INSERT INTO Eventos (nombreEvento, tipoEvento, fechaHoraInicio, fechaHoraFin, fechaHoraInicioInscripcion, fechaHoraFinInscripcion, categoriaEvento, cantIntegrantes, idUser) " +
+                    "VALUES (@nombreEvent, @tipoEvent, @fechaHoraInicio, @fechaHoraFin, @fechaHoraInicioInscripcion, @fechaHoraFinInscripcion, @categoriaEvento, @cantIntegrantes, @idUser)";
 
                 using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
                 {
-                    // Establece el valor de cada columna en la tabla antes y la relacionamos con el parametro correspondiente
                     cmd.Parameters.Add("@nombreEvent", System.Data.SqlDbType.VarChar, 50).Value = nombreEvent;
                     cmd.Parameters.Add("@tipoEvent", System.Data.SqlDbType.VarChar, 50).Value = tipoEvent;
                     cmd.Parameters.Add("@fechaHoraInicio", System.Data.SqlDbType.DateTime2).Value = fechaHoraInicio;
                     cmd.Parameters.Add("@fechaHoraFin", System.Data.SqlDbType.DateTime2).Value = fechaHoraFin;
+                    cmd.Parameters.Add("@fechaHoraInicioInscripcion", System.Data.SqlDbType.DateTime2).Value = fechaHoraInicioInscripcion;
+                    cmd.Parameters.Add("@fechaHoraFinInscripcion", System.Data.SqlDbType.DateTime2).Value = fechaHoraFinInscripcion;
                     cmd.Parameters.Add("@categoriaEvento", System.Data.SqlDbType.VarChar, 50).Value = categoriaEvento;
                     object valorIntegrantes = DBNull.Value;
                     if (categoriaEvento == "Grupal")
@@ -311,16 +314,16 @@ namespace SGES
             }
         }
 
-        public void ActualizarEvento(int idEvento, string nombreEvento, string tipoEvento, string categoriaEvento, int? cantIntegrantes, DateTime fechaHoraInicio, DateTime fechaHoraFin)
+        public void ActualizarEvento(int idEvento, string nombreEvento, string tipoEvento, string categoriaEvento, int? cantIntegrantes, DateTime fechaHoraInicio, DateTime fechaHoraFin, DateTime fechaHoraInicioInscripcion, DateTime fechaHoraFinInscripcion)
         {
             try
             {
                 DateTime diaEvento = fechaHoraInicio.Date;
 
                 string query =
-                    "UPDATE Eventos SET nombreEvento = @nombreEvento, tipoEvento = @tipoEvento, categoriaEvento = @categoriaEvento, CantIntegrantes = @CantIntegrantes, fechaHoraInicio = @fechaHoraInicio, fechaHoraFin = @fechaHoraFin " +
-                    "WHERE idEvento = @idEvento"; // Asigna en una variable la consulta a realizar
-                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar())) // Consulta la variable query
+                    "UPDATE Eventos SET nombreEvento = @nombreEvento, tipoEvento = @tipoEvento, categoriaEvento = @categoriaEvento, cantIntegrantes = @cantIntegrantes, fechaHoraInicio = @fechaHoraInicio, fechaHoraFin = @fechaHoraFin, fechaHoraInicioInscripcion = @fechaHoraInicioInscripcion, fechaHoraFinInscripcion = @fechaHoraFinInscripcion " +
+                    "WHERE idEvento = @idEvento";
+                using (SqlCommand cmd = new SqlCommand(query, cn.Conectar()))
                 {
                     cmd.Parameters.AddWithValue("@idEvento", idEvento);
                     cmd.Parameters.AddWithValue("@nombreEvento", nombreEvento);
@@ -334,6 +337,8 @@ namespace SGES
                         valorIntegrantes = cantIntegrantes;
                     }
                     cmd.Parameters.Add("@cantIntegrantes", SqlDbType.Int).Value = (object)cantIntegrantes ?? DBNull.Value;
+                    cmd.Parameters.AddWithValue("@fechaHoraInicioInscripcion", fechaHoraInicioInscripcion);
+                    cmd.Parameters.AddWithValue("@fechaHoraFinInscripcion", fechaHoraFinInscripcion);
 
                     cmd.ExecuteNonQuery();
 
@@ -519,23 +524,36 @@ namespace SGES
         {
             try
             {
-                // 0) VALIDAR SI EL EVENTO YA FINALIZÓ PARA IMPEDIR INSCRIPCIONES TARDÍAS
-                DateTime fechaHoraFinEvento;
-                using (SqlCommand cmdFecha = new SqlCommand("SELECT fechaHoraFin FROM Eventos WHERE idEvento = @idEvento", cn.Conectar()))
+                // 0) VALIDAR SI EL EVENTO ESTÁ EN PERIODO DE INSCRIPCIÓN
+                DateTime fechaHoraFinEvento, fechaHoraInicioInscripcion, fechaHoraFinInscripcion;
+                using (SqlCommand cmdFecha = new SqlCommand("SELECT fechaHoraFin, fechaHoraInicioInscripcion, fechaHoraFinInscripcion FROM Eventos WHERE idEvento = @idEvento", cn.Conectar()))
                 {
                     cmdFecha.Parameters.AddWithValue("@idEvento", idEvento);
-                    object resultado = cmdFecha.ExecuteScalar();
-
-                    if (resultado == null || resultado == DBNull.Value)
+                    using (var reader = cmdFecha.ExecuteReader())
                     {
-                        MessageBox.Show("No se encontró el evento seleccionado.");
-                        return false;
+                        if (!reader.Read())
+                        {
+                            MessageBox.Show("No se encontró el evento seleccionado.");
+                            return false;
+                        }
+                        fechaHoraFinEvento = reader.GetDateTime(0);
+                        fechaHoraInicioInscripcion = reader.GetDateTime(1);
+                        fechaHoraFinInscripcion = reader.GetDateTime(2);
                     }
-
-                    fechaHoraFinEvento = Convert.ToDateTime(resultado);
                 }
 
-                if (fechaHoraFinEvento < DateTime.Now)
+                DateTime ahora = DateTime.Now;
+                if (ahora < fechaHoraInicioInscripcion)
+                {
+                    MessageBox.Show("El periodo de inscripción para este evento aún no ha iniciado.");
+                    return false;
+                }
+                if (ahora > fechaHoraFinInscripcion)
+                {
+                    MessageBox.Show("El periodo de inscripción para este evento ya finalizó.");
+                    return false;
+                }
+                if (fechaHoraFinEvento < ahora)
                 {
                     MessageBox.Show("No puedes inscribirte en un evento que ya ha finalizado.");
                     return false;
@@ -629,23 +647,36 @@ namespace SGES
         {
             try
             {
-                // 0) VALIDAR SI EL EVENTO YA FINALIZÓ PARA IMPEDIR INSCRIPCIONES GRUPALES TARDÍAS
-                DateTime fechaHoraFinEvento;
-                using (SqlCommand cmdFecha = new SqlCommand("SELECT fechaHoraFin FROM Eventos WHERE idEvento = @idEvento", cn.Conectar()))
+                // 0) VALIDAR SI EL EVENTO ESTÁ EN PERIODO DE INSCRIPCIÓN
+                DateTime fechaHoraFinEvento, fechaHoraInicioInscripcion, fechaHoraFinInscripcion;
+                using (SqlCommand cmdFecha = new SqlCommand("SELECT fechaHoraFin, fechaHoraInicioInscripcion, fechaHoraFinInscripcion FROM Eventos WHERE idEvento = @idEvento", cn.Conectar()))
                 {
                     cmdFecha.Parameters.AddWithValue("@idEvento", idEvento);
-                    object resultado = cmdFecha.ExecuteScalar();
-
-                    if (resultado == null || resultado == DBNull.Value)
+                    using (var reader = cmdFecha.ExecuteReader())
                     {
-                        MessageBox.Show("No se encontró el evento seleccionado.");
-                        return false;
+                        if (!reader.Read())
+                        {
+                            MessageBox.Show("No se encontró el evento seleccionado.");
+                            return false;
+                        }
+                        fechaHoraFinEvento = reader.GetDateTime(0);
+                        fechaHoraInicioInscripcion = reader.GetDateTime(1);
+                        fechaHoraFinInscripcion = reader.GetDateTime(2);
                     }
-
-                    fechaHoraFinEvento = Convert.ToDateTime(resultado);
                 }
 
-                if (fechaHoraFinEvento < DateTime.Now)
+                DateTime ahora = DateTime.Now;
+                if (ahora < fechaHoraInicioInscripcion)
+                {
+                    MessageBox.Show("El periodo de inscripción para este evento aún no ha iniciado.");
+                    return false;
+                }
+                if (ahora > fechaHoraFinInscripcion)
+                {
+                    MessageBox.Show("El periodo de inscripción para este evento ya finalizó.");
+                    return false;
+                }
+                if (fechaHoraFinEvento < ahora)
                 {
                     MessageBox.Show("No puedes inscribirte en un evento que ya ha finalizado.");
                     return false;

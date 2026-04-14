@@ -56,7 +56,30 @@ namespace SGES
                     cantIntegrantes = (int)nudCantidadIntegrantes.Value;
                 }
 
-                co.InsertarEvento(txtNombreEvento.Text.Trim(), cbTipoEvento.Text, dtpFechaHoraInicio.Value, dtpFechaHoraFin.Value, cbCategoriaEvento.Text, cantIntegrantes, idUsuario);
+                // Validaciones de fechas de inscripción
+                DateTime fechaInicioInsc = dtpFechaHoraInicioInscripcion.Value;
+                DateTime fechaFinInscr = dtpFechaHoraFinInscripcion.Value;
+                if (fechaInicioInsc >= fechaFinInscr)
+                {
+                    MessageBox.Show("La fecha/hora de inicio de inscripción debe ser anterior a la de fin de inscripción.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (fechaFinInscr > dtpFechaHoraInicio.Value)
+                {
+                    MessageBox.Show("La fecha/hora de fin de inscripción debe ser anterior a la fecha/hora de inicio del evento.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                co.InsertarEvento(
+                    txtNombreEvento.Text.Trim(),
+                    cbTipoEvento.Text,
+                    dtpFechaHoraInicio.Value,
+                    dtpFechaHoraFin.Value,
+                    fechaInicioInsc,
+                    fechaFinInscr,
+                    cbCategoriaEvento.Text,
+                    cantIntegrantes,
+                    idUsuario
+                );
                 this.Close();
             }
             catch (Exception ex)
